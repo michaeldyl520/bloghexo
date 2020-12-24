@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.jiliuke.com","root":"/","images":"/images","scheme":"Gemini","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+<meta name="description" content="目标 SMTP 服务器 mail1.fabrikam.com 源域 contoso.com 发件人的电子邮件地址 &amp;#x63;&amp;#104;&amp;#114;&amp;#x69;&amp;#115;&amp;#64;&amp;#x63;&amp;#x6f;&amp;#110;&amp;#x74;&amp;#x6f;&amp;#x73;&amp;#x6f;&amp;#46;&amp;#99;&amp;#x6f;&amp;#109; 收件人的电子邮件地址 &amp;#107;&amp;#97;&amp;#x74;&amp;#101;&amp;#64;&amp;#10">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 Telnet 端口 25 测试 SMTP 通信">
+<meta property="og:url" content="http://www.jiliuke.com/2015/03/11/e4-bd-bf-e7-94-a8-telnet-e7-ab-af-e5-8f-a3-25-e6-b5-8b-e8-af-95-smtp-e9-80-9a-e4-bf-a1/index.html">
+<meta property="og:site_name" content="Jiliuke">
+<meta property="og:description" content="目标 SMTP 服务器 mail1.fabrikam.com 源域 contoso.com 发件人的电子邮件地址 &amp;#x63;&amp;#104;&amp;#114;&amp;#x69;&amp;#115;&amp;#64;&amp;#x63;&amp;#x6f;&amp;#110;&amp;#x74;&amp;#x6f;&amp;#x73;&amp;#x6f;&amp;#46;&amp;#99;&amp;#x6f;&amp;#109; 收件人的电子邮件地址 &amp;#107;&amp;#97;&amp;#x74;&amp;#101;&amp;#64;&amp;#10">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2015-03-11T05:40:43.000Z">
+<meta property="article:modified_time" content="2020-12-24T02:16:52.193Z">
+<meta property="article:author" content="michaeldyl520">
+<meta property="article:tag" content="centos">
+<meta property="article:tag" content="SMTP">
+<meta property="article:tag" content="iredmail">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://www.jiliuke.com/2015/03/11/e4-bd-bf-e7-94-a8-telnet-e7-ab-af-e5-8f-a3-25-e6-b5-8b-e8-af-95-smtp-e9-80-9a-e4-bf-a1/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>使用 Telnet 端口 25 测试 SMTP 通信 | Jiliuke</title>
+  
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Jiliuke</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">激流客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">michaeldyl520</p>
+  <div class="site-description" itemprop="description">Bring the crowds together, inspire unlimited</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">120</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">128</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/michaeldyl520" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;michaeldyl520" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:michaeldyl520@gmail.com" title="E-Mail → mailto:michaeldyl520@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jiliuke.com/2015/03/11/e4-bd-bf-e7-94-a8-telnet-e7-ab-af-e5-8f-a3-25-e6-b5-8b-e8-af-95-smtp-e9-80-9a-e4-bf-a1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="michaeldyl520">
+      <meta itemprop="description" content="Bring the crowds together, inspire unlimited">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jiliuke">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用 Telnet 端口 25 测试 SMTP 通信
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2015-03-11 13:40:43" itemprop="dateCreated datePublished" datetime="2015-03-11T13:40:43+08:00">2015-03-11</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-12-24 10:16:52" itemprop="dateModified" datetime="2020-12-24T10:16:52+08:00">2020-12-24</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/iredMail/" itemprop="url" rel="index"><span itemprop="name">iredMail</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>目标 SMTP 服务器 mail1.fabrikam.com 源域 contoso.com 发件人的电子邮件地址 <a href="mailto:&#x63;&#104;&#114;&#x69;&#115;&#64;&#x63;&#x6f;&#110;&#x74;&#x6f;&#x73;&#x6f;&#46;&#99;&#x6f;&#109;">&#x63;&#104;&#114;&#x69;&#115;&#64;&#x63;&#x6f;&#110;&#x74;&#x6f;&#x73;&#x6f;&#46;&#99;&#x6f;&#109;</a> 收件人的电子邮件地址 <a href="mailto:&#107;&#97;&#x74;&#101;&#64;&#102;&#x61;&#x62;&#x72;&#x69;&#x6b;&#x61;&#x6d;&#x2e;&#99;&#x6f;&#109;">&#107;&#97;&#x74;&#101;&#64;&#102;&#x61;&#x62;&#x72;&#x69;&#x6b;&#x61;&#x6d;&#x2e;&#99;&#x6f;&#109;</a> 邮件主题 来自 Contoso 的测试 邮件正文 这是一封测试邮件 使用 Telnet 端口 25 测试 SMTP 通信 在命令提示符下，键入 telnet，再按 Enter 键。此命令将打开 Telnet 会话。 键入 set localecho，再按 Enter 键。此可选命令可使您在键入字符时查看这些字符。某些 SMTP 服务器可能需要此设置。 键入 set logfile &lt;文件名&gt;。此可选命令可以将 Telnet 会话记录到指定的日志文件中。如果您仅指定了文件名，则日志文件的位置将是当前工作目录。如果您指定了路径和文件名，该路径必须位于计算机本地。指定的路径和文件名都必须以 Microsoft DOS 8.3 格式输入。您指定的路径必须已存在。如果您指定了一个不存在的日志文件，系统将为您创建一个日志文件。 键入 open mail1.fabrikam.com 25，再按 ENTER 键。 键入 EHLO contoso.com，再按 ENTER 键。 键入 MAIL FROM:<a href="mailto:&#99;&#x68;&#114;&#105;&#115;&#64;&#x63;&#x6f;&#x6e;&#116;&#111;&#115;&#111;&#46;&#99;&#111;&#x6d;">&#99;&#x68;&#114;&#105;&#115;&#64;&#x63;&#x6f;&#x6e;&#116;&#111;&#115;&#111;&#46;&#99;&#111;&#x6d;</a>，再按 ENTER 键。 键入 RCPT TO:<a href="mailto:&#107;&#x61;&#116;&#101;&#x40;&#102;&#x61;&#x62;&#x72;&#105;&#x6b;&#97;&#109;&#x2e;&#99;&#111;&#x6d;">&#107;&#x61;&#116;&#101;&#x40;&#102;&#x61;&#x62;&#x72;&#105;&#x6b;&#97;&#109;&#x2e;&#99;&#111;&#x6d;</a> NOTIFY=success,failure，再按 ENTER 键。可选的 NOTIFY 命令可定义目标 SMTP 服务器必须向发件人提供的特定传递状态通知 (DSN) 邮件。DSN 邮件是在 RFC 1891 中定义的。在本例中，您要查询有关邮件传递成功或失败的 DSN 邮件。 键入 DATA，再按 Enter 键。您将收到与以下类似的响应： 354 Start mail input; end with . 键入 主题：来自 Contoso 的测试，再按 ENTER 键。 按 Enter 键。RFC 2822 需要在 Subject: 头字段和邮件正文间留一个空行。 键入 这是一封测试邮件，再按 ENTER 键。 按 ENTER 键，键入句点 ( . )，再按 ENTER 键。您将收到与以下类似的响应： 250 2.6.0 Queued mail for delivery 若要与目标 SMTP 服务器断开连接，请键入 QUIT，再按 ENTER 键。您将收到与以下类似的响应： 221 2.0.0 Service closing transmission channel 若要关闭 Telnet 会话，请键入 quit，再按 ENTER 键。 解释 Telnet 会话与 SMTP 服务器的结果 针对您在以上示例中输入的命令，本节提供有关这些命令响应的详细信息。 注意： 在 RFC 2821 中定义的三位数 SMTP 响应代码对于所有 SMTP 邮件服务器都相同。对于某些 SMTP 邮件服务器，文本说明可能稍有不同。在本示例中，目标计算机正在运行 Exchange Server 2007。 打开 mail1.fabrikam.com 25 成功响应 220 mail1.fabrikam.com Microsoft ESMTP MAIL Service ready at 失败响应 Connecting to mail1.fabrikam.com…Could not open connection to the host, on port 25: Connect failed 失败的可能原因 目标 SMTP 服务不可用。 对目标防火墙有所限制。 对源防火墙有所限制。 指定的目标 SMTP 服务器的 FQDN 或 IP 地址不正确。 指定的端口号不正确。 EHLO contoso.com 成功响应 250 mail1.fabrikam.com Hello [] 失败响应 501 5.5.4 Invalid domain name 失败的可能原因 域名中存在无效字符。或者，存在有关目标 SMTP 服务器的连接限制。 注意： EHLO 是扩展的简单邮件传输协议 (ESMTP) 命令动词，该命令动词是在 RFC 2821 中定义的。ESMTP 服务器可在初始连接时公布其功能。这些功能包括其最大的可接受邮件大小以及其支持的身份验证方法。HELO 是 RFC 821 中定义的旧版 SMTP 命令动词。多数 SMTP 邮件服务器都支持 ESMTP 和 EHLO。 MAIL FROM:<a href="mailto:&#x63;&#104;&#x72;&#x69;&#115;&#64;&#99;&#111;&#110;&#x74;&#x6f;&#115;&#111;&#46;&#x63;&#111;&#x6d;">&#x63;&#104;&#x72;&#x69;&#115;&#64;&#99;&#111;&#110;&#x74;&#x6f;&#115;&#111;&#46;&#x63;&#111;&#x6d;</a> 成功响应 250 2.1.0 Sender OK 失败响应 550 5.1.7 Invalid address 可能的失败原因 发件人的电子邮件地址中存在语法错误。 失败响应 530 5.7.1 Client was not authenticated 可能的失败原因 目标服务器不接受匿名邮件提交。如果您试图使用 Telnet 直接向集线器传输服务器提交邮件，则将收到此错误消息。 RCPT TO:<a href="mailto:&#x6b;&#x61;&#x74;&#x65;&#64;&#102;&#x61;&#x62;&#x72;&#x69;&#107;&#x61;&#x6d;&#46;&#99;&#x6f;&#109;">&#x6b;&#x61;&#x74;&#x65;&#64;&#102;&#x61;&#x62;&#x72;&#x69;&#107;&#x61;&#x6d;&#46;&#99;&#x6f;&#109;</a> NOTIFY=success,failure 成功响应 250 2.1.5 Recipient OK 失败响应 550 5.1.1 User unknown 可能的失败原因 指定的收件人在组织中不存在。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我喝杯咖啡</div>
+  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="michaeldyl520 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.png" alt="michaeldyl520 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/centos/" rel="tag"># centos</a>
+              <a href="/tags/SMTP/" rel="tag"># SMTP</a>
+              <a href="/tags/iredmail/" rel="tag"># iredmail</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2015/03/11/iredmail-e9-97-ae-e9-a2-98-e9-9b-86-e9-94-a6/" rel="prev" title="iredmail 问题集锦">
+                  <i class="fa fa-chevron-left"></i> iredmail 问题集锦
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2015/03/30/php-fpm-e8-bf-9b-e7-a8-8b-e5-85-b3-e9-97-ad-e4-b8-8e-e9-87-8d-e5-90-af-e8-84-9a-e6-9c-ac-e8-af-a6-e8-a7-a3/" rel="next" title="php-fpm进程关闭与重启脚本详解">
+                  php-fpm进程关闭与重启脚本详解 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">michaeldyl520</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="//cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+  
+
+
+
+
+
+
+</body>
+</html>

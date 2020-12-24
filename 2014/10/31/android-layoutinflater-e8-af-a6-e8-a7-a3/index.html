@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.jiliuke.com","root":"/","images":"/images","scheme":"Gemini","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+<meta name="description" content="在实际开发中LayoutInflater这个类还是非常有用的，它的作用类似于findViewById()。不同点是LayoutInflater是用来找res&#x2F;layout&#x2F;下的xml布局文件，并且实例化；而findViewById()是找xml布局文件下的具体widget控件(如Button、TextView等)。 具体作用： 1、对于一个没有被载入或者想要动态载入的界面，都需要使用LayoutI">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android LayoutInflater详解">
+<meta property="og:url" content="http://www.jiliuke.com/2014/10/31/android-layoutinflater-e8-af-a6-e8-a7-a3/index.html">
+<meta property="og:site_name" content="Jiliuke">
+<meta property="og:description" content="在实际开发中LayoutInflater这个类还是非常有用的，它的作用类似于findViewById()。不同点是LayoutInflater是用来找res&#x2F;layout&#x2F;下的xml布局文件，并且实例化；而findViewById()是找xml布局文件下的具体widget控件(如Button、TextView等)。 具体作用： 1、对于一个没有被载入或者想要动态载入的界面，都需要使用LayoutI">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2014-10-31T03:15:33.000Z">
+<meta property="article:modified_time" content="2020-12-24T02:16:52.189Z">
+<meta property="article:author" content="michaeldyl520">
+<meta property="article:tag" content="android">
+<meta property="article:tag" content="安卓">
+<meta property="article:tag" content="LayoutInflater">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://www.jiliuke.com/2014/10/31/android-layoutinflater-e8-af-a6-e8-a7-a3/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>Android LayoutInflater详解 | Jiliuke</title>
+  
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Jiliuke</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">激流客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">michaeldyl520</p>
+  <div class="site-description" itemprop="description">Bring the crowds together, inspire unlimited</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">120</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">128</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/michaeldyl520" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;michaeldyl520" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:michaeldyl520@gmail.com" title="E-Mail → mailto:michaeldyl520@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jiliuke.com/2014/10/31/android-layoutinflater-e8-af-a6-e8-a7-a3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="michaeldyl520">
+      <meta itemprop="description" content="Bring the crowds together, inspire unlimited">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jiliuke">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Android LayoutInflater详解
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2014-10-31 11:15:33" itemprop="dateCreated datePublished" datetime="2014-10-31T11:15:33+08:00">2014-10-31</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-12-24 10:16:52" itemprop="dateModified" datetime="2020-12-24T10:16:52+08:00">2020-12-24</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AE%89%E5%8D%93%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/" itemprop="url" rel="index"><span itemprop="name">安卓问题集锦</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>在实际开发中LayoutInflater这个类还是非常有用的，它的作用类似于findViewById()。不同点是LayoutInflater是用来找res/layout/下的xml布局文件，并且实例化；而findViewById()是找xml布局文件下的具体widget控件(如Button、TextView等)。</p>
+<p>具体作用：</p>
+<p>1、对于一个没有被载入或者想要动态载入的界面，都需要使用LayoutInflater.inflate()来载入；</p>
+<p>2、对于一个已经载入的界面，就可以使用Activiyt.findViewById()方法来获得其中的界面元素。</p>
+<p>LayoutInflater 是一个抽象类，在文档中如下声明：</p>
+<p>public abstract class LayoutInflater extends Object</p>
+<p>获得 LayoutInflater 实例的三种方式</p>
+<p>1. LayoutInflater inflater = getLayoutInflater();//调用Activity的getLayoutInflater()</p>
+<p>2. LayoutInflater inflater = LayoutInflater.from(context);</p>
+<p>3. LayoutInflater inflater = (LayoutInflater)context.getSystemService</p>
+<p>                              (Context.LAYOUT_INFLATER_SERVICE);</p>
+<p>其实，这三种方式本质是相同的，从源码中可以看出：</p>
+<p>getLayoutInflater()：</p>
+<p>Activity 的 getLayoutInflater() 方法是调用 PhoneWindow 的getLayoutInflater()方法，看一下该源代码：</p>
+<p>public PhoneWindow(Context context)</p>
+<p>{</p>
+<p> super(context);</p>
+<p>    mLayoutInflater = LayoutInflater.from(context);</p>
+<p>}</p>
+<p>可以看出它其实是调用 LayoutInflater.from(context)。</p>
+<p>LayoutInflater.from(context)：</p>
+<p>public static LayoutInflater from(Context context)</p>
+<p>{</p>
+<p> LayoutInflater LayoutInflater = (LayoutInflater) context.getSystemService</p>
+<p>         (Context.LAYOUT_INFLATER_SERVICE);</p>
+<p>    if (LayoutInflater == null)</p>
+<p>    {</p>
+<p>     throw new AssertionError(“LayoutInflater not found.”);</p>
+<p>    }</p>
+<p>    return LayoutInflater;</p>
+<p>}</p>
+<p>可以看出它其实调用 context.getSystemService()。</p>
+<p>结论：所以这三种方式最终本质是都是调用的Context.getSystemService()。</p>
+<p>另外getSystemService()是Android很重要的一个API，它是Activity的一个方法，根据传入的NAME来取得对应的Object，然后转换成相应的服务对象。以下介绍系统相应的服务。</p>
+<p>传入的Name 返回的对象 说明</p>
+<p>WINDOW_SERVICE WindowManager 管理打开的窗口程序</p>
+<p>LAYOUT_INFLATER_SERVICE LayoutInflater 取得xml里定义的view</p>
+<p>ACTIVITY_SERVICE ActivityManager 管理应用程序的系统状态</p>
+<p>POWER_SERVICE PowerManger 电源的服务</p>
+<p>ALARM_SERVICE AlarmManager 闹钟的服务</p>
+<p>NOTIFICATION_SERVICE NotificationManager 状态栏的服务</p>
+<p>KEYGUARD_SERVICE KeyguardManager 键盘锁的服务</p>
+<p>LOCATION_SERVICE LocationManager 位置的服务，如GPS</p>
+<p>SEARCH_SERVICE SearchManager 搜索的服务</p>
+<p>VEBRATOR_SERVICE Vebrator 手机震动的服务</p>
+<p>CONNECTIVITY_SERVICE Connectivity 网络连接的服务</p>
+<p>WIFI_SERVICE WifiManager Wi-Fi服务</p>
+<p>TELEPHONY_SERVICE TeleponyManager 电话服务</p>
+<p>inflate 方法</p>
+<p>通过 sdk 的 api 文档，可以知道该方法有以下几种过载形式，返回值均是 View 对象，如下：</p>
+<p>public View inflate (int resource, ViewGroup root)</p>
+<p>public View inflate (XmlPullParser parser, ViewGroup root)</p>
+<p>public View inflate (XmlPullParser parser, ViewGroup root, boolean attachToRoot)</p>
+<p>public View inflate (int resource, ViewGroup root, boolean attachToRoot)</p>
+<p>示意代码：</p>
+<p>LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);</p>
+<p>View view = inflater.inflate(R.layout.custom, (ViewGroup)findViewById(R.id.test));</p>
+<p>//EditText editText = (EditText)findViewById(R.id.content);// error</p>
+<p>EditText editText = (EditText)view.findViewById(R.id.content);</p>
+<p>对于上面代码，指定了第二个参数 ViewGroup root，当然你也可以设置为 null 值。</p>
+<p>注意：</p>
+<p>·inflate 方法与 findViewById 方法不同；</p>
+<p>·inflater 是用来找 res/layout 下的 xml 布局文件，并且实例化；</p>
+<p>·findViewById() 是找具体 xml 布局文件中的具体 widget 控件(如:Button、TextView 等)。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我喝杯咖啡</div>
+  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="michaeldyl520 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.png" alt="michaeldyl520 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/android/" rel="tag"># android</a>
+              <a href="/tags/%E5%AE%89%E5%8D%93/" rel="tag"># 安卓</a>
+              <a href="/tags/LayoutInflater/" rel="tag"># LayoutInflater</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2014/10/31/android-e4-b8-ad-getapplicationcontext-e3-80-81this-e3-80-81getapplication-e4-b9-8b-e9-97-b4-e7-9a-84-e5-8c-ba-e5-88-ab/" rel="prev" title="Android 中 getApplicationContext()、this、getApplication()之间的区别">
+                  <i class="fa fa-chevron-left"></i> Android 中 getApplicationContext()、this、getApplication()之间的区别
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2014/11/14/224/" rel="next" title="centos安装lamp环境">
+                  centos安装lamp环境 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">michaeldyl520</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="//cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+  
+
+
+
+
+
+
+</body>
+</html>

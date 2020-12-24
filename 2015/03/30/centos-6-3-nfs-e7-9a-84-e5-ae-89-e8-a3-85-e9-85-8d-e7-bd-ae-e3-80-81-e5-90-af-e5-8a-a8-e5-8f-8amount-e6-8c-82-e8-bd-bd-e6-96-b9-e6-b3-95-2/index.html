@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.jiliuke.com","root":"/","images":"/images","scheme":"Gemini","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+<meta name="description" content="一、环境介绍： 服务器：centos 192.168.1.225 客户端：centos 192.168.1.226 二、安装： NFS的安装配置： centos 5 : yum -y install nfs-utils portmap centos 6(在CentOS 6.3当中，portmap服务由rpcbind负责) : yum -y install nfs-utils rpcbind 三、服">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CentOS 6.3 NFS的安装配置、启动及mount挂载方法">
+<meta property="og:url" content="http://www.jiliuke.com/2015/03/30/centos-6-3-nfs-e7-9a-84-e5-ae-89-e8-a3-85-e9-85-8d-e7-bd-ae-e3-80-81-e5-90-af-e5-8a-a8-e5-8f-8amount-e6-8c-82-e8-bd-bd-e6-96-b9-e6-b3-95-2/index.html">
+<meta property="og:site_name" content="Jiliuke">
+<meta property="og:description" content="一、环境介绍： 服务器：centos 192.168.1.225 客户端：centos 192.168.1.226 二、安装： NFS的安装配置： centos 5 : yum -y install nfs-utils portmap centos 6(在CentOS 6.3当中，portmap服务由rpcbind负责) : yum -y install nfs-utils rpcbind 三、服">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2015-03-30T03:08:23.000Z">
+<meta property="article:modified_time" content="2020-12-24T02:16:52.189Z">
+<meta property="article:author" content="michaeldyl520">
+<meta property="article:tag" content="centos">
+<meta property="article:tag" content="nfs">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://www.jiliuke.com/2015/03/30/centos-6-3-nfs-e7-9a-84-e5-ae-89-e8-a3-85-e9-85-8d-e7-bd-ae-e3-80-81-e5-90-af-e5-8a-a8-e5-8f-8amount-e6-8c-82-e8-bd-bd-e6-96-b9-e6-b3-95-2/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>CentOS 6.3 NFS的安装配置、启动及mount挂载方法 | Jiliuke</title>
+  
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Jiliuke</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">激流客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">michaeldyl520</p>
+  <div class="site-description" itemprop="description">Bring the crowds together, inspire unlimited</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">120</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">128</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/michaeldyl520" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;michaeldyl520" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:michaeldyl520@gmail.com" title="E-Mail → mailto:michaeldyl520@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jiliuke.com/2015/03/30/centos-6-3-nfs-e7-9a-84-e5-ae-89-e8-a3-85-e9-85-8d-e7-bd-ae-e3-80-81-e5-90-af-e5-8a-a8-e5-8f-8amount-e6-8c-82-e8-bd-bd-e6-96-b9-e6-b3-95-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="michaeldyl520">
+      <meta itemprop="description" content="Bring the crowds together, inspire unlimited">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jiliuke">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CentOS 6.3 NFS的安装配置、启动及mount挂载方法
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2015-03-30 11:08:23" itemprop="dateCreated datePublished" datetime="2015-03-30T11:08:23+08:00">2015-03-30</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-12-24 10:16:52" itemprop="dateModified" datetime="2020-12-24T10:16:52+08:00">2020-12-24</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/CentOS/" itemprop="url" rel="index"><span itemprop="name">CentOS</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><strong>一、环境介绍：</strong> 服务器：centos 192.168.1.225 客户端：centos 192.168.1.226 <strong>二、安装：</strong> NFS的安装配置： centos 5 :</p>
+<p>yum -y install nfs-utils portmap</p>
+<p>centos 6(在CentOS 6.3当中，portmap服务由rpcbind负责) :</p>
+<p>yum -y install nfs-utils rpcbind</p>
+<p><strong>三、服务器端配置：</strong> 1、创建共享目录：</p>
+<p>[root@centos2 /]# mkdir /usr/local/test</p>
+<p>2、NFS文件配置：</p>
+<p>[root@centos2 /]# vi /etc/exports<br>#增加一行：<br>/usr/local/test/ 192.168.1.226(rw,no_root_squash,no_all_squash,sync)</p>
+<p>:x保存退出； 使配置生效：</p>
+<p>[root@centos2 /]# exportfs -r</p>
+<p>注：配置文件说明： /usr/local/test/ 为共享的目录，使用绝对路径。 192.168.1.226(rw,no_root_squash,no_all_squash,sync) 为客户端的地址及权限，地址可以是一个网段，一个IP地址或者是一个域名，域名支持通配符，如：*.youxia.com，地址与权限中间没有空格，权限说明： rw：read-write，可读写； ro：read-only，只读； sync：文件同时写入硬盘和内存； async：文件暂存于内存，而不是直接写入内存； no_root_squash：NFS客户端连接服务端时如果使用的是root的话，那么对服务端分享的目录来说，也拥有root权限。显然开启这项是不安全的。 root_squash：NFS客户端连接服务端时如果使用的是root的话，那么对服务端分享的目录来说，拥有匿名用户权限，通常他将使用nobody或nfsnobody身份； all_squash：不论NFS客户端连接服务端时使用什么用户，对服务端分享的目录来说都是拥有匿名用户权限； anonuid：匿名用户的UID值，通常是nobody或nfsnobody，可以在此处自行设定； anongid：匿名用户的GID值。 3、启动: centos6: [root@centos2 /]# service rpcbind start</p>
+<p>Starting rpcbind:                                          [  OK  ]<br>[root@centos2 /]# service nfs start<br>Starting NFS services:                                     [  OK  ]<br>Starting NFS quotas:                                       [  OK  ]<br>Starting NFS mountd:                                       [  OK  ]<br>Stopping RPC idmapd:                                       [  OK  ]<br>Starting RPC idmapd:                                       [  OK  ]<br>Starting NFS daemon:                                       [  OK  ]<br>[root@centos2 /]#</p>
+<p>centos 5</p>
+<p>[root@centos2 /]# service portmap start<br>[root@centos2 /]# service nfs start<br>[root@centos2 /]#</p>
+<p><strong>四、客户端挂载：</strong> 1、创建需要挂载的目录：</p>
+<p>[root@localhost ~]# mkdir /usr/local/test<br>[root@localhost ~]#</p>
+<p>2、测试挂载：</p>
+<p>[root@localhost ~]# showmount -e 192.168.1.225<br>Export list for 192.168.1.225:<br>/usr/local/test 192.168.1.226<br>[root@localhost ~]#</p>
+<p>如果显示：rpc mount export: RPC: Unable to receive; errno = No route to host，则需要在服务端关闭防火墙（稍候会详细说）。 3、挂载： [root@localhost ~]# mount -t nfs 192.168.1.225:/usr/local/test /usr/local/test</p>
+<p>[root@localhost ~]# mount<br>/dev/mapper/VolGroup-lv_root on / type ext4 (rw)<br>proc on /proc type proc (rw)<br>sysfs on /sys type sysfs (rw)<br>devpts on /dev/pts type devpts (rw,gid=5,mode=620)<br>tmpfs on /dev/shm type tmpfs (rw)<br>/dev/sda1 on /boot type ext4 (rw)<br>none on /proc/sys/fs/binfmt_misc type binfmt_misc (rw)<br>sunrpc on /var/lib/nfs/rpc_pipefs type rpc_pipefs (rw)<br>nfsd on /proc/fs/nfsd type nfsd (rw)<br>192.168.1.225:/usr/local/test on /usr/local/test type nfs (rw,vers=4,addr=192.168.1.225,clientaddr=192.168.1.226)<br>[root@localhost ~]#</p>
+<p>如果信息如上显示则挂载成功！ 4、测试： 客户端生成一个文件：</p>
+<p>[root@centos2 /]# cd /usr/local/test/<br>[root@centos2 test]# echo “hello nfs test”&gt;&gt;test<br>[root@centos2 test]# ll<br>total 4<br>-rw-r–r– 1 root root 15 Apr  9 13:24 test<br>[root@centos2 test]#</p>
+<p>服务端检查：</p>
+<p>[root@centos2 /]# cd /usr/local/test/<br>[root@centos2 test]# ll<br>total 4<br>-rw-r–r– 1 root root 15 Apr  9 13:24 test<br>[root@centos2 test]#</p>
+<p>挂载成功！ <strong>五、解除挂载：</strong> [root@localhost ~]# umount /usr/local/test</p>
+<p>[root@localhost ~]# mount<br>/dev/mapper/VolGroup-lv_root on / type ext4 (rw)<br>proc on /proc type proc (rw)<br>sysfs on /sys type sysfs (rw)<br>devpts on /dev/pts type devpts (rw,gid=5,mode=620)<br>tmpfs on /dev/shm type tmpfs (rw)<br>/dev/sda1 on /boot type ext4 (rw)<br>none on /proc/sys/fs/binfmt_misc type binfmt_misc (rw)<br>sunrpc on /var/lib/nfs/rpc_pipefs type rpc_pipefs (rw)<br>nfsd on /proc/fs/nfsd type nfsd (rw)<br>[root@localhost ~]#</p>
+<p>如果遇到：umount.nfs: /usr/local/test: device is busy 可能用命令： [root@localhost /]# fuser -m -v /usr/local/test</p>
+<pre><code>                 用户     进程号 权限   命令</code></pre>
+<p>/usr/local/test/:              root       2798 ..c.. bash<br>                     root       2996 ..c.. su<br>[root@localhost /]# kill -9 2798</p>
+<p>[root@localhost /]# kill -9 2996</p>
+<p>[root@localhost /]# umount /usr/local/test<br>[root@localhost /]#</p>
+<p>六、服务器端防火墙设置（NFS 开启防墙配置）： 1、修改/etc/service,添加以下内容（端口号必须在1024以下,且未被占用） # Local services mountd 1011/tcp #rpc.mountd mountd 1011/udp #rpc.mountd rquotad 1012/tcp #rpc.rquotad rquotad 1012/udp #rpc.rquotad 2、重起Linux NFS服务 service nfs restart 3、此时rpc相关端口已经被固定,可以为Linux NFS添加防火墙规则 #portmap /sbin/iptables -A INPUT -s 192.168.1.0/254 -p tcp –dport 111 -j ACCEPT /sbin/iptables -A INPUT -s 192.168.1.0/254 -p udp –dport 111 -j ACCEPT #nfsd /sbin/iptables -A INPUT -s 192.168.1.0/254 -p tcp –dport 2049 -j ACCEPT /sbin/iptables -A INPUT -s 192.168.1.0/254 -p udp –dport 2049 -j ACCEPT #mountd /sbin/iptables -A INPUT -s 192.168.1.0/254 -p tcp –dport 1011 -j ACCEPT /sbin/iptables -A INPUT -s 192.168.1.0/254 -p udp –dport 1011 -j ACCEPT #rquotad /sbin/iptables -A INPUT -s 192.168.1.0/254 -p tcp –dport 1012 -j ACCEPT /sbin/iptables -A INPUT -s 192.168.1.0/254 -p udp –dport 1012 -j ACCEPT #rpc.statd /sbin/iptables -A INPUT -s 192.168.1.0/254 -p tcp –dport 32768 -j ACCEPT /sbin/iptables -A INPUT -s 192.168.1.0/254 -p udp –dport 32768 -j ACCEPT —TCP方法成功——————————————- -A INPUT -m state –state NEW -m tcp -p tcp –dport 111 -j ACCEPT -A INPUT -m state –state NEW -m tcp -p tcp –dport 2049 -j ACCEPT -A INPUT -m state –state NEW -m tcp -p tcp –dport 1011 -j ACCEPT -A INPUT -m state –state NEW -m tcp -p tcp –dport 1012 -j ACCEPT -A INPUT -m state –state NEW -m tcp -p tcp –dport 32768 -j ACCEPT 客户端在挂载的时候遇到的一个问题如下，可能是网络不太稳定，NFS默认是用UDP协议，换成TCP协议即可： mount -t nfs 192.168.1.225:/usr/local/test /usr/local/test  -o proto=tcp -o nolock /etc/init.d/iptables restart #最后重启防火墙使配置生效 防火墙端口说明： portmap或者rpcbind(CentOS 6.x)使用：tcp/udp 111 nfs使用:tcp/udp 2049 mountd使用: TCP/UDP 892 rquotad使用：tcp/udp 875 status使用: TCP/UDP 1001-1004共四个端口 nlockmgr使用:TCP/32803端口 UDP/32769端口 <strong><em>rpcinfo -p 查看rpcbind使用的端口号</em></strong></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我喝杯咖啡</div>
+  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="michaeldyl520 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.png" alt="michaeldyl520 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/centos/" rel="tag"># centos</a>
+              <a href="/tags/nfs/" rel="tag"># nfs</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2015/03/30/e3-80-90-e6-b1-87-e6-80-bb-e3-80-91php-fpm-e9-85-8d-e7-bd-ae-e4-bc-98-e5-8c-96/" rel="prev" title="【汇总】PHP-FPM 配置优化">
+                  <i class="fa fa-chevron-left"></i> 【汇总】PHP-FPM 配置优化
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2015/03/30/centos-e5-ae-89-e8-a3-85-crontab-2/" rel="next" title="Centos 安装 crontab">
+                  Centos 安装 crontab <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">michaeldyl520</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="//cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+  
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.jiliuke.com","root":"/","images":"/images","scheme":"Gemini","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+<meta name="description" content="实时查看CPU每核的线程利用率 top 后按 1，如下图所示，我们可以看到有8个CPU，每行显示的就是该CPU的使用率： 查看当前操作系统内核信息 # uname -a Linux db1.xxx.com 2.6.18-194.el5xen #1 SMP Fri Apr 2 15:34:40 EDT 2010 x86_64 x86_64 x86_64 GNU&#x2F;Linux 依次是 操作系统名称： L">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Centos 下查看服务器的CPU的信息">
+<meta property="og:url" content="http://www.jiliuke.com/2014/02/26/centos-e4-b8-8b-e6-9f-a5-e7-9c-8b-e6-9c-8d-e5-8a-a1-e5-99-a8-e7-9a-84cpu-e7-9a-84-e4-bf-a1-e6-81-af/index.html">
+<meta property="og:site_name" content="Jiliuke">
+<meta property="og:description" content="实时查看CPU每核的线程利用率 top 后按 1，如下图所示，我们可以看到有8个CPU，每行显示的就是该CPU的使用率： 查看当前操作系统内核信息 # uname -a Linux db1.xxx.com 2.6.18-194.el5xen #1 SMP Fri Apr 2 15:34:40 EDT 2010 x86_64 x86_64 x86_64 GNU&#x2F;Linux 依次是 操作系统名称： L">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2014-02-26T09:10:37.000Z">
+<meta property="article:modified_time" content="2020-12-24T02:16:52.189Z">
+<meta property="article:author" content="michaeldyl520">
+<meta property="article:tag" content="centos">
+<meta property="article:tag" content="CPU">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://www.jiliuke.com/2014/02/26/centos-e4-b8-8b-e6-9f-a5-e7-9c-8b-e6-9c-8d-e5-8a-a1-e5-99-a8-e7-9a-84cpu-e7-9a-84-e4-bf-a1-e6-81-af/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>Centos 下查看服务器的CPU的信息 | Jiliuke</title>
+  
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Jiliuke</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">激流客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">michaeldyl520</p>
+  <div class="site-description" itemprop="description">Bring the crowds together, inspire unlimited</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">120</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">128</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/michaeldyl520" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;michaeldyl520" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:michaeldyl520@gmail.com" title="E-Mail → mailto:michaeldyl520@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jiliuke.com/2014/02/26/centos-e4-b8-8b-e6-9f-a5-e7-9c-8b-e6-9c-8d-e5-8a-a1-e5-99-a8-e7-9a-84cpu-e7-9a-84-e4-bf-a1-e6-81-af/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="michaeldyl520">
+      <meta itemprop="description" content="Bring the crowds together, inspire unlimited">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jiliuke">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Centos 下查看服务器的CPU的信息
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2014-02-26 17:10:37" itemprop="dateCreated datePublished" datetime="2014-02-26T17:10:37+08:00">2014-02-26</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-12-24 10:16:52" itemprop="dateModified" datetime="2020-12-24T10:16:52+08:00">2020-12-24</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/CentOS/" itemprop="url" rel="index"><span itemprop="name">CentOS</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>实时查看CPU每核的线程利用率 top 后按 1，如下图所示，我们可以看到有8个CPU，每行显示的就是该CPU的使用率： 查看当前操作系统内核信息 # uname -a Linux db1.xxx.com 2.6.18-194.el5xen #1 SMP Fri Apr 2 15:34:40 EDT 2010 x86_64 x86_64 x86_64 GNU/Linux 依次是 操作系统名称： Linux uname -s 可以单独看到这个信息 计算机名： db1.xxx.com uname -n 可以单独看到这个信息 操作系统发行编号： 2.6.18-194.el5xen uname -r 可以单独看到这个信息 操作系统发行时间： #1 SMP Fri Apr 2 15:34:40 EDT 2010 uname -v 可以单独看到这个信息 计算机类型，进程类型，硬件平台：x86_64 uname –m,uname –p,uname -i 可以单独看到这个信息 操作系统信息：GNU/Linux uname -o 可以单独看到这个信息 参数说明： -a或—all 显示全部的信息。 -m或—machine 显示电脑类型。 -n或-nodename 显示在网络上的主机名称。 -r或—release 显示操作系统的发行编号。 -s或—sysname 显示操作系统名称。 -v 显示操作系统的版本。 –help 显示帮助。 –version 显示版本信息。 参看：<a target="_blank" rel="noopener" href="http://www.lx138.com/page.php?ID=100">http://www.lx138.com/page.php?ID=100</a> 查看当前操作系统发行版信息 # lsb_release -a LSB Version: :core-3.1-amd64:core-3.1-ia32:core-3.1-noarch:graphics-3.1-amd64:graphics-3.1-ia32:graphics-3.1-noarch Distributor ID: CentOS Description: CentOS release 5.5 (Final) Release: 5.5 Codename: Final 查看有几个逻辑CPU，以及CPU型号 # cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c 8 Intel(R) Xeon(R) CPU E5620 @ 2.40GHz 上面可以看到有8个逻辑CPU。 型号是 Intel(R) Xeon(R) CPU的 E5620 ，主频是 2.40GHz 实际是有几个CPU # cat /proc/cpuinfo | grep physical | uniq -c 1 physical id : 0 1 address sizes : 40 bits physical, 48 bits virtual 1 physical id : 1 1 address sizes : 40 bits physical, 48 bits virtual 1 physical id : 2 1 address sizes : 40 bits physical, 48 bits virtual 1 physical id : 3 1 address sizes : 40 bits physical, 48 bits virtual 1 physical id : 4 1 address sizes : 40 bits physical, 48 bits virtual 1 physical id : 5 1 address sizes : 40 bits physical, 48 bits virtual 1 physical id : 6 1 address sizes : 40 bits physical, 48 bits virtual 1 physical id : 7 1 address sizes : 40 bits physical, 48 bits virtual 说明实际上是8颗1核的CPU，因为是多核CPU，所以这里有这个显示。其实这台机子是 1个Xeon 四核 E5620处理器 参看： 超线程技术的介绍 <a target="_blank" rel="noopener" href="http://wenwen.soso.com/z/q168813991.htm">http://wenwen.soso.com/z/q168813991.htm</a> # more /proc/cpuinfo | grep “model name” model name : Intel(R) Xeon(R) CPU E5620 @ 2.40GHz model name : Intel(R) Xeon(R) CPU E5620 @ 2.40GHz model name : Intel(R) Xeon(R) CPU E5620 @ 2.40GHz model name : Intel(R) Xeon(R) CPU E5620 @ 2.40GHz model name : Intel(R) Xeon(R) CPU E5620 @ 2.40GHz model name : Intel(R) Xeon(R) CPU E5620 @ 2.40GHz model name : Intel(R) Xeon(R) CPU E5620 @ 2.40GHz model name : Intel(R) Xeon(R) CPU E5620 @ 2.40GHz # grep “model name” /proc/cpuinfo model name : Intel(R) Xeon(R) CPU E5620 @ 2.40GHz model name : Intel(R) Xeon(R) CPU E5620 @ 2.40GHz model name : Intel(R) Xeon(R) CPU E5620 @ 2.40GHz model name : Intel(R) Xeon(R) CPU E5620 @ 2.40GHz model name : Intel(R) Xeon(R) CPU E5620 @ 2.40GHz model name : Intel(R) Xeon(R) CPU E5620 @ 2.40GHz model name : Intel(R) Xeon(R) CPU E5620 @ 2.40GHz model name : Intel(R) Xeon(R) CPU E5620 @ 2.40GHz # grep “model name” /proc/cpuinfo | cut -f2 -d: Intel(R) Xeon(R) CPU E5620 @ 2.40GHz Intel(R) Xeon(R) CPU E5620 @ 2.40GHz Intel(R) Xeon(R) CPU E5620 @ 2.40GHz Intel(R) Xeon(R) CPU E5620 @ 2.40GHz Intel(R) Xeon(R) CPU E5620 @ 2.40GHz Intel(R) Xeon(R) CPU E5620 @ 2.40GHz Intel(R) Xeon(R) CPU E5620 @ 2.40GHz Intel(R) Xeon(R) CPU E5620 @ 2.40GHz 当前是32位还是64位工作模式 # getconf LONG_BIT 64 是否支持64bit计算 结果大于0, 说明支持64bit计算. lm指long mode, 支持lm则是64bit # cat /proc/cpuinfo | grep flags | grep ‘ lm ‘ | wc -l 8 参考资料 Linux下如何查看CPU信息, 包括位数和多核信息 <a target="_blank" rel="noopener" href="http://hi.baidu.com/go_status/blog/item/4a095937ce3aa745251f1431.html">http://hi.baidu.com/go_status/blog/item/4a095937ce3aa745251f1431.html</a> CentOS系统如何查看cpu <a target="_blank" rel="noopener" href="http://os.51cto.com/art/201004/192592.htm">http://os.51cto.com/art/201004/192592.htm</a> centos下如何查看cpu是多少核，及每核的线程 <a target="_blank" rel="noopener" href="http://zhidao.baidu.com/question/165109144">http://zhidao.baidu.com/question/165109144</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我喝杯咖啡</div>
+  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="michaeldyl520 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.png" alt="michaeldyl520 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/centos/" rel="tag"># centos</a>
+              <a href="/tags/CPU/" rel="tag"># CPU</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2014/02/24/centos-e4-b8-8b-e5-ae-89-e8-a3-85-e6-9c-80-e6-96-b0firefox/" rel="prev" title="centos下安装最新firefox">
+                  <i class="fa fa-chevron-left"></i> centos下安装最新firefox
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2014/02/27/centos-e6-9f-a5-e7-9c-8b-e7-b3-bb-e7-bb-9f-e7-a1-ac-e4-bb-b6-e4-bf-a1-e6-81-af/" rel="next" title="Centos 查看系统硬件信息">
+                  Centos 查看系统硬件信息 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">michaeldyl520</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="//cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+  
+
+
+
+
+
+
+</body>
+</html>

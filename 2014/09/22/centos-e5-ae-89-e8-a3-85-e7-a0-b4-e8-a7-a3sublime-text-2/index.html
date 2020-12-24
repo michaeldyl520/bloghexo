@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.jiliuke.com","root":"/","images":"/images","scheme":"Gemini","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+<meta name="description" content="1.去其官方网站http:&#x2F;&#x2F;www.sublimetext.com&#x2F; 把linux版下载下来，解开压缩包，放在你希望的路径下。 2.用vim将其打开 。 vim sublime_text 3.将文件转成十六进制形式。vim中输入 :%!xxd 3.在vim中定位至“Thanks”文字附近。 &#x2F;Thanks 4.接着查找数字串“3342”。 &#x2F;3342 找到一处3342的地方大致是这个样子 ……4">
+<meta property="og:type" content="article">
+<meta property="og:title" content="centos安装破解Sublime Text 2">
+<meta property="og:url" content="http://www.jiliuke.com/2014/09/22/centos-e5-ae-89-e8-a3-85-e7-a0-b4-e8-a7-a3sublime-text-2/index.html">
+<meta property="og:site_name" content="Jiliuke">
+<meta property="og:description" content="1.去其官方网站http:&#x2F;&#x2F;www.sublimetext.com&#x2F; 把linux版下载下来，解开压缩包，放在你希望的路径下。 2.用vim将其打开 。 vim sublime_text 3.将文件转成十六进制形式。vim中输入 :%!xxd 3.在vim中定位至“Thanks”文字附近。 &#x2F;Thanks 4.接着查找数字串“3342”。 &#x2F;3342 找到一处3342的地方大致是这个样子 ……4">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.linuxidc.com/upload/2013_07/130705063620411.png">
+<meta property="article:published_time" content="2014-09-22T09:18:14.000Z">
+<meta property="article:modified_time" content="2020-12-24T02:16:52.189Z">
+<meta property="article:author" content="michaeldyl520">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.linuxidc.com/upload/2013_07/130705063620411.png">
+
+
+<link rel="canonical" href="http://www.jiliuke.com/2014/09/22/centos-e5-ae-89-e8-a3-85-e7-a0-b4-e8-a7-a3sublime-text-2/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>centos安装破解Sublime Text 2 | Jiliuke</title>
+  
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Jiliuke</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">激流客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">michaeldyl520</p>
+  <div class="site-description" itemprop="description">Bring the crowds together, inspire unlimited</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">120</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">128</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/michaeldyl520" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;michaeldyl520" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:michaeldyl520@gmail.com" title="E-Mail → mailto:michaeldyl520@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jiliuke.com/2014/09/22/centos-e5-ae-89-e8-a3-85-e7-a0-b4-e8-a7-a3sublime-text-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="michaeldyl520">
+      <meta itemprop="description" content="Bring the crowds together, inspire unlimited">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jiliuke">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          centos安装破解Sublime Text 2
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2014-09-22 17:18:14" itemprop="dateCreated datePublished" datetime="2014-09-22T17:18:14+08:00">2014-09-22</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-12-24 10:16:52" itemprop="dateModified" datetime="2020-12-24T10:16:52+08:00">2020-12-24</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/CentOS/" itemprop="url" rel="index"><span itemprop="name">CentOS</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/CentOS/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>1.去其官方网站<a target="_blank" rel="noopener" href="http://www.sublimetext.com/">http://www.sublimetext.com/</a> 把linux版下载下来，解开压缩包，放在你希望的路径下。 2.用vim将其打开 。 vim sublime_text 3.将文件转成十六进制形式。vim中输入 :%!xxd 3.在vim中定位至“Thanks”文字附近。 /Thanks 4.接着查找数字串“3342”。 /3342 找到一处3342的地方大致是这个样子 ……4333 3342 3032……. 将这里的3342 改为3242。 5.将文件转换回去。 :%!xxd -r 6.保存文件、退出。 :wq 7.打开程序，去help-enter licence 里贴进去通过程序算出来的Licence，OK 成功了。 <img src="http://www.linuxidc.com/upload/2013_07/130705063620411.png"> 这里贴出来几个算好的供使用。 —–BEGIN LICENSE—– China Unlimited User License EA7E-2861 BE67D2175D3569FDAB9EB5340FAD2822 E7B56B3397A76AA9FBE8AC3D3C65918B DFC28F2EA158140D9E07853D594818EB 3A237B2E8E98ED257C269548F50EDA34 EF0C7F72D8917DB538A0245E46BFD6B1 85F4EDE331F253530ED67A5C19E92399 04C5F4A1AF4AF3DB5EC49C1FEE17CA76 7E369F8AAE4AC6C6E756B5882E1608B9 —–END LICENSE—– —–BEGIN LICENSE—– USA Unlimited User License EA7E-1640 763D05839CA08BDA7B0103B5BABF0150 195EE53CC33B569858AFD553F080A9BC 1F678C88A1342AC92CA596FE775E7014 5A0EE55DC2F8DE3C4ED6B5B02FD4DB3C 493FCE3EE61FC0588CDAFAAD731BB47F FD047777D02A5BE92202B3D3EB59A696 A69DFEF6687D16FCD4443556912A1F62 82DA125263C5BC270CEE7664B5D0CEB9 —–END LICENSE—– —–BEGIN LICENSE—– A Unlimited User License EA7E-20708 A7281D6781626F2A37D6355121079ACA DF60119B9D27D4CBDA75FA63D633A671 9521D96D375D8DD95DF3F89231E38F8D 459374CC62D1C1B410C0BDFD2503670E 603BB1DCA7D20E85B0AF19BAE0A59822 F7B1F83659D4D7787C4F040FE9402FCD B9608A9012BDA8B65524B4DEDE4C00D0 76461448E2AAEC027060C26B038D502B —–END LICENSE—– —–BEGIN LICENSE—– B Unlimited User License EA7E-13207 B5C54DD7413302E87A9ED4155E90D5E0 684F7A34714D278ABE2731F0270034E2 9722AEC71E04043C0E9D4496D1DA161B D76CE81501A247F3E03F57D6EC1E76AE 12BE9CD453D1E651AF4BD187CC10FEB0 EB24FBAB7511F2F37E5F745D13D0641F 7D1BEEE98A9646A02B616BF98EB43F84 B04029D72C610086A666DB318A526A2F —–END LICENSE—– —–BEGIN LICENSE—– Love Unlimited User License EA7E-8441 918381ACA844A0379CCAC729059720A4 BC9D409098618744BB45FF23E67568DB 82B926D92157127DB3B4054834D0477F DD9C2B251A57F2E3259E04AD9B7DB8B8 1778C37C1D3B494671C5F4ECFBD2B519 361CD9624A56C21F54F8DD51F5BDF799 68F9537ED74680494853423904F032BA 3E896607B4D398E8C897A4DD1A8CB449 —–END LICENSE—– —–BEGIN LICENSE—– NightM Unlimited User License EA7E-5177 8125006DCD9E513CD4F1C217CAD3801D E72D3130CA1F04CFEDF3696C0F68553D DC42B172E38962890A87035FCE26049F 15EFA09D4BCC811617915165959A499F 402866AFC08E72615336D863968B60FB C9167F72F4B25ED5E8E593D2E19F43E7 C7EC9F459EA62F1DD1757DC9967C4801 8E48683A4F0F9CAC3CC0621F2D48292F —–END LICENSE—– 使用terminal安装的，安装目录在/usr/lib/sublime-text-2/sublime_text 下， 拷贝出来，修改，在sudo cp -f 回去即可继续后续步骤。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我喝杯咖啡</div>
+  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="michaeldyl520 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.png" alt="michaeldyl520 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2014/09/18/e5-9c-a8-htaccess-e6-96-87-e4-bb-b6-e4-b8-ad-e5-a2-9e-e5-8a-a0301-e9-87-8d-e5-ae-9a-e5-90-91-e6-8c-87-e4-bb-a4/" rel="prev" title="在.htaccess文件中增加301重定向指令 ">
+                  <i class="fa fa-chevron-left"></i> 在.htaccess文件中增加301重定向指令 
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2014/09/23/jquery-e4-b8-adprop-e6-96-b9-e6-b3-95-e5-92-8cattr-e6-96-b9-e6-b3-95-e7-9a-84-e5-8c-ba-e5-88-ab/" rel="next" title="jQuery中prop()方法和attr()方法的区别">
+                  jQuery中prop()方法和attr()方法的区别 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">michaeldyl520</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="//cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+  
+
+
+
+
+
+
+</body>
+</html>

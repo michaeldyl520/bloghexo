@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.jiliuke.com","root":"/","images":"/images","scheme":"Gemini","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+<meta name="description" content="本日志内容来自互联网和平日使用经验，整理一下方便日后参考。 正则表达式匹配，其中：   * ~ 为区分大小写匹配  * ~* 为不区分大小写匹配  * !和!*分别为区分大小写不匹配及不区分大小写不匹配  文件及目录匹配，其中：   * -f和!-f用来判断是否存在文件  * -d和!-d用来判断是否存在目录  * -e和!-e用来判断是否存在文件或目录  * -x和!-x用来判断文件是否可执行">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nginx rewrite 参数和例子">
+<meta property="og:url" content="http://www.jiliuke.com/2014/08/22/nginx-rewrite-e5-8f-82-e6-95-b0-e5-92-8c-e4-be-8b-e5-ad-90/index.html">
+<meta property="og:site_name" content="Jiliuke">
+<meta property="og:description" content="本日志内容来自互联网和平日使用经验，整理一下方便日后参考。 正则表达式匹配，其中：   * ~ 为区分大小写匹配  * ~* 为不区分大小写匹配  * !和!*分别为区分大小写不匹配及不区分大小写不匹配  文件及目录匹配，其中：   * -f和!-f用来判断是否存在文件  * -d和!-d用来判断是否存在目录  * -e和!-e用来判断是否存在文件或目录  * -x和!-x用来判断文件是否可执行">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2014-08-22T01:38:02.000Z">
+<meta property="article:modified_time" content="2020-12-24T02:16:52.201Z">
+<meta property="article:author" content="michaeldyl520">
+<meta property="article:tag" content="nginx">
+<meta property="article:tag" content="rewrite">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://www.jiliuke.com/2014/08/22/nginx-rewrite-e5-8f-82-e6-95-b0-e5-92-8c-e4-be-8b-e5-ad-90/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>nginx rewrite 参数和例子 | Jiliuke</title>
+  
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Jiliuke</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">激流客</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">michaeldyl520</p>
+  <div class="site-description" itemprop="description">Bring the crowds together, inspire unlimited</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">120</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">128</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/michaeldyl520" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;michaeldyl520" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:michaeldyl520@gmail.com" title="E-Mail → mailto:michaeldyl520@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jiliuke.com/2014/08/22/nginx-rewrite-e5-8f-82-e6-95-b0-e5-92-8c-e4-be-8b-e5-ad-90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="michaeldyl520">
+      <meta itemprop="description" content="Bring the crowds together, inspire unlimited">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jiliuke">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          nginx rewrite 参数和例子
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2014-08-22 09:38:02" itemprop="dateCreated datePublished" datetime="2014-08-22T09:38:02+08:00">2014-08-22</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-12-24 10:16:52" itemprop="dateModified" datetime="2020-12-24T10:16:52+08:00">2020-12-24</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/nginx/" itemprop="url" rel="index"><span itemprop="name">nginx</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><strong>本日志内容来自互联网和平日使用经验，整理一下方便日后参考。</strong></p>
+<p><strong>正则表达式匹配，其中：</strong></p>
+<ol>
+<li> * ~ 为区分大小写匹配</li>
+<li> * ~* 为不区分大小写匹配</li>
+<li> * !<del>和!</del>*分别为区分大小写不匹配及不区分大小写不匹配</li>
+</ol>
+<p><strong>文件及目录匹配，其中：</strong></p>
+<ol>
+<li> * -f和!-f用来判断是否存在文件</li>
+<li> * -d和!-d用来判断是否存在目录</li>
+<li> * -e和!-e用来判断是否存在文件或目录</li>
+<li> * -x和!-x用来判断文件是否可执行</li>
+</ol>
+<p><strong>flag标记有：</strong></p>
+<ol>
+<li> * last 相当于Apache里的[L]标记，表示完成rewrite</li>
+<li> * break 终止匹配, 不再匹配后面的规则</li>
+<li> * redirect 返回302临时重定向 地址栏会显示跳转后的地址</li>
+<li> * permanent 返回301永久重定向 地址栏会显示跳转后的地址</li>
+</ol>
+<p><strong>一些可用的全局变量有，可以用做条件判断(待补全)</strong></p>
+<ol>
+<li> $args</li>
+<li> $content_length</li>
+<li> $content_type</li>
+<li> $document_root</li>
+<li> $document_uri</li>
+<li> $host</li>
+<li> $http_user_agent</li>
+<li> $http_cookie</li>
+<li> $limit_rate</li>
+<li> $request_body_file</li>
+<li> $request_method</li>
+<li> $remote_addr</li>
+<li> $remote_port</li>
+<li> $remote_user</li>
+<li> $request_filename</li>
+<li> $request_uri</li>
+<li> $query_string</li>
+<li> $scheme</li>
+<li> $server_protocol</li>
+<li> $server_addr</li>
+<li> $server_name</li>
+<li> $server_port</li>
+<li> $uri</li>
+</ol>
+<p><strong>结合QeePHP的例子</strong></p>
+<ol>
+<li> if (!-d $request_filename) {</li>
+<li> rewrite ^/([a-z-A-Z]+)/([a-z-A-Z]+)/?(.*)$ /index.php?namespace=user&amp;controller=$1&amp;action=$2&amp;$3 last;</li>
+<li> rewrite ^/([a-z-A-Z]+)/?$ /index.php?namespace=user&amp;controller=$1 last;</li>
+<li> break;</li>
+</ol>
+<p><strong>多目录转成参数</strong> abc.domian.com/sort/2 =&gt; abc.domian.com/index.php?act=sort&amp;name=abc&amp;id=2</p>
+<ol>
+<li> if ($host ~* (.*)/.domain/.com) {</li>
+<li> set $sub_name $1;</li>
+<li> rewrite ^/sort//(/d+)//?$ /index.php?act=sort&amp;cid=$sub_name&amp;id=$1 last;</li>
+<li> }</li>
+</ol>
+<p><strong>目录对换</strong> /123456/xxxx -&gt; /xxxx?id=123456</p>
+<ol>
+<li> rewrite ^/(/d+)/(.+)/ /$2?id=$1 last;</li>
+</ol>
+<p><strong>例如下面设定nginx在用户使用ie的使用重定向到/nginx-ie目录下：</strong></p>
+<ol>
+<li> if ($http_user_agent ~ MSIE) {</li>
+<li> rewrite ^(.*)$ /nginx-ie/$1 break;</li>
+<li> }</li>
+</ol>
+<p><strong>目录自动加“/”</strong></p>
+<ol>
+<li> if (-d $request_filename){</li>
+<li> rewrite ^/(.*)([^/])$ http://$host/$1$2/ permanent;</li>
+<li> }</li>
+</ol>
+<p><strong>禁止htaccess</strong></p>
+<ol>
+<li> location ~//.ht {</li>
+<li>          deny all;</li>
+<li>      }</li>
+</ol>
+<p><strong>禁止多个目录</strong></p>
+<ol>
+<li> location ~ ^/(cron|templates)/ {</li>
+<li>          deny all;</li>
+<li> break;</li>
+<li>      }</li>
+</ol>
+<p><strong>禁止以/data开头的文件</strong> 可以禁止/data/下多级目录下.log.txt等请求;</p>
+<ol>
+<li> location ~ ^/data {</li>
+<li>          deny all;</li>
+<li>      }</li>
+</ol>
+<p><strong>禁止单个目录</strong> 不能禁止.log.txt能请求</p>
+<ol>
+<li> location /searchword/cron/ {</li>
+<li>          deny all;</li>
+<li>      }</li>
+</ol>
+<p><strong>禁止单个文件</strong></p>
+<ol>
+<li> location ~ /data/sql/data.sql {</li>
+<li>          deny all;</li>
+<li>      }</li>
+</ol>
+<p><strong>给favicon.ico和robots.txt设置过期时间;</strong> 这里为favicon.ico为99天,robots.txt为7天并不记录404错误日志</p>
+<ol>
+<li><p> location ~(favicon.ico) {</p>
+</li>
+<li><p>                  log_not_found off;</p>
+</li>
+<li><p> expires 99d;</p>
+</li>
+<li><p> break;</p>
+</li>
+<li><p>      }</p>
+</li>
+<li><p>      location ~(robots.txt) {</p>
+</li>
+<li><p>                  log_not_found off;</p>
+</li>
+<li><p> expires 7d;</p>
+</li>
+<li><p> break;</p>
+</li>
+<li><p>      }</p>
+</li>
+</ol>
+<p><strong>设定某个文件的过期时间;这里为600秒，并不记录访问日志</strong></p>
+<ol>
+<li> location ^~ /html/scripts/loadhead_1.js {</li>
+<li>                  access_log   off;</li>
+<li>                  root /opt/lampp/htdocs/web;</li>
+<li> expires 600;</li>
+<li> break;</li>
+<li>        }</li>
+</ol>
+<p><strong>文件反盗链并设置过期时间</strong> 这里的return 412 为自定义的http状态码，默认为403，方便找出正确的盗链的请求 “rewrite ^/ <a target="_blank" rel="noopener" href="http://leech.c1gstudio.com/leech.gif;%E2%80%9D%E6%98%BE%E7%A4%BA%E4%B8%80%E5%BC%A0%E9%98%B2%E7%9B%97%E9%93%BE%E5%9B%BE%E7%89%87">http://leech.c1gstudio.com/leech.gif;”显示一张防盗链图片</a> “access_log off;”不记录访问日志，减轻压力 “expires 3d”所有文件3天的浏览器缓存</p>
+<ol>
+<li> location ~* ^.+/.(jpg|jpeg|gif|png|swf|rar|zip|css|js)$ {</li>
+<li> valid_referers none blocked *.c1gstudio.com *.c1gstudio.net localhost 208.97.167.194;</li>
+<li> if ($invalid_referer) {</li>
+<li>     rewrite ^/ <a target="_blank" rel="noopener" href="http://leech.c1gstudio.com/leech.gif">http://leech.c1gstudio.com/leech.gif</a>;</li>
+<li>     return 412;</li>
+<li>     break;</li>
+<li> }</li>
+<li>                  access_log   off;</li>
+<li>                  root /opt/lampp/htdocs/web;</li>
+<li> expires 3d;</li>
+<li> break;</li>
+<li>      }</li>
+</ol>
+<p><strong>只充许固定ip访问网站，并加上密码</strong></p>
+<ol>
+<li> root  /opt/htdocs/www;</li>
+<li> allow   208.97.167.194;</li>
+<li> allow   222.33.1.2;</li>
+<li> allow   231.152.49.4;</li>
+<li> deny    all;</li>
+<li> auth_basic “C1G_ADMIN”;</li>
+<li> auth_basic_user_file htpasswd;</li>
+</ol>
+<p><strong>将多级目录下的文件转成一个文件，增强seo效果</strong> /job-123-456-789.html 指向/job/123/456/789.html</p>
+<ol>
+<li> rewrite ^/job-([0-9]+)-([0-9]+)-([0-9]+)/.html$ /job/$1/$2/jobshow_$3.html last;</li>
+</ol>
+<p><strong>将根目录下某个文件夹指向2级目录</strong> 如/<strong>shanghai</strong>job/ 指向 /area/<strong>shanghai</strong>/ 如果你将last改成permanent，那么浏览器地址栏显是/location/shanghai/</p>
+<ol>
+<li> rewrite ^/([0-9a-z]+)job/(.*)$ /area/$1/$2 last;</li>
+</ol>
+<p>上面例子有个问题是访问/shanghai 时将不会匹配</p>
+<ol>
+<li> rewrite ^/([0-9a-z]+)job$ /area/$1/ last;</li>
+<li> rewrite ^/([0-9a-z]+)job/(.*)$ /area/$1/$2 last;</li>
+</ol>
+<p>这样/shanghai 也可以访问了，但页面中的相对链接无法使用， 如./list_1.html真实地址是/area/shanghia/list_1.html会变成/list_1.html,导至无法访问。</p>
+<p>那我加上自动跳转也是不行咯 (-d $request_filename)它有个条件是必需为真实目录，而我的rewrite不是的，所以没有效果</p>
+<ol>
+<li> if (-d $request_filename){</li>
+<li> rewrite ^/(.*)([^/])$ http://$host/$1$2/ permanent;</li>
+<li> }</li>
+</ol>
+<p>知道原因后就好办了，让我手动跳转吧</p>
+<ol>
+<li> rewrite ^/([0-9a-z]+)job$ /$1job/ permanent;</li>
+<li> rewrite ^/([0-9a-z]+)job/(.*)$ /area/$1/$2 last;</li>
+</ol>
+<p><strong>文件和目录不存在的时候重定向：</strong></p>
+<ol>
+<li> if (!-e $request_filename) {</li>
+<li> proxy_pass <a target="_blank" rel="noopener" href="http://127.0.0.1/">http://127.0.0.1</a>;</li>
+<li> }</li>
+</ol>
+<p><strong>域名跳转</strong></p>
+<ol>
+<li> server</li>
+<li>      {</li>
+<li>              listen       80;</li>
+<li>              server_name  jump.c1gstudio.com;</li>
+<li>              index index.html index.htm index.php;</li>
+<li>              root  /opt/lampp/htdocs/www;</li>
+<li>              rewrite ^/ <a target="_blank" rel="noopener" href="http://www.c1gstudio.com/">http://www.c1gstudio.com/</a>;</li>
+<li>              access_log  off;</li>
+<li>      }</li>
+</ol>
+<p><strong>多域名转向</strong></p>
+<ol>
+<li> server_name  <a target="_blank" rel="noopener" href="http://www.c1gstudio.com/">www.c1gstudio.com</a> <a target="_blank" rel="noopener" href="http://www.c1gstudio.net/">www.c1gstudio.net</a>;</li>
+<li>              index index.html index.htm index.php;</li>
+<li>              root  /opt/lampp/htdocs;</li>
+<li> if ($host ~ “c1gstudio/.net”) {</li>
+<li> rewrite ^(.*) <a target="_blank" rel="noopener" href="http://www.c1gstudio.com$1/">http://www.c1gstudio.com$1</a> permanent;</li>
+<li> }</li>
+</ol>
+<p><strong>三级域名跳转</strong></p>
+<ol>
+<li> if ($http_host ~* “^(.*)/.i/.c1gstudio/.com$”) {</li>
+<li> rewrite ^(.*) <a target="_blank" rel="noopener" href="http://top.yingjiesheng.com$1/">http://top.yingjiesheng.com$1</a>;</li>
+<li> break;</li>
+<li> }</li>
+</ol>
+<p><strong>域名镜向</strong></p>
+<ol>
+<li> server</li>
+<li>      {</li>
+<li>              listen       80;</li>
+<li>              server_name  mirror.c1gstudio.com;</li>
+<li>              index index.html index.htm index.php;</li>
+<li>              root  /opt/lampp/htdocs/www;</li>
+<li>              rewrite ^/(.*) <a target="_blank" rel="noopener" href="http://www.c1gstudio.com/$1">http://www.c1gstudio.com/$1</a> last;</li>
+<li>              access_log  off;</li>
+<li>      }</li>
+</ol>
+<p><strong>某个子目录作镜向</strong></p>
+<ol>
+<li> location ^~ /zhaopinhui {</li>
+<li>   rewrite ^.+ <a target="_blank" rel="noopener" href="http://zph.c1gstudio.com/">http://zph.c1gstudio.com/</a> last;</li>
+<li>   break;</li>
+<li>      }</li>
+</ol>
+<p><strong>discuz ucenter home (uchome) rewrite</strong></p>
+<ol>
+<li> rewrite ^/(space|network)-(.+)/.html$ /$1.php?rewrite=$2 last;</li>
+<li> rewrite ^/(space|network)/.html$ /$1.php last;</li>
+<li> rewrite ^/([0-9]+)$ /space.php?uid=$1 last;</li>
+</ol>
+<p><strong>discuz 7 rewrite</strong></p>
+<ol>
+<li> rewrite ^(.*)/archiver/((fid|tid)-[/w/-]+/.html)$ $1/archiver/index.php?$2 last;</li>
+<li> rewrite ^(.*)/forum-([0-9]+)-([0-9]+)/.html$ $1/forumdisplay.php?fid=$2&amp;page=$3 last;</li>
+<li> rewrite ^(.*)/thread-([0-9]+)-([0-9]+)-([0-9]+)/.html$ $1/viewthread.php?tid=$2&amp;extra=page/%3D$4&amp;page=$3 last;</li>
+<li> rewrite ^(.*)/profile-(username|uid)-(.+)/.html$ $1/viewpro.php?$2=$3 last;</li>
+<li> rewrite ^(.*)/space-(username|uid)-(.+)/.html$ $1/space.php?$2=$3 last;</li>
+<li> rewrite ^(.*)/tag-(.+)/.html$ $1/tag.php?name=$2 last;</li>
+</ol>
+<p><strong>给discuz某版块单独配置域名</strong></p>
+<ol>
+<li><p> server_name  bbs.c1gstudio.com news.c1gstudio.com;</p>
+</li>
+<li><p>      location = / {</p>
+</li>
+<li><p>         if ($http_host ~ news/.c1gstudio.com$) {</p>
+</li>
+<li><p>   rewrite ^.+ <a target="_blank" rel="noopener" href="http://news.c1gstudio.com/forum-831-1.html">http://news.c1gstudio.com/forum-831-1.html</a> last;</p>
+</li>
+<li><p>   break;</p>
+</li>
+<li><p> }</p>
+</li>
+<li><p>      }</p>
+</li>
+</ol>
+<p><strong>discuz ucenter 头像 rewrite 优化</strong></p>
+<ol>
+<li><p> location ^~ /ucenter {</p>
+</li>
+<li><p>      location ~ .*/.php?$</p>
+</li>
+<li><p>      {</p>
+</li>
+<li><p>   #fastcgi_pass  unix:/tmp/php-cgi.sock;</p>
+</li>
+<li><p>   fastcgi_pass  127.0.0.1:9000;</p>
+</li>
+<li><p>   fastcgi_index index.php;</p>
+</li>
+<li><p>   include fcgi.conf;</p>
+</li>
+<li><p>      }</p>
+</li>
+<li><p>      location /ucenter/data/avatar {</p>
+</li>
+<li><p> log_not_found off;</p>
+</li>
+<li><p> access_log   off;</p>
+</li>
+<li><p> location ~ /(.*)_big/.jpg$ {</p>
+</li>
+<li><p>     error_page 404 /ucenter/images/noavatar_big.gif;</p>
+</li>
+<li><p> }</p>
+</li>
+<li><p> location ~ /(.*)_middle/.jpg$ {</p>
+</li>
+<li><p>     error_page 404 /ucenter/images/noavatar_middle.gif;</p>
+</li>
+<li><p> }</p>
+</li>
+<li><p> location ~ /(.*)_small/.jpg$ {</p>
+</li>
+<li><p>     error_page 404 /ucenter/images/noavatar_small.gif;</p>
+</li>
+<li><p> }</p>
+</li>
+<li><p> expires 300;</p>
+</li>
+<li><p> break;</p>
+</li>
+<li><p>      }</p>
+</li>
+<li><p>                        }</p>
+</li>
+</ol>
+<p><strong>jspace rewrite</strong></p>
+<ol>
+<li><p> location ~ .*/.php?$</p>
+</li>
+<li><p>              {</p>
+</li>
+<li><p>                   #fastcgi_pass  unix:/tmp/php-cgi.sock;</p>
+</li>
+<li><p>                   fastcgi_pass  127.0.0.1:9000;</p>
+</li>
+<li><p>                   fastcgi_index index.php;</p>
+</li>
+<li><p>                   include fcgi.conf;</p>
+</li>
+<li><p>              }</p>
+</li>
+<li><p>              location ~* ^/index.php/</p>
+</li>
+<li><p>              {</p>
+</li>
+<li><p>     rewrite ^/index.php/(.*) /index.php?$1 break;</p>
+</li>
+<li><p>                   fastcgi_pass  127.0.0.1:9000;</p>
+</li>
+<li><p>                   fastcgi_index index.php;</p>
+</li>
+<li><p>                   include fcgi.conf;</p>
+</li>
+<li><p>              }</p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我喝杯咖啡</div>
+  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="michaeldyl520 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.png" alt="michaeldyl520 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/nginx/" rel="tag"># nginx</a>
+              <a href="/tags/rewrite/" rel="tag"># rewrite</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2014/08/04/jquery-e7-89-b9-e6-95-88-e6-8f-92-e4-bb-b6flexslider/" rel="prev" title="jquery特效插件flexslider">
+                  <i class="fa fa-chevron-left"></i> jquery特效插件flexslider
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2014/08/26/e5-b8-b8-e7-94-a8-e7-9a-84-e7-a7-bb-e5-8a-a8-e7-ab-afjs-e6-8f-92-e4-bb-b6/" rel="next" title="常用的移动端js插件">
+                  常用的移动端js插件 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">michaeldyl520</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="//cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+  
+
+
+
+
+
+
+</body>
+</html>
