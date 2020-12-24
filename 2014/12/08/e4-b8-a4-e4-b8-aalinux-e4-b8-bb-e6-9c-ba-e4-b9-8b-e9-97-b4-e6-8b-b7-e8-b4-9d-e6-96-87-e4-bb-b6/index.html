@@ -49,6 +49,15 @@
 <title>两个linux主机之间拷贝文件 | Jiliuke</title>
   
 
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f7bacd72afe7c9ecf6b6e6b4a8595c2f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
 
 
   <noscript>
@@ -321,6 +330,13 @@
     </span>
 
   
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
 </div>
 
         </div>
@@ -331,7 +347,7 @@
     
     <div class="post-body" itemprop="articleBody">
         <p>        不同的Linux之间copy文件常用有3种方法，</p>
-<p>        第一种就是ftp，也就是其中一台Linux安装ftp Server， 这样可以另外一台使用ftp的client程序来进行文件的copy。 （注意文件大小不能超过2G） 第二种方法就是采用samba服务，类似Windows文件copy的方式来操作，比较简洁方便， 第三种就是利用scp命令来进行文件复制。 scp是有Security的文件copy，基于ssh登录。操作起来比较方便，比如要把当前一个文件copy到远程另外一台主机上，可以如下命令。 scp /soft/squid-2.6.STABLE2.tar <a href="mailto:&#114;&#111;&#x6f;&#x74;&#x40;&#49;&#57;&#50;&#46;&#x31;&#54;&#56;&#x2e;&#49;&#x2e;&#x31;">&#114;&#111;&#x6f;&#x74;&#x40;&#49;&#57;&#50;&#46;&#x31;&#54;&#56;&#x2e;&#49;&#x2e;&#x31;</a>:/soft 然后会提示你输入另外那台172.19.2.75主机的root用户的登录密码，接着就开始copy了。 如果想反过来操作，把文件从远程主机copy到当前系统，也很简单。 scp <a href="mailto:&#114;&#x6f;&#x6f;&#116;&#x40;&#49;&#55;&#x32;&#x2e;&#49;&#x39;&#46;&#x32;&#46;&#55;&#x35;">&#114;&#x6f;&#x6f;&#116;&#x40;&#49;&#55;&#x32;&#x2e;&#49;&#x39;&#46;&#x32;&#46;&#55;&#x35;</a>:/home/root /home/daisy/full.tar.gz</p>
+<p>        第一种就是ftp，也就是其中一台Linux安装ftp Server， 这样可以另外一台使用ftp的client程序来进行文件的copy。 （注意文件大小不能超过2G） 第二种方法就是采用samba服务，类似Windows文件copy的方式来操作，比较简洁方便， 第三种就是利用scp命令来进行文件复制。 scp是有Security的文件copy，基于ssh登录。操作起来比较方便，比如要把当前一个文件copy到远程另外一台主机上，可以如下命令。 scp /soft/squid-2.6.STABLE2.tar <a href="mailto:&#114;&#x6f;&#x6f;&#116;&#64;&#49;&#57;&#50;&#46;&#49;&#54;&#x38;&#x2e;&#49;&#x2e;&#x31;">&#114;&#x6f;&#x6f;&#116;&#64;&#49;&#57;&#50;&#46;&#49;&#54;&#x38;&#x2e;&#49;&#x2e;&#x31;</a>:/soft 然后会提示你输入另外那台172.19.2.75主机的root用户的登录密码，接着就开始copy了。 如果想反过来操作，把文件从远程主机copy到当前系统，也很简单。 scp <a href="mailto:&#x72;&#111;&#x6f;&#x74;&#x40;&#x31;&#x37;&#50;&#x2e;&#49;&#x39;&#46;&#x32;&#x2e;&#55;&#x35;">&#x72;&#111;&#x6f;&#x74;&#x40;&#x31;&#x37;&#50;&#x2e;&#49;&#x39;&#46;&#x32;&#x2e;&#55;&#x35;</a>:/home/root /home/daisy/full.tar.gz</p>
 
     </div>
 
@@ -423,6 +439,24 @@
   </span>
   <span class="author" itemprop="copyrightHolder">michaeldyl520</span>
 </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
 
     </div>
   </footer>
@@ -442,6 +476,7 @@
 
 
   
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
