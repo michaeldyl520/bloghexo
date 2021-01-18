@@ -222,7 +222,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">120</span>
+          <span class="site-state-item-count">121</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -272,6 +272,86 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jiliuke.com/2015/08/11/kill-hup-pid/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="michaeldyl520">
+      <meta itemprop="description" content="Bring the crowds together, inspire unlimited">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jiliuke">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2015/08/11/kill-hup-pid/" class="post-title-link" itemprop="url">kill -HUP pid</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2015-08-11 09:45:42" itemprop="dateCreated datePublished" datetime="2015-08-11T09:45:42+08:00">2015-08-11</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-12-24 10:16:52" itemprop="dateModified" datetime="2020-12-24T10:16:52+08:00">2020-12-24</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/CentOS/" itemprop="url" rel="index"><span itemprop="name">CentOS</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>kill -HUP pid pid 是进程标识。<strong>如果想要更改配置而不需停止并重新启动服务，请使用该命令。在对配置文件作必要的更改后，发出该命令以动态更新服务配置。</strong> 根据约定，当您发送一个挂起信号（信号 1 或 HUP）时，大多数服务器进程（所有常用的进程）都会进行复位操作并重新加载它们的配置文件。清单 2 显示了向所有正在运行的 Web 服务器进程发送挂起信号的一种方法。 清单 2. 告诉 Web 服务器重新加载其配置文件并对文件进行复位操作 root@holy [507]$ ps -A | grep httpd | grep -v grep | awk ‘{ print $1; }’ | xargs -L 1 sudo kill -HUP 上面的命令中包含了很多的操作，所以让我们来仔细地看一下管道的每个部分。ps 和 grep 命令用来在所有的进程中搜索 httpd（并且忽略用来搜索 httpd 进程的 grep 进程）。接下来，awk 只显示输出结果中的进程 ID，并将它传递给 xargs。然后，xargs 命令接受每个进程 ID（因为使用了 -L 1 以便一次提取一行内容），并使用 sudo kill -HUP 向相应的进程发送一个挂起信号。 LINUX和Unix都适用： 改/etc/ssh/sshd_config，将里面的Port改为新端口，比如10022，然后 kill -HUP `cat /var/run/sshd.pid` 就行了。 现有连接自己不会断，因为kill -HUP `cat /var/run/sshd.pid` 只是HUP监听的那个，已经建立的连接（不同的 pid）不会断。 然后你在现有账号下面exit，在用新的端口登陆就可以了。 <strong>PS:</strong> HUP(1)是让进程挂起，睡眠; kill (9)六亲不认的杀掉 term(15)正常的退出进程 因为进程可能屏蔽某些信号，所以它们的用处也就不一样。。。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1114,88 +1194,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.jiliuke.com/2015/03/30/centos-e5-ae-89-e8-a3-85-crontab-2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="michaeldyl520">
-      <meta itemprop="description" content="Bring the crowds together, inspire unlimited">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jiliuke">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2015/03/30/centos-e5-ae-89-e8-a3-85-crontab-2/" class="post-title-link" itemprop="url">Centos 安装 crontab</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2015-03-30 11:09:13" itemprop="dateCreated datePublished" datetime="2015-03-30T11:09:13+08:00">2015-03-30</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-24 10:16:52" itemprop="dateModified" datetime="2020-12-24T10:16:52+08:00">2020-12-24</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/CentOS/" itemprop="url" rel="index"><span itemprop="name">CentOS</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>安装crontab:<code> yum install crontabs </code> 说明： <code>/sbin/service crond start //启动服务 /sbin/service crond stop //关闭服务 /sbin/service crond restart //重启服务 /sbin/service crond reload //重新载入配置 </code> 查看crontab服务状态：<code> service crond status </code> 手动启动crontab服务：<code> service crond start </code> 查看crontab服务是否已设置为开机启动，执行命令：<code> ntsysv </code> 加入开机自动启动:<code> chkconfig --level 35 crond on</code> 1，crontab命令 功能说明：设置计时器。 语　　法：crontab [-u &lt;用户名称&gt;][配置文件] 或 crontab [-u &lt;用户名称&gt;][-elr] 补充说明：cron是一个常驻服务，它提供计时器的功能，让用户在特定的时间得以执行预设的指令或程序。只要用户会编辑计时器的配置文件，就可以使 用计时器的功能。其配置文件格式如下： Minute Hour Day Month DayOFWeek Command 参　　数： -e 　编辑该用户的计时器设置。 -l 　列出该用户的计时器设置。 -r 　删除该用户的计时器设置。 -u&lt;用户名称&gt; 　指定要设定计时器的用户名称。 2，crontab 格式 <strong>基本格式 :</strong> * *　 *　 *　 *　　command 分　时　日　月　周　 命令 第1列表示分钟1～59 每分钟用<em>或者 */1表示 第2列表示小时1～23（0表示0点） 第3列表示日期1～31 第4列 表示月份1～12 第5列标识号星期0～6（0表示星期天） 第6列要运行的命令 *</em>crontab特殊的符号说明：** “<em>“代表所有的取值范围内的数字。特别要注意哦！ “/“代表每的意思，如”</em>/5”表示每5个单位 “-“代表从某个数字到某个数字 “,”分散的数字 <strong>crontab文件的一些例子：</strong> <code>30 21 * * * /usr/local/etc/rc.d/lighttpd restart </code> 上面的例子表示每晚的21:30重启 apache。   <code>45 4 1,10,22 * * /usr/local/etc/rc.d/lighttpd restart </code> 上面的例子表示每月1、 10、22日的4 : 45重启apache。   <code>10 1 * * 6,0 /usr/local/etc/rc.d/lighttpd restart </code> 上面的例子表示每周六、周日的1 : 10重启apache。   <code>0,30 18-23 * * * /usr/local/etc/rc.d/lighttpd restart </code> 上面的例子表示在每天18 : 00至23 : 00之间每隔30分钟重启apache。   <code>0 23 * * 6 /usr/local/etc/rc.d/lighttpd restart </code> 上面的例子表示每星期六的11 : 00 pm重启apache。   <code>* */1 * * * /usr/local/etc/rc.d/lighttpd restart </code> 每一小时重启apache   <code>* 23-7/1 * * * /usr/local/etc/rc.d/lighttpd restart </code> 晚上11点到早上7点之间，每 隔一小时重启apache   <code>0 11 4 * mon-wed /usr/local/etc/rc.d/lighttpd restart </code> 每月的4号与每周一到周三 的11点重启apache   <code>0 4 1 jan * /usr/local/etc/rc.d/lighttpd restart </code> 一月一号的4点重启apache   <code>*/30 * * * * /usr/sbin/ntpdate 210.72.145.44 </code> 每半小时同步一下时间   -------------------------------- 如何查看crontab的日志记录 ——————————————————– 昨天crontab中的同步任务没有执行，不知道是什么原因没有执行，貌似任务hang住了，想查询一下crontab到底问题出在哪里，或者hang在了什么地方。 1.  linux 看 /var/log/cron这个文件就可以，可以用tail -f /var/log/cron观察 2.  unix 在 /var/spool/cron/tmp文件中，有croutXXX001864的tmp文件，tail 这些文件就可以看到正在执行的任务了。 3. mail任务 在 /var/spool/mail/root 文件中，有crontab执行日志的记录，用tail -f /var/spool/mail/root 即可查看最近的crontab执行情况。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1229,7 +1229,7 @@
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

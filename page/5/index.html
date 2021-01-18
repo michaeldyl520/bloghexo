@@ -222,7 +222,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">120</span>
+          <span class="site-state-item-count">121</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -272,6 +272,86 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jiliuke.com/2015/03/30/centos-e5-ae-89-e8-a3-85-crontab-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="michaeldyl520">
+      <meta itemprop="description" content="Bring the crowds together, inspire unlimited">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jiliuke">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2015/03/30/centos-e5-ae-89-e8-a3-85-crontab-2/" class="post-title-link" itemprop="url">Centos 安装 crontab</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2015-03-30 11:09:13" itemprop="dateCreated datePublished" datetime="2015-03-30T11:09:13+08:00">2015-03-30</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-12-24 10:16:52" itemprop="dateModified" datetime="2020-12-24T10:16:52+08:00">2020-12-24</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/CentOS/" itemprop="url" rel="index"><span itemprop="name">CentOS</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>安装crontab:<code> yum install crontabs </code> 说明： <code>/sbin/service crond start //启动服务 /sbin/service crond stop //关闭服务 /sbin/service crond restart //重启服务 /sbin/service crond reload //重新载入配置 </code> 查看crontab服务状态：<code> service crond status </code> 手动启动crontab服务：<code> service crond start </code> 查看crontab服务是否已设置为开机启动，执行命令：<code> ntsysv </code> 加入开机自动启动:<code> chkconfig --level 35 crond on</code> 1，crontab命令 功能说明：设置计时器。 语　　法：crontab [-u &lt;用户名称&gt;][配置文件] 或 crontab [-u &lt;用户名称&gt;][-elr] 补充说明：cron是一个常驻服务，它提供计时器的功能，让用户在特定的时间得以执行预设的指令或程序。只要用户会编辑计时器的配置文件，就可以使 用计时器的功能。其配置文件格式如下： Minute Hour Day Month DayOFWeek Command 参　　数： -e 　编辑该用户的计时器设置。 -l 　列出该用户的计时器设置。 -r 　删除该用户的计时器设置。 -u&lt;用户名称&gt; 　指定要设定计时器的用户名称。 2，crontab 格式 <strong>基本格式 :</strong> * *　 *　 *　 *　　command 分　时　日　月　周　 命令 第1列表示分钟1～59 每分钟用<em>或者 */1表示 第2列表示小时1～23（0表示0点） 第3列表示日期1～31 第4列 表示月份1～12 第5列标识号星期0～6（0表示星期天） 第6列要运行的命令 *</em>crontab特殊的符号说明：** “<em>“代表所有的取值范围内的数字。特别要注意哦！ “/“代表每的意思，如”</em>/5”表示每5个单位 “-“代表从某个数字到某个数字 “,”分散的数字 <strong>crontab文件的一些例子：</strong> <code>30 21 * * * /usr/local/etc/rc.d/lighttpd restart </code> 上面的例子表示每晚的21:30重启 apache。   <code>45 4 1,10,22 * * /usr/local/etc/rc.d/lighttpd restart </code> 上面的例子表示每月1、 10、22日的4 : 45重启apache。   <code>10 1 * * 6,0 /usr/local/etc/rc.d/lighttpd restart </code> 上面的例子表示每周六、周日的1 : 10重启apache。   <code>0,30 18-23 * * * /usr/local/etc/rc.d/lighttpd restart </code> 上面的例子表示在每天18 : 00至23 : 00之间每隔30分钟重启apache。   <code>0 23 * * 6 /usr/local/etc/rc.d/lighttpd restart </code> 上面的例子表示每星期六的11 : 00 pm重启apache。   <code>* */1 * * * /usr/local/etc/rc.d/lighttpd restart </code> 每一小时重启apache   <code>* 23-7/1 * * * /usr/local/etc/rc.d/lighttpd restart </code> 晚上11点到早上7点之间，每 隔一小时重启apache   <code>0 11 4 * mon-wed /usr/local/etc/rc.d/lighttpd restart </code> 每月的4号与每周一到周三 的11点重启apache   <code>0 4 1 jan * /usr/local/etc/rc.d/lighttpd restart </code> 一月一号的4点重启apache   <code>*/30 * * * * /usr/sbin/ntpdate 210.72.145.44 </code> 每半小时同步一下时间   -------------------------------- 如何查看crontab的日志记录 ——————————————————– 昨天crontab中的同步任务没有执行，不知道是什么原因没有执行，貌似任务hang住了，想查询一下crontab到底问题出在哪里，或者hang在了什么地方。 1.  linux 看 /var/log/cron这个文件就可以，可以用tail -f /var/log/cron观察 2.  unix 在 /var/spool/cron/tmp文件中，有croutXXX001864的tmp文件，tail 这些文件就可以看到正在执行的任务了。 3. mail任务 在 /var/spool/mail/root 文件中，有crontab执行日志的记录，用tail -f /var/spool/mail/root 即可查看最近的crontab执行情况。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1139,88 +1219,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.jiliuke.com/2015/03/11/e4-bd-bf-e7-94-a8-telnet-e7-ab-af-e5-8f-a3-25-e6-b5-8b-e8-af-95-smtp-e9-80-9a-e4-bf-a1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="michaeldyl520">
-      <meta itemprop="description" content="Bring the crowds together, inspire unlimited">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jiliuke">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2015/03/11/e4-bd-bf-e7-94-a8-telnet-e7-ab-af-e5-8f-a3-25-e6-b5-8b-e8-af-95-smtp-e9-80-9a-e4-bf-a1/" class="post-title-link" itemprop="url">使用 Telnet 端口 25 测试 SMTP 通信</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2015-03-11 13:40:43" itemprop="dateCreated datePublished" datetime="2015-03-11T13:40:43+08:00">2015-03-11</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-24 10:16:52" itemprop="dateModified" datetime="2020-12-24T10:16:52+08:00">2020-12-24</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/iredMail/" itemprop="url" rel="index"><span itemprop="name">iredMail</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>目标 SMTP 服务器 mail1.fabrikam.com 源域 contoso.com 发件人的电子邮件地址 <a href="mailto:&#99;&#104;&#114;&#105;&#115;&#64;&#x63;&#x6f;&#x6e;&#x74;&#x6f;&#115;&#x6f;&#x2e;&#99;&#111;&#x6d;">&#99;&#104;&#114;&#105;&#115;&#64;&#x63;&#x6f;&#x6e;&#x74;&#x6f;&#115;&#x6f;&#x2e;&#99;&#111;&#x6d;</a> 收件人的电子邮件地址 <a href="mailto:&#x6b;&#x61;&#116;&#x65;&#x40;&#x66;&#97;&#98;&#x72;&#105;&#107;&#97;&#x6d;&#46;&#99;&#111;&#x6d;">&#x6b;&#x61;&#116;&#x65;&#x40;&#x66;&#97;&#98;&#x72;&#105;&#107;&#97;&#x6d;&#46;&#99;&#111;&#x6d;</a> 邮件主题 来自 Contoso 的测试 邮件正文 这是一封测试邮件 使用 Telnet 端口 25 测试 SMTP 通信 在命令提示符下，键入 telnet，再按 Enter 键。此命令将打开 Telnet 会话。 键入 set localecho，再按 Enter 键。此可选命令可使您在键入字符时查看这些字符。某些 SMTP 服务器可能需要此设置。 键入 set logfile &lt;文件名&gt;。此可选命令可以将 Telnet 会话记录到指定的日志文件中。如果您仅指定了文件名，则日志文件的位置将是当前工作目录。如果您指定了路径和文件名，该路径必须位于计算机本地。指定的路径和文件名都必须以 Microsoft DOS 8.3 格式输入。您指定的路径必须已存在。如果您指定了一个不存在的日志文件，系统将为您创建一个日志文件。 键入 open mail1.fabrikam.com 25，再按 ENTER 键。 键入 EHLO contoso.com，再按 ENTER 键。 键入 MAIL FROM:<a href="mailto:&#99;&#104;&#x72;&#x69;&#115;&#64;&#x63;&#x6f;&#110;&#116;&#111;&#115;&#x6f;&#46;&#x63;&#111;&#x6d;">&#99;&#104;&#x72;&#x69;&#115;&#64;&#x63;&#x6f;&#110;&#116;&#111;&#115;&#x6f;&#46;&#x63;&#111;&#x6d;</a>，再按 ENTER 键。 键入 RCPT TO:<a href="mailto:&#107;&#x61;&#x74;&#x65;&#64;&#x66;&#97;&#98;&#114;&#105;&#x6b;&#x61;&#x6d;&#46;&#x63;&#x6f;&#x6d;">&#107;&#x61;&#x74;&#x65;&#64;&#x66;&#97;&#98;&#114;&#105;&#x6b;&#x61;&#x6d;&#46;&#x63;&#x6f;&#x6d;</a> NOTIFY=success,failure，再按 ENTER 键。可选的 NOTIFY 命令可定义目标 SMTP 服务器必须向发件人提供的特定传递状态通知 (DSN) 邮件。DSN 邮件是在 RFC 1891 中定义的。在本例中，您要查询有关邮件传递成功或失败的 DSN 邮件。 键入 DATA，再按 Enter 键。您将收到与以下类似的响应： 354 Start mail input; end with . 键入 主题：来自 Contoso 的测试，再按 ENTER 键。 按 Enter 键。RFC 2822 需要在 Subject: 头字段和邮件正文间留一个空行。 键入 这是一封测试邮件，再按 ENTER 键。 按 ENTER 键，键入句点 ( . )，再按 ENTER 键。您将收到与以下类似的响应： 250 2.6.0 Queued mail for delivery 若要与目标 SMTP 服务器断开连接，请键入 QUIT，再按 ENTER 键。您将收到与以下类似的响应： 221 2.0.0 Service closing transmission channel 若要关闭 Telnet 会话，请键入 quit，再按 ENTER 键。 解释 Telnet 会话与 SMTP 服务器的结果 针对您在以上示例中输入的命令，本节提供有关这些命令响应的详细信息。 注意： 在 RFC 2821 中定义的三位数 SMTP 响应代码对于所有 SMTP 邮件服务器都相同。对于某些 SMTP 邮件服务器，文本说明可能稍有不同。在本示例中，目标计算机正在运行 Exchange Server 2007。 打开 mail1.fabrikam.com 25 成功响应 220 mail1.fabrikam.com Microsoft ESMTP MAIL Service ready at 失败响应 Connecting to mail1.fabrikam.com…Could not open connection to the host, on port 25: Connect failed 失败的可能原因 目标 SMTP 服务不可用。 对目标防火墙有所限制。 对源防火墙有所限制。 指定的目标 SMTP 服务器的 FQDN 或 IP 地址不正确。 指定的端口号不正确。 EHLO contoso.com 成功响应 250 mail1.fabrikam.com Hello [] 失败响应 501 5.5.4 Invalid domain name 失败的可能原因 域名中存在无效字符。或者，存在有关目标 SMTP 服务器的连接限制。 注意： EHLO 是扩展的简单邮件传输协议 (ESMTP) 命令动词，该命令动词是在 RFC 2821 中定义的。ESMTP 服务器可在初始连接时公布其功能。这些功能包括其最大的可接受邮件大小以及其支持的身份验证方法。HELO 是 RFC 821 中定义的旧版 SMTP 命令动词。多数 SMTP 邮件服务器都支持 ESMTP 和 EHLO。 MAIL FROM:<a href="mailto:&#99;&#104;&#x72;&#105;&#115;&#64;&#99;&#x6f;&#x6e;&#116;&#x6f;&#x73;&#x6f;&#x2e;&#x63;&#x6f;&#x6d;">&#99;&#104;&#x72;&#105;&#115;&#64;&#99;&#x6f;&#x6e;&#116;&#x6f;&#x73;&#x6f;&#x2e;&#x63;&#x6f;&#x6d;</a> 成功响应 250 2.1.0 Sender OK 失败响应 550 5.1.7 Invalid address 可能的失败原因 发件人的电子邮件地址中存在语法错误。 失败响应 530 5.7.1 Client was not authenticated 可能的失败原因 目标服务器不接受匿名邮件提交。如果您试图使用 Telnet 直接向集线器传输服务器提交邮件，则将收到此错误消息。 RCPT TO:<a href="mailto:&#x6b;&#x61;&#116;&#x65;&#64;&#x66;&#97;&#98;&#114;&#x69;&#x6b;&#97;&#109;&#x2e;&#x63;&#111;&#x6d;">&#x6b;&#x61;&#116;&#x65;&#64;&#x66;&#97;&#98;&#114;&#x69;&#x6b;&#97;&#109;&#x2e;&#x63;&#111;&#x6d;</a> NOTIFY=success,failure 成功响应 250 2.1.5 Recipient OK 失败响应 550 5.1.1 User unknown 可能的失败原因 指定的收件人在组织中不存在。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1254,7 +1254,7 @@
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

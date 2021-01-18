@@ -3497,4 +3497,10 @@ $("#datepicker").datepicker('option', 'dateFormat','yy-mm-dd');//set dateFormat
         <tag>curl</tag>
       </tags>
   </entry>
+  <entry>
+    <title>关于国内使用flatpak</title>
+    <url>/2021/01/18/flatpak-tips/</url>
+    <content><![CDATA[<p>国内用户可以使用上海交通大学的flatpak源，修改代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo flatpak remote-modify flathub --url&#x3D;https:&#x2F;&#x2F;mirror.sjtu.edu.cn&#x2F;flathub</span><br></pre></td></tr></table></figure>]]></content>
+  </entry>
 </search>

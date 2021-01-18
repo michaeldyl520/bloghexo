@@ -222,7 +222,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">120</span>
+          <span class="site-state-item-count">121</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -272,6 +272,86 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jiliuke.com/2015/03/11/e4-bd-bf-e7-94-a8-telnet-e7-ab-af-e5-8f-a3-25-e6-b5-8b-e8-af-95-smtp-e9-80-9a-e4-bf-a1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="michaeldyl520">
+      <meta itemprop="description" content="Bring the crowds together, inspire unlimited">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jiliuke">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2015/03/11/e4-bd-bf-e7-94-a8-telnet-e7-ab-af-e5-8f-a3-25-e6-b5-8b-e8-af-95-smtp-e9-80-9a-e4-bf-a1/" class="post-title-link" itemprop="url">使用 Telnet 端口 25 测试 SMTP 通信</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2015-03-11 13:40:43" itemprop="dateCreated datePublished" datetime="2015-03-11T13:40:43+08:00">2015-03-11</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-12-24 10:16:52" itemprop="dateModified" datetime="2020-12-24T10:16:52+08:00">2020-12-24</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/iredMail/" itemprop="url" rel="index"><span itemprop="name">iredMail</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>目标 SMTP 服务器 mail1.fabrikam.com 源域 contoso.com 发件人的电子邮件地址 <a href="mailto:&#99;&#104;&#114;&#105;&#115;&#64;&#x63;&#x6f;&#x6e;&#x74;&#x6f;&#115;&#x6f;&#x2e;&#99;&#111;&#x6d;">&#99;&#104;&#114;&#105;&#115;&#64;&#x63;&#x6f;&#x6e;&#x74;&#x6f;&#115;&#x6f;&#x2e;&#99;&#111;&#x6d;</a> 收件人的电子邮件地址 <a href="mailto:&#x6b;&#x61;&#116;&#x65;&#x40;&#x66;&#97;&#98;&#x72;&#105;&#107;&#97;&#x6d;&#46;&#99;&#111;&#x6d;">&#x6b;&#x61;&#116;&#x65;&#x40;&#x66;&#97;&#98;&#x72;&#105;&#107;&#97;&#x6d;&#46;&#99;&#111;&#x6d;</a> 邮件主题 来自 Contoso 的测试 邮件正文 这是一封测试邮件 使用 Telnet 端口 25 测试 SMTP 通信 在命令提示符下，键入 telnet，再按 Enter 键。此命令将打开 Telnet 会话。 键入 set localecho，再按 Enter 键。此可选命令可使您在键入字符时查看这些字符。某些 SMTP 服务器可能需要此设置。 键入 set logfile &lt;文件名&gt;。此可选命令可以将 Telnet 会话记录到指定的日志文件中。如果您仅指定了文件名，则日志文件的位置将是当前工作目录。如果您指定了路径和文件名，该路径必须位于计算机本地。指定的路径和文件名都必须以 Microsoft DOS 8.3 格式输入。您指定的路径必须已存在。如果您指定了一个不存在的日志文件，系统将为您创建一个日志文件。 键入 open mail1.fabrikam.com 25，再按 ENTER 键。 键入 EHLO contoso.com，再按 ENTER 键。 键入 MAIL FROM:<a href="mailto:&#99;&#104;&#x72;&#x69;&#115;&#64;&#x63;&#x6f;&#110;&#116;&#111;&#115;&#x6f;&#46;&#x63;&#111;&#x6d;">&#99;&#104;&#x72;&#x69;&#115;&#64;&#x63;&#x6f;&#110;&#116;&#111;&#115;&#x6f;&#46;&#x63;&#111;&#x6d;</a>，再按 ENTER 键。 键入 RCPT TO:<a href="mailto:&#107;&#x61;&#x74;&#x65;&#64;&#x66;&#97;&#98;&#114;&#105;&#x6b;&#x61;&#x6d;&#46;&#x63;&#x6f;&#x6d;">&#107;&#x61;&#x74;&#x65;&#64;&#x66;&#97;&#98;&#114;&#105;&#x6b;&#x61;&#x6d;&#46;&#x63;&#x6f;&#x6d;</a> NOTIFY=success,failure，再按 ENTER 键。可选的 NOTIFY 命令可定义目标 SMTP 服务器必须向发件人提供的特定传递状态通知 (DSN) 邮件。DSN 邮件是在 RFC 1891 中定义的。在本例中，您要查询有关邮件传递成功或失败的 DSN 邮件。 键入 DATA，再按 Enter 键。您将收到与以下类似的响应： 354 Start mail input; end with . 键入 主题：来自 Contoso 的测试，再按 ENTER 键。 按 Enter 键。RFC 2822 需要在 Subject: 头字段和邮件正文间留一个空行。 键入 这是一封测试邮件，再按 ENTER 键。 按 ENTER 键，键入句点 ( . )，再按 ENTER 键。您将收到与以下类似的响应： 250 2.6.0 Queued mail for delivery 若要与目标 SMTP 服务器断开连接，请键入 QUIT，再按 ENTER 键。您将收到与以下类似的响应： 221 2.0.0 Service closing transmission channel 若要关闭 Telnet 会话，请键入 quit，再按 ENTER 键。 解释 Telnet 会话与 SMTP 服务器的结果 针对您在以上示例中输入的命令，本节提供有关这些命令响应的详细信息。 注意： 在 RFC 2821 中定义的三位数 SMTP 响应代码对于所有 SMTP 邮件服务器都相同。对于某些 SMTP 邮件服务器，文本说明可能稍有不同。在本示例中，目标计算机正在运行 Exchange Server 2007。 打开 mail1.fabrikam.com 25 成功响应 220 mail1.fabrikam.com Microsoft ESMTP MAIL Service ready at 失败响应 Connecting to mail1.fabrikam.com…Could not open connection to the host, on port 25: Connect failed 失败的可能原因 目标 SMTP 服务不可用。 对目标防火墙有所限制。 对源防火墙有所限制。 指定的目标 SMTP 服务器的 FQDN 或 IP 地址不正确。 指定的端口号不正确。 EHLO contoso.com 成功响应 250 mail1.fabrikam.com Hello [] 失败响应 501 5.5.4 Invalid domain name 失败的可能原因 域名中存在无效字符。或者，存在有关目标 SMTP 服务器的连接限制。 注意： EHLO 是扩展的简单邮件传输协议 (ESMTP) 命令动词，该命令动词是在 RFC 2821 中定义的。ESMTP 服务器可在初始连接时公布其功能。这些功能包括其最大的可接受邮件大小以及其支持的身份验证方法。HELO 是 RFC 821 中定义的旧版 SMTP 命令动词。多数 SMTP 邮件服务器都支持 ESMTP 和 EHLO。 MAIL FROM:<a href="mailto:&#99;&#104;&#x72;&#105;&#115;&#64;&#99;&#x6f;&#x6e;&#116;&#x6f;&#x73;&#x6f;&#x2e;&#x63;&#x6f;&#x6d;">&#99;&#104;&#x72;&#105;&#115;&#64;&#99;&#x6f;&#x6e;&#116;&#x6f;&#x73;&#x6f;&#x2e;&#x63;&#x6f;&#x6d;</a> 成功响应 250 2.1.0 Sender OK 失败响应 550 5.1.7 Invalid address 可能的失败原因 发件人的电子邮件地址中存在语法错误。 失败响应 530 5.7.1 Client was not authenticated 可能的失败原因 目标服务器不接受匿名邮件提交。如果您试图使用 Telnet 直接向集线器传输服务器提交邮件，则将收到此错误消息。 RCPT TO:<a href="mailto:&#x6b;&#x61;&#116;&#x65;&#64;&#x66;&#97;&#98;&#114;&#x69;&#x6b;&#97;&#109;&#x2e;&#x63;&#111;&#x6d;">&#x6b;&#x61;&#116;&#x65;&#64;&#x66;&#97;&#98;&#114;&#x69;&#x6b;&#97;&#109;&#x2e;&#x63;&#111;&#x6d;</a> NOTIFY=success,failure 成功响应 250 2.1.5 Recipient OK 失败响应 550 5.1.1 User unknown 可能的失败原因 指定的收件人在组织中不存在。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1116,181 +1196,8 @@ $("#datepicker").datepicker('option', 'dateFormat','yy-mm-dd');//set dateFormat
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.jiliuke.com/2014/11/14/224/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="michaeldyl520">
-      <meta itemprop="description" content="Bring the crowds together, inspire unlimited">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jiliuke">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2014/11/14/224/" class="post-title-link" itemprop="url">centos安装lamp环境</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2014-11-14 15:48:45" itemprop="dateCreated datePublished" datetime="2014-11-14T15:48:45+08:00">2014-11-14</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-24 10:16:52" itemprop="dateModified" datetime="2020-12-24T10:16:52+08:00">2020-12-24</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/LAMP%E6%8A%80%E6%9C%AF%E4%B8%AD%E5%BF%83/" itemprop="url" rel="index"><span itemprop="name">LAMP技术中心</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>原创：</p>
-<p>1.安装centos ，这里使用CentOS-6.5-x86_64-LiveDVD.iso</p>
-<p>下载地址：<a target="_blank" rel="noopener" href="http://mirrors.sohu.com/centos/6.5/isos/x86_64/CentOS-6.5-x86_64-LiveDVD.iso">http://mirrors.sohu.com/centos/6.5/isos/x86_64/CentOS-6.5-x86_64-LiveDVD.iso</a></p>
-<p>安装完毕后进入系统</p>
-<p>2.关闭系统防火墙，selinux</p>
-<p>打开终端，输入命令</p>
-<p>#service iptables stop //关闭防火墙</p>
-<p>#setenforce 0 //关闭selinux</p>
-<p>3.下载apache源码，php源码，mysql源码</p>
-<p>首先，在根目录（/）创建一个文件夹，命名source，创建一个文件夹，命名lamp,然后进入source目录，以下是命令方法</p>
-<p>桌面右键，在终端中打开，然后输入命令</p>
-<p>#cd /</p>
-<p>#mkdir source</p>
-<p>#mkdir lamp</p>
-<p>#cd source</p>
-<p>下载apache2.2.27</p>
-<p>#wget <a target="_blank" rel="noopener" href="http://mirrors.sohu.com/apache/httpd-2.2.27.tar.gz">http://mirrors.sohu.com/apache/httpd-2.2.27.tar.gz</a></p>
-<p>下载mysql5.6.20</p>
-<p>#wget <a target="_blank" rel="noopener" href="http://mirrors.sohu.com/mysql/MySQL-5.6/mysql-5.6.20.tar.gz">http://mirrors.sohu.com/mysql/MySQL-5.6/mysql-5.6.21.tar.gz</a></p>
-<p>下载php5.4.27</p>
-<p>#wget <a target="_blank" rel="noopener" href="http://mirrors.sohu.com/php/php-5.4.27.tar.gz">http://mirrors.sohu.com/php/php-5.4.27.tar.gz</a></p>
-<p>3.1安装apache2.2.27</p>
-<p>解压安装包httpd-2.2.27.tar.gz</p>
-<p>#tar -xzf httpd-2.2.27.tar.gz</p>
-<p>进入目录</p>
-<p>#cd httpd-2.2.27</p>
-<p># ./configure –prefix=/lamp/apache</p>
-<p>接下来会报错</p>
-<p><img src="file:///C:/Users/michaeldyl520/AppData/Local/YNote/data/qqAB881ABE4AEE31C2A6CFF94728E8E5E9/1b4356ab8f934947bef08b792aa2a42a/clipboard.png"></p>
-<p>需要安装gcc gcc++</p>
-<p>#yum -y install gcc gcc-c++</p>
-<p><img src="file:///C:/Users/michaeldyl520/AppData/Local/YNote/data/qqAB881ABE4AEE31C2A6CFF94728E8E5E9/366c8f904f9e48cd96c667f68bfab0f4/clipboard.png"></p>
-<p>再次编译，顺利安装</p>
-<p># ./configure –prefix=/lamp/apache</p>
-<p>#make;make install</p>
-<p>拷贝启动启动文件到/etc/init.d/</p>
-<p>#cp /lamp/apache/bin/apachectl /etc/init.d/httpd</p>
-<p>启动apache,输入物理地址，提示It works!以下界面则提交成功</p>
-<p>#service httpd start</p>
-<p><img src="file:///C:/Users/michaeldyl520/AppData/Local/YNote/data/qqAB881ABE4AEE31C2A6CFF94728E8E5E9/b71d52900e84424aa9a0773886920393/clipboard.png"></p>
-<p>3.2 安装mysql5.6.20</p>
-<p>安装mysql需要安装cmake，首先下载cmake,其次还要安装ncurses-devel</p>
-<p>#cd /source</p>
-<p>#wget <a target="_blank" rel="noopener" href="http://www.cmake.org/files/v2.8/cmake-2.8.12.2.tar.gz">http://www.cmake.org/files/v2.8/cmake-2.8.12.2.tar.gz</a></p>
-<p>#tar -xzf cmake-2.8.12.2.tar.gz</p>
-<p>#cd  cmake-2.8.12.2</p>
-<p>#./configure</p>
-<p>#gmake</p>
-<p>#make;make install</p>
-<p>#yum install ncurses-devel</p>
-<p>安装mysql</p>
-<p>#cd /source</p>
-<p>#tar -xzf mysql-5.6.20.tar.gz</p>
-<p>#cd  mysql-5.6.20</p>
-<p>#cmake -DCMAKE_INSTALL_PREFIX=/lamp/mysql &amp;&amp; make &amp;&amp; make install</p>
-<p>#cd /lamp/mysql</p>
-<p>#scripts/mysql_install_db –basedir=/lamp/mysql –datadir=/lamp/mysql/data –user=mysql</p>
-<p>#cp support-files/my-default.cnf /lamp/mysql/my.cnf</p>
-<p>#cp support-files/mysql.server /etc/init.d/mysqld</p>
-<p>增加环境变量</p>
-<p>#vim /etc/profile</p>
-<p>在文件末尾加入PATH=$PATH:/lamp/mysql/bin</p>
-<p>#source /etc/profile</p>
-<p>启动mysql</p>
-<p>#service mysqld start</p>
-<p>如果我无法启动，看看是否有mysqld进程没有关闭，全部kill -9   ，查看命令ps -ef|grep mysqld</p>
-<p>3.3 安装php5.4.27</p>
-<p>#cd /source</p>
-<p>#tar -xzf php-5.4.27.tar.gz</p>
-<p># cd php-5.4.27</p>
-<p># ./configure –prefix=/lamp/php –with-mysql=/lamp/mysql –with-mysqli=/lamp/mysql/bin/mysql_config –with-apxs2=/lamp/apache/bin/apxs –enable-mbstring</p>
-<p>#cp /source/ php-5.4.27/php.ini-development /lamp/php/lib/php.ini</p>
-<p>设置默认时区</p>
-<p>#vim /lamp/php/lib/php.ini</p>
-<p>大概909行修改为date.timezone = PRC</p>
-<p>可能会报错，这里是perl未安装</p>
-<p><img src="file:///C:/Users/michaeldyl520/AppData/Local/YNote/data/qqAB881ABE4AEE31C2A6CFF94728E8E5E9/1a45c66a3d3c4c3c9c80eb4f6b7f1a42/clipboard.png"></p>
-<p>#yum -y install perl</p>
-<p>可能会报错，这里是libxml2 libxml2-devel未安装</p>
-<p><img src="file:///C:/Users/michaeldyl520/AppData/Local/YNote/data/qqAB881ABE4AEE31C2A6CFF94728E8E5E9/f4ebf9846709473bb40860cc7e626d12/clipboard.png"></p>
-<p>#yum -y install libxml2 libxml2-devel</p>
-<p>增加环境变量</p>
-<p>#vim /etc/profile</p>
-<p>在文件末尾加入PATH=$PATH:/lamp/php/bin</p>
-<p>#source /etc/profile</p>
-<p>修改apache配置，让其支持php解析</p>
-<p>#vim /lamp/apache/etc/httpd.conf</p>
-<p>搜索AddType，大概310行</p>
-<p>增加AddType application/x-httpd-php .php</p>
-<p>搜索Directory，大概168行</p>
-<p>修改为DirectoryIndex index.php index.html</p>
-<p>重启apache</p>
-<p>#service httpd restart</p>
-<p>到此安装成功</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1324,7 +1231,7 @@ $("#datepicker").datepicker('option', 'dateFormat','yy-mm-dd');//set dateFormat
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

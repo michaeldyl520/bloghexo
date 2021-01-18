@@ -222,7 +222,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">120</span>
+          <span class="site-state-item-count">121</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -272,6 +272,179 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jiliuke.com/2014/11/14/224/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="michaeldyl520">
+      <meta itemprop="description" content="Bring the crowds together, inspire unlimited">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jiliuke">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2014/11/14/224/" class="post-title-link" itemprop="url">centos安装lamp环境</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2014-11-14 15:48:45" itemprop="dateCreated datePublished" datetime="2014-11-14T15:48:45+08:00">2014-11-14</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-12-24 10:16:52" itemprop="dateModified" datetime="2020-12-24T10:16:52+08:00">2020-12-24</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/LAMP%E6%8A%80%E6%9C%AF%E4%B8%AD%E5%BF%83/" itemprop="url" rel="index"><span itemprop="name">LAMP技术中心</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>原创：</p>
+<p>1.安装centos ，这里使用CentOS-6.5-x86_64-LiveDVD.iso</p>
+<p>下载地址：<a target="_blank" rel="noopener" href="http://mirrors.sohu.com/centos/6.5/isos/x86_64/CentOS-6.5-x86_64-LiveDVD.iso">http://mirrors.sohu.com/centos/6.5/isos/x86_64/CentOS-6.5-x86_64-LiveDVD.iso</a></p>
+<p>安装完毕后进入系统</p>
+<p>2.关闭系统防火墙，selinux</p>
+<p>打开终端，输入命令</p>
+<p>#service iptables stop //关闭防火墙</p>
+<p>#setenforce 0 //关闭selinux</p>
+<p>3.下载apache源码，php源码，mysql源码</p>
+<p>首先，在根目录（/）创建一个文件夹，命名source，创建一个文件夹，命名lamp,然后进入source目录，以下是命令方法</p>
+<p>桌面右键，在终端中打开，然后输入命令</p>
+<p>#cd /</p>
+<p>#mkdir source</p>
+<p>#mkdir lamp</p>
+<p>#cd source</p>
+<p>下载apache2.2.27</p>
+<p>#wget <a target="_blank" rel="noopener" href="http://mirrors.sohu.com/apache/httpd-2.2.27.tar.gz">http://mirrors.sohu.com/apache/httpd-2.2.27.tar.gz</a></p>
+<p>下载mysql5.6.20</p>
+<p>#wget <a target="_blank" rel="noopener" href="http://mirrors.sohu.com/mysql/MySQL-5.6/mysql-5.6.20.tar.gz">http://mirrors.sohu.com/mysql/MySQL-5.6/mysql-5.6.21.tar.gz</a></p>
+<p>下载php5.4.27</p>
+<p>#wget <a target="_blank" rel="noopener" href="http://mirrors.sohu.com/php/php-5.4.27.tar.gz">http://mirrors.sohu.com/php/php-5.4.27.tar.gz</a></p>
+<p>3.1安装apache2.2.27</p>
+<p>解压安装包httpd-2.2.27.tar.gz</p>
+<p>#tar -xzf httpd-2.2.27.tar.gz</p>
+<p>进入目录</p>
+<p>#cd httpd-2.2.27</p>
+<p># ./configure –prefix=/lamp/apache</p>
+<p>接下来会报错</p>
+<p><img src="file:///C:/Users/michaeldyl520/AppData/Local/YNote/data/qqAB881ABE4AEE31C2A6CFF94728E8E5E9/1b4356ab8f934947bef08b792aa2a42a/clipboard.png"></p>
+<p>需要安装gcc gcc++</p>
+<p>#yum -y install gcc gcc-c++</p>
+<p><img src="file:///C:/Users/michaeldyl520/AppData/Local/YNote/data/qqAB881ABE4AEE31C2A6CFF94728E8E5E9/366c8f904f9e48cd96c667f68bfab0f4/clipboard.png"></p>
+<p>再次编译，顺利安装</p>
+<p># ./configure –prefix=/lamp/apache</p>
+<p>#make;make install</p>
+<p>拷贝启动启动文件到/etc/init.d/</p>
+<p>#cp /lamp/apache/bin/apachectl /etc/init.d/httpd</p>
+<p>启动apache,输入物理地址，提示It works!以下界面则提交成功</p>
+<p>#service httpd start</p>
+<p><img src="file:///C:/Users/michaeldyl520/AppData/Local/YNote/data/qqAB881ABE4AEE31C2A6CFF94728E8E5E9/b71d52900e84424aa9a0773886920393/clipboard.png"></p>
+<p>3.2 安装mysql5.6.20</p>
+<p>安装mysql需要安装cmake，首先下载cmake,其次还要安装ncurses-devel</p>
+<p>#cd /source</p>
+<p>#wget <a target="_blank" rel="noopener" href="http://www.cmake.org/files/v2.8/cmake-2.8.12.2.tar.gz">http://www.cmake.org/files/v2.8/cmake-2.8.12.2.tar.gz</a></p>
+<p>#tar -xzf cmake-2.8.12.2.tar.gz</p>
+<p>#cd  cmake-2.8.12.2</p>
+<p>#./configure</p>
+<p>#gmake</p>
+<p>#make;make install</p>
+<p>#yum install ncurses-devel</p>
+<p>安装mysql</p>
+<p>#cd /source</p>
+<p>#tar -xzf mysql-5.6.20.tar.gz</p>
+<p>#cd  mysql-5.6.20</p>
+<p>#cmake -DCMAKE_INSTALL_PREFIX=/lamp/mysql &amp;&amp; make &amp;&amp; make install</p>
+<p>#cd /lamp/mysql</p>
+<p>#scripts/mysql_install_db –basedir=/lamp/mysql –datadir=/lamp/mysql/data –user=mysql</p>
+<p>#cp support-files/my-default.cnf /lamp/mysql/my.cnf</p>
+<p>#cp support-files/mysql.server /etc/init.d/mysqld</p>
+<p>增加环境变量</p>
+<p>#vim /etc/profile</p>
+<p>在文件末尾加入PATH=$PATH:/lamp/mysql/bin</p>
+<p>#source /etc/profile</p>
+<p>启动mysql</p>
+<p>#service mysqld start</p>
+<p>如果我无法启动，看看是否有mysqld进程没有关闭，全部kill -9   ，查看命令ps -ef|grep mysqld</p>
+<p>3.3 安装php5.4.27</p>
+<p>#cd /source</p>
+<p>#tar -xzf php-5.4.27.tar.gz</p>
+<p># cd php-5.4.27</p>
+<p># ./configure –prefix=/lamp/php –with-mysql=/lamp/mysql –with-mysqli=/lamp/mysql/bin/mysql_config –with-apxs2=/lamp/apache/bin/apxs –enable-mbstring</p>
+<p>#cp /source/ php-5.4.27/php.ini-development /lamp/php/lib/php.ini</p>
+<p>设置默认时区</p>
+<p>#vim /lamp/php/lib/php.ini</p>
+<p>大概909行修改为date.timezone = PRC</p>
+<p>可能会报错，这里是perl未安装</p>
+<p><img src="file:///C:/Users/michaeldyl520/AppData/Local/YNote/data/qqAB881ABE4AEE31C2A6CFF94728E8E5E9/1a45c66a3d3c4c3c9c80eb4f6b7f1a42/clipboard.png"></p>
+<p>#yum -y install perl</p>
+<p>可能会报错，这里是libxml2 libxml2-devel未安装</p>
+<p><img src="file:///C:/Users/michaeldyl520/AppData/Local/YNote/data/qqAB881ABE4AEE31C2A6CFF94728E8E5E9/f4ebf9846709473bb40860cc7e626d12/clipboard.png"></p>
+<p>#yum -y install libxml2 libxml2-devel</p>
+<p>增加环境变量</p>
+<p>#vim /etc/profile</p>
+<p>在文件末尾加入PATH=$PATH:/lamp/php/bin</p>
+<p>#source /etc/profile</p>
+<p>修改apache配置，让其支持php解析</p>
+<p>#vim /lamp/apache/etc/httpd.conf</p>
+<p>搜索AddType，大概310行</p>
+<p>增加AddType application/x-httpd-php .php</p>
+<p>搜索Directory，大概168行</p>
+<p>修改为DirectoryIndex index.php index.html</p>
+<p>重启apache</p>
+<p>#service httpd restart</p>
+<p>到此安装成功</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1140,96 +1313,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.jiliuke.com/2014/09/17/apache-e8-99-9a-e6-8b-9f-e7-9b-ae-e5-bd-95-e5-b1-80-e5-9f-9f-e7-bd-91-e8-ae-bf-e9-97-ae-e4-b8-bb-e6-9c-ba403-e9-94-99-e8-af-af-e8-a7-a3-e5-86-b3-e5-8a-9e-e6-b3-95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="michaeldyl520">
-      <meta itemprop="description" content="Bring the crowds together, inspire unlimited">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jiliuke">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2014/09/17/apache-e8-99-9a-e6-8b-9f-e7-9b-ae-e5-bd-95-e5-b1-80-e5-9f-9f-e7-bd-91-e8-ae-bf-e9-97-ae-e4-b8-bb-e6-9c-ba403-e9-94-99-e8-af-af-e8-a7-a3-e5-86-b3-e5-8a-9e-e6-b3-95/" class="post-title-link" itemprop="url">apache虚拟目录局域网访问主机403错误解决办法</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2014-09-17 16:34:00" itemprop="dateCreated datePublished" datetime="2014-09-17T16:34:00+08:00">2014-09-17</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-24 10:16:52" itemprop="dateModified" datetime="2020-12-24T10:16:52+08:00">2020-12-24</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/apache/" itemprop="url" rel="index"><span itemprop="name">apache</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>在这个例子，所有请求都将拒绝</p>
-<h3 id="2-2-configuration"><a href="#2-2-configuration" class="headerlink" title="2.2 configuration:"></a>2.2 configuration:</h3><p>Order deny,allow<br>Deny from all</p>
-<h3 id="2-4-configuration"><a href="#2-4-configuration" class="headerlink" title="2.4 configuration:"></a>2.4 configuration:</h3><p>Require all denied</p>
-<p>在这个例子，所有请求都将允许</p>
-<h3 id="2-2-configuration-1"><a href="#2-2-configuration-1" class="headerlink" title="2.2 configuration:"></a>2.2 configuration:</h3><p>Order allow,deny<br>Allow from all</p>
-<h3 id="2-4-configuration-1"><a href="#2-4-configuration-1" class="headerlink" title="2.4 configuration:"></a>2.4 configuration:</h3><p>Require all granted</p>
-<p>在这个例子，所有在 example.org域名的主机都将被允许访问;其他的都将拒绝。</p>
-<h3 id="2-2-configuration-2"><a href="#2-2-configuration-2" class="headerlink" title="2.2 configuration:"></a>2.2 configuration:</h3><p>Order Deny,Allow<br>Deny from all<br>Allow from example.org</p>
-<h3 id="2-4-configuration-2"><a href="#2-4-configuration-2" class="headerlink" title="2.4 configuration:"></a>2.4 configuration:</h3><p>Require host example.org</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1263,7 +1348,7 @@
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
