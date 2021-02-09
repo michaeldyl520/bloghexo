@@ -17,7 +17,7 @@
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"www.jiliuke.com","root":"/","images":"/images","scheme":"Gemini","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+    var CONFIG = {"hostname":"www.jiliuke.com","root":"/","images":"/images","scheme":"Gemini","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
   </script>
 <meta name="description" content="Bring the crowds together, inspire unlimited">
 <meta property="og:type" content="website">
@@ -222,7 +222,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">121</span>
+          <span class="site-state-item-count">122</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -272,6 +272,86 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jiliuke.com/2015/08/11/linux-e7-b3-bb-e7-bb-9f-e5-a6-82-e4-bd-95-e7-a6-81ping-centos-e7-a6-81ping/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="michaeldyl520">
+      <meta itemprop="description" content="Bring the crowds together, inspire unlimited">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jiliuke">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2015/08/11/linux-e7-b3-bb-e7-bb-9f-e5-a6-82-e4-bd-95-e7-a6-81ping-centos-e7-a6-81ping/" class="post-title-link" itemprop="url">Linux 系统如何禁ping, CentOS 禁ping</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2015-08-11 09:46:23" itemprop="dateCreated datePublished" datetime="2015-08-11T09:46:23+08:00">2015-08-11</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-12-24 10:16:52" itemprop="dateModified" datetime="2020-12-24T10:16:52+08:00">2020-12-24</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/CentOS/" itemprop="url" rel="index"><span itemprop="name">CentOS</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Linux系统，CentOS操作系统如何设置禁止别人ping我们自己的服务器，下面给大家介绍一些常用的方法： <strong>1、以root账户进入系统，然后编辑文件icmp_echo_ignore_all</strong> vi /proc/sys/net/ipv4/icmp_echo_ignore_all 0 表示允许ping 1 表示禁止ping 可以直接运行以下命令 [root@00isp ~]# echo 1 &gt;/proc/sys/net/ipv4/icmp_echo_ignore_all [root@00isp ~]# echo 0 &gt;/proc/sys/net/ipv4/icmp_echo_ignore_all 此上两条命令的效果实时生效，可以用另外的机器ping来测试是否生效。以上方式只是临时性的禁ping 重启后会失效，如果想要重启过后也不能ping可以做如下操作 /etc/rc.d/rc.local中增加一行 echo 1 &gt; /proc/sys/net/ipv4/icmp_echo_ignore_all 另外可以在配置文件 /etc/sysctl.conf 文件中增加一行 net.ipv4.icmp_echo_ignore_all=1 <strong>2、使用IPTables禁止PING</strong> echo “1” &gt; /proc/sys/net/ipv4/icmp_echo_ignore_all 这下是别人不能ping你，你也不能ping别人，其实使用iptable最简单 iptables -A INPUT -p icmp –icmp-type 8 -s 0/0 -j DROP iptables -A INPUT -p icmp –icmp-type 0 -s 0/0 -j ACCEPT iptables -A OUTPUT -p icmp –icmp-type 0 -s 192.168.29.1 -j DROP iptables -A OUTPUT -p icmp –icmp-type 8 -s 192.168.29.1 -j ACCEPT</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1075,107 +1155,6 @@
 <p>        return obj.value;</p>
 <p>    }</p>
 <p>}</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.jiliuke.com/2015/03/30/php-e4-ba-8c-e7-bb-b4-e6-95-b0-e7-bb-84-e6-8e-92-e5-ba-8f-e7-9a-843-e7-a7-8d-e6-96-b9-e6-b3-95-e5-92-8c-e8-87-aa-e5-ae-9a-e4-b9-89-e5-87-bd-e6-95-b0-e5-88-86-e4-ba-ab/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="michaeldyl520">
-      <meta itemprop="description" content="Bring the crowds together, inspire unlimited">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jiliuke">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2015/03/30/php-e4-ba-8c-e7-bb-b4-e6-95-b0-e7-bb-84-e6-8e-92-e5-ba-8f-e7-9a-843-e7-a7-8d-e6-96-b9-e6-b3-95-e5-92-8c-e8-87-aa-e5-ae-9a-e4-b9-89-e5-87-bd-e6-95-b0-e5-88-86-e4-ba-ab/" class="post-title-link" itemprop="url">PHP二维数组排序的3种方法和自定义函数分享</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2015-03-30 11:10:06" itemprop="dateCreated datePublished" datetime="2015-03-30T11:10:06+08:00">2015-03-30</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-24 10:16:52" itemprop="dateModified" datetime="2020-12-24T10:16:52+08:00">2020-12-24</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>这篇文章主要介绍了PHP二维数组排序的3种方法和自定义函数分享,需要的朋友可以参考下</p>
-<p>关于排序一般我们都是通过数据库或者nosql(eg:redis)先排好序然后输出到程序里直接使用，但是有些时候我们需要通过PHP直接来对数组进行排序，而在PHP里存储数据用到最多的就是对象和数组，但处理较多的就是数组，因为有非常丰富的内置函数库（其实对象一定程度上也可以理解为是数组），这些函数库很大程度上可以帮助我们实现某些功能。常用的系统函数有sort、asort、arsort、ksort、krsort等等，这里我主要说下对二维数组的排序，两种方法： <strong>一、用PHP自带array_multisort函数排序</strong></p>
-<p>复制代码代码如下:</p>
-<?php    $data = array(); $data\[\] = array('volume' => 67, 'edition' => 2); $data\[\] = array('volume' => 86, 'edition' => 1); $data\[\] = array('volume' => 85, 'edition' => 6); $data\[\] = array('volume' => 98, 'edition' => 2); $data\[\] = array('volume' => 86, 'edition' => 6); $data\[\] = array('volume' => 67, 'edition' => 7); // 取得列的列表 foreach ($data as $key => $row) { $volume\[$key\]  = $row\['volume'\]; $edition\[$key\] = $row\['edition'\]; } array\_multisort($volume, SORT\_DESC, $edition, SORT\_ASC, $data); print\_r($data); ?>
-
-<p>输出结果：</p>
-<p>复制代码代码如下:</p>
-<p>Array ( [0] =&gt; Array ( [volume] =&gt; 98 [edition] =&gt; 2 ) [1] =&gt; Array ( [volume] =&gt; 86 [edition] =&gt; 1 ) [2] =&gt; Array ( [volume] =&gt; 86 [edition] =&gt; 6 ) [3] =&gt; Array ( [volume] =&gt; 85 [edition] =&gt; 6 ) [4] =&gt; Array ( [volume] =&gt; 67 [edition] =&gt; 2 ) [5] =&gt; Array ( [volume] =&gt; 67 [edition] =&gt; 7 ) )</p>
-<p>关于array_multisort官方文档也有比较详细的说明：<a target="_blank" rel="noopener" href="http://www.php.net/manual/zh/function.array-multisort.php">http://www.php.net/manual/zh/function.array-multisort.php</a> <strong>二、自定义函数排序1</strong></p>
-<p>复制代码代码如下:</p>
-<?php $data = array(); $data\[\] = array('volume' => 67, 'edition' => 2); $data\[\] = array('volume' => 86, 'edition' => 1); $data\[\] = array('volume' => 85, 'edition' => 6); $data\[\] = array('volume' => 98, 'edition' => 2); $data\[\] = array('volume' => 86, 'edition' => 6); $data\[\] = array('volume' => 67, 'edition' => 7);    // 取得列的列表 foreach ($data as $key => $row) { $volume\[$key\]  = $row\['volume'\]; $edition\[$key\] = $row\['edition'\]; } $ret = arraySort($data, 'volume', 'desc'); print\_r($ret); /** * @desc arraySort php二维数组排序 按照指定的key 对数组进行排序 * @param array $arr 将要排序的数组 * @param string $keys 指定排序的key * @param string $type 排序类型 asc | desc * @return array */ function arraySort($arr, $keys, $type = 'asc') { $keysvalue = $new\_array = array(); foreach ($arr as $k => $v){ $keysvalue\[$k\] = $v\[$keys\]; } $type == 'asc' ? asort($keysvalue) : arsort($keysvalue); reset($keysvalue); foreach ($keysvalue as $k => $v) { $new\_array\[$k\] = $arr\[$k\]; } return $new\_array; } ?>
-
-<p>输出结果：</p>
-<p>复制代码代码如下:</p>
-<p>Array ( [3] =&gt; Array ( [volume] =&gt; 98 [edition] =&gt; 2 )    [4] =&gt; Array ( [volume] =&gt; 86 [edition] =&gt; 6 ) [1] =&gt; Array ( [volume] =&gt; 86 [edition] =&gt; 1 ) [2] =&gt; Array ( [volume] =&gt; 85 [edition] =&gt; 6 ) [5] =&gt; Array ( [volume] =&gt; 67 [edition] =&gt; 7 ) [0] =&gt; Array ( [volume] =&gt; 67 [edition] =&gt; 2 ) )</p>
-<p>这个自定义函数与系统函数的一个区别就是：自定义函数只支持针对某一个key的排序，如果要支持多个key的排序需要执行多次; 而系统函数array_multisort可以一次性对多个key且可以指定多个排序规则，系统函数还是相当强大的，推荐使用系统函数，毕竟是C底层实现的，这里只是举例说明如果通过自定义函数来对数组进行排序，当然这个自定义函数也可以继续扩展来支持更多的排序规则。在取排名、排行榜、成绩等场景中用到的还是非常多的。 <strong>三、自定义函数排序2</strong> 以下函数是对一个给定的二维数组按照指定的键值进行排序，先看函数定义：</p>
-<p>复制代码代码如下:</p>
-<p>function array_sort($arr,$keys,$type=’asc’){ $keysvalue = $new_array = array(); foreach ($arr as $k=&gt;$v){ $keysvalue[$k] = $v[$keys]; } if($type == ‘asc’){ asort($keysvalue); }else{ arsort($keysvalue); } reset($keysvalue); foreach ($keysvalue as $k=&gt;$v){ $new_array[$k] = $arr[$k]; } return $new_array; }</p>
-<p>它可以对二维数组按照指定的键值进行排序，也可以指定升序或降序排序法（默认为升序），用法示例：</p>
-<p>复制代码代码如下:</p>
-<p>$array = array( array(‘name’=&gt;’手机’,’brand’=&gt;’诺基亚’,’price’=&gt;1050), array(‘name’=&gt;’笔记本电脑’,’brand’=&gt;’lenovo’,’price’=&gt;4300), array(‘name’=&gt;’剃须刀’,’brand’=&gt;’飞利浦’,’price’=&gt;3100), array(‘name’=&gt;’跑步机’,’brand’=&gt;’三和松石’,’price’=&gt;4900), array(‘name’=&gt;’手表’,’brand’=&gt;’卡西欧’,’price’=&gt;960), array(‘name’=&gt;’液晶电视’,’brand’=&gt;’索尼’,’price’=&gt;6299), array(‘name’=&gt;’激光打印机’,’brand’=&gt;’惠普’,’price’=&gt;1200) );$ShoppingList = array_sort($array,’price’); print_r($ShoppingList);</p>
-<p>上面是对$array这个二维数组按照’price’从低到高的排序。</p>
 
       
     </div>

@@ -3503,4 +3503,11 @@ $("#datepicker").datepicker('option', 'dateFormat','yy-mm-dd');//set dateFormat
     <content><![CDATA[<p>国内用户可以使用上海交通大学的flatpak源，修改代码如下：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo flatpak remote-modify flathub --url&#x3D;https:&#x2F;&#x2F;mirror.sjtu.edu.cn&#x2F;flathub</span><br></pre></td></tr></table></figure>]]></content>
   </entry>
+  <entry>
+    <title>debian系统多版本PHP安装多版本xdebug</title>
+    <url>/2021/02/09/multiple-pecl-php-xdebug/</url>
+    <content><![CDATA[<p>多版本PHP共存的Debian系统中，特定版本的xdebug支持特定PHP版本，所以需要安装不同的版本的xdebug</p>
+<p>前提条件： Debian系统 已安装php7.3-dev php7.4-dev</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">设定默认php环境变量为7.3</span></span><br><span class="line">sudo update-alternatives --set php /usr/bin/php7.3</span><br><span class="line">sudo update-alternatives --set phpize /usr/bin/phpize7.3</span><br><span class="line">sudo update-alternatives --set php-config /usr/bin/php-config7.3</span><br><span class="line"><span class="meta">#</span><span class="bash">安装xdebug 2.9.8</span></span><br><span class="line">sudo pecl -d php_suffix=7.3 install http://pecl.php.net/get/xdebug-2.9.8.tgz</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">设定默认php环境变量为7.4</span></span><br><span class="line">sudo update-alternatives --set php /usr/bin/php7.4</span><br><span class="line">sudo update-alternatives --set phpize /usr/bin/phpize7.4</span><br><span class="line">sudo update-alternatives --set php-config /usr/bin/php-config7.4</span><br><span class="line"><span class="meta">#</span><span class="bash">安装xdebug 3.0.2</span></span><br><span class="line">sudo proxychains pecl -d php_suffix=7.4 install http://pecl.php.net/get/xdebug-3.0.2.tgz</span><br></pre></td></tr></table></figure>]]></content>
+  </entry>
 </search>

@@ -17,7 +17,7 @@
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"www.jiliuke.com","root":"/","images":"/images","scheme":"Gemini","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+    var CONFIG = {"hostname":"www.jiliuke.com","root":"/","images":"/images","scheme":"Gemini","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
   </script>
 <meta name="description" content="Bring the crowds together, inspire unlimited">
 <meta property="og:type" content="website">
@@ -222,7 +222,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">121</span>
+          <span class="site-state-item-count">122</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -272,6 +272,86 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jiliuke.com/2014/03/10/chcon-e5-91-bd-e4-bb-a4-e8-af-a6-e8-a7-a3selinux-e5-91-bd-e4-bb-a4-e8-af-a6-e8-a7-a3chcon-e5-91-bd-e4-bb-a4-e8-af-a6-e8-a7-a3selinux-e5-91-bd-e4-bb-a4-e8-af-a6-e8-a7-a3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="michaeldyl520">
+      <meta itemprop="description" content="Bring the crowds together, inspire unlimited">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jiliuke">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2014/03/10/chcon-e5-91-bd-e4-bb-a4-e8-af-a6-e8-a7-a3selinux-e5-91-bd-e4-bb-a4-e8-af-a6-e8-a7-a3chcon-e5-91-bd-e4-bb-a4-e8-af-a6-e8-a7-a3selinux-e5-91-bd-e4-bb-a4-e8-af-a6-e8-a7-a3/" class="post-title-link" itemprop="url">chcon命令详解(SELinux命令详解)chcon命令详解(SELinux命令详解)</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2014-03-10 17:05:25" itemprop="dateCreated datePublished" datetime="2014-03-10T17:05:25+08:00">2014-03-10</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-12-24 10:16:52" itemprop="dateModified" datetime="2020-12-24T10:16:52+08:00">2020-12-24</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/CentOS/" itemprop="url" rel="index"><span itemprop="name">CentOS</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>chcon命令：修改对象（文件）的安全上下文。比如：用户：角色：类型：安全级别。 命令格式： Chcon [OPTIONS…] CONTEXT FILES….. Chcon [OPTIONS…] –reference=PEF_FILES FILES… 说明： CONTEXT 为要设置的安全上下文 FILES 对象（文件） –reference 参照的对象 PEF_FILES 参照文件上下文 FILES 应用参照文件上下文为我的上下文。 OPTIONS 如下： -f 强迫执行 -R 递归地修改对象的安全上下文 -r ROLE 修改安全上下文角色的配置 -t TYPE 修改安全上下文类型的配置 -u USER 修改安全上下文用户的配置 -v 显示冗长的信息 -l, –range=RANGE 修改安全上下文中的安全级别 范例： 1、ftp //If you want to share files anonymously &lt;如果你想把这个共享给匿名的话，需要开启以下&gt; chcon -R -t public_content_t /var/ftp //If you want to setup a directory where you can upload files ＜如果你想让你设置的FTP目录可以上传文件的话，SELINUX需要设置＞ chcon -t public_content_rw_t /var/ftp/incoming //You must also turn on the boolean allow_ftpd_anon_write &lt;允许匿名用户写入权限＞ setsebool -P allow_ftpd_anon_write=1 //If you are setting up this machine as a ftpd server and wish to allow users to access their home directorories&lt;如果你希望你的FTP用户可以访问自己的家目录的话，需要开启&gt; setsebool -P ftp_home_dir 1 //If you want to run ftpd as a daemon&lt;如果你希望将vsftpd以daemon的方式运行的话，需要开启&gt; setsebool -P ftpd_is_daemon 1 //You can disable SELinux protection for the ftpd daemon&lt;你可以让SElinux停止保护vsftpd的daemon方式动行&gt; setsebool -P ftpd_disable_trans 1 2、httpd //If you want a particular domain to write to the public_content_rw_t domain &lt;如果希望具体个doman具有可写权限的话，需要设置&gt; setsebool -P allow_httpd_anon_write=1 or setsebool -P allow_httpd_sys__anon_write=1 //httpd can be setup to allow cgi s to be executed setsebool -P httpd_enable_cgi 1 //If you want to allow access to users home directories&lt;允许用户HHTP访问其家目录，该设定限仅于用户的家目录主页&gt; setsebool -P httpd_enable_homedirs 1 chcon -R -t httpd_sys_content_t ~user/public_html //httpd is allowed access to the controling terminal&lt;允许httpd访问终端＞ setsebool -P httpd_tty_comm 1 //such that one httpd service can not interfere with another setsebool -P httpd_unified 0 //loadable modules run under the same context as httpd setsebool -P httpd_builtin_ing 0 //httpd s are allowed to connect out to the network setsebool -P httpd_can_network_connect 1 // You can disable suexec transition setsebool -P httpd_suexec_disable_trans 1 //You can disable SELinux protection for the httpd daemon by executing &lt;关闭Selinux的关于httpd进程守护的保护&gt; setsebool -P httpd_disable_trans 1 service httpd restart 3、named //If you want to have named update the master zone files &lt;关于named,master更新selinux设定&gt; setsebool -P named_write_master_zones 1 //You can disable SELinux protection for the named daemon by executing &lt;关闭named的进程守护保护&gt; setsebool -P named_disable_trans 1 service named restart 4、nfs //If you want to setup this machine to share nfs partitions read only setsebool -P nfs_export_all_ro 1 //If you want to share files read/write setsebool -P nfs_export_all_rw 1 //If you want to use a remote NFS server for the home directories on this machine ＜如果你想要将远程NFS的家目录共享到本机，需要开启&gt; setsebool -P use_nfs_home_dirs 1 5、samba //If you want to share files other than home directorie &lt;如果你希望将目录共享给其他用户，你需要设置&gt; chcon -t samba_share_t /directory //If you want to share files with multiple domains 如果samba服务器共享目录给多个域，则需要： setsebool -P allow_smbd_anon_write=1 //If you are setting up this machine as a Samba server and wish to share the home directories samba服务器要共享家目录时： setsebool -P samba_enable_home_dirs 1 //If you want to use a remote Samba server for the home directories on this machine 如果你需在本机上使用远程samba服务器的家目录 setsebool -P use_samba_home_dirs 1 //You can disable SELinux protection for the samba daemon by executing 关闭selinux关于samba的进程守护的保护 setsebool -P smbd_disable_trans 1 service smb restart 6、rsync //If you want to share files using the rsync daemon 共享rsync目录时： chcon -t public_content_t /directories //If you want to share files with multiple domains 允许其他用户写入时 setsebool -P allow_rsync_anon_write=1 //You can disable SELinux protection for the rsync daemon by executing 停止rsync的进程保护 setsebool -P rsync_disable_trans 1 7、kerberos //allow your system to work properly in a Kerberos environment 允许系统使用kerberos setsebool -P allow_kerberos 1 //If you are running Kerberos daemons kadmind or krb5kdc setsebool -P krb5kdc_disable_trans 1 service krb5kdc restart setsebool -P kadmind_disable_trans 1 service kadmind restart 8、nis Allow your system to work properly in a NIS environment 系统工作在nis环境时 setsebool -P allow_ypbind 1</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -975,113 +1055,6 @@
     
     <div class="post-body" itemprop="articleBody">
           <p>首先在Windows上，使用svnadmin dump resp_path &gt;dumpfile将一个仓库导出成一个文件，这时候可以看到一个版本一个版本的导出过程。然后把这个dumpfile复制到Linux的机器上，使用svnadmin load resp_path amis.dump 2、ftp上传到linux下如/project 3、linux下/project$svnadmin create amis 4、/project$svnadmin load amis &lt; amis.dump. 注意导出用&gt;，导入用&lt; 注意：linux的profile下要使用utf-8的编码；securecrt的字符编码也要用utf-8。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.jiliuke.com/2014/02/20/centos-e5-ae-89-e8-a3-85samba-e6-9c-8d-e5-8a-a1-e5-99-a8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="michaeldyl520">
-      <meta itemprop="description" content="Bring the crowds together, inspire unlimited">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jiliuke">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2014/02/20/centos-e5-ae-89-e8-a3-85samba-e6-9c-8d-e5-8a-a1-e5-99-a8/" class="post-title-link" itemprop="url">centos 安装samba服务器</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2014-02-20 09:43:47" itemprop="dateCreated datePublished" datetime="2014-02-20T09:43:47+08:00">2014-02-20</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-24 10:16:52" itemprop="dateModified" datetime="2020-12-24T10:16:52+08:00">2020-12-24</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/CentOS/" itemprop="url" rel="index"><span itemprop="name">CentOS</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>1.yum -y install samba//下载samba包，并自动安装</p>
-<p>2.service smb start//开启samba服务</p>
-<p>3.netstat -anpl|grep smb//查看samba端口号(一般是139和445)</p>
-<p>4.vi /etc/sysconfig/iptables//添加端口到防火墙</p>
-<p>5.samba配置，配置文件在：vi /etc/samba/smb.conf</p>
-<p>主要配置global setting，share definitions</p>
-<blockquote>
-<p>74行：workgroup = WORKGROUP//和windows工作组一致</p>
-<p>75行：服务器版本信息，可不改</p>
-<p>77行：微软中显示的信息，可不改</p>
-<p>79行：监听的物理网卡，前有分号不解析的，用的时候配置</p>
-<p>80行：监听的ip地址，可以写域名段，前有分号不解析的，用的时候配置</p>
-<p>101行：加密方式：user表示用户加密，share表示不加密，设置成share后就能登ip访问了</p>
-</blockquote>
-<p>6.添加samba用户之前需要添加为系统用户，</p>
-<p>      pdbedit –a username：新建Samba账户。 pdbedit –x username：删除Samba账户。 pdbedit –L：列出Samba用户列表，读取passdb.tdb数据库文件。 pdbedit –Lv：列出Samba用户列表的详细信息。 pdbedit –c “[D]” –u username：暂停该Samba用户的账号。 pdbedit –c “[]” –u username：恢复该Samba用户的账号。</p>
-<p>以下是命令:</p>
-<p>useradd daiyunlong</p>
-<p>passwd daiyunlong</p>
-<p>123456</p>
-<p>123456</p>
-<p>pdbedit -a daiyunlong</p>
-<p>123456</p>
-<p>123456</p>
-<p>7.关闭SELinux</p>
-<p>setenforce 1 开启</p>
-<p>setenforce 0 关闭</p>
-<p>到此，已经可以向linux复制东西了</p>
 
       
     </div>

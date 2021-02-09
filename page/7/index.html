@@ -17,7 +17,7 @@
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"www.jiliuke.com","root":"/","images":"/images","scheme":"Gemini","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+    var CONFIG = {"hostname":"www.jiliuke.com","root":"/","images":"/images","scheme":"Gemini","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
   </script>
 <meta name="description" content="Bring the crowds together, inspire unlimited">
 <meta property="og:type" content="website">
@@ -222,7 +222,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">121</span>
+          <span class="site-state-item-count">122</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -272,6 +272,87 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jiliuke.com/2014/12/08/e4-b8-a4-e4-b8-aalinux-e4-b8-bb-e6-9c-ba-e4-b9-8b-e9-97-b4-e6-8b-b7-e8-b4-9d-e6-96-87-e4-bb-b6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="michaeldyl520">
+      <meta itemprop="description" content="Bring the crowds together, inspire unlimited">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jiliuke">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2014/12/08/e4-b8-a4-e4-b8-aalinux-e4-b8-bb-e6-9c-ba-e4-b9-8b-e9-97-b4-e6-8b-b7-e8-b4-9d-e6-96-87-e4-bb-b6/" class="post-title-link" itemprop="url">两个linux主机之间拷贝文件</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2014-12-08 13:21:20" itemprop="dateCreated datePublished" datetime="2014-12-08T13:21:20+08:00">2014-12-08</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-12-24 10:16:52" itemprop="dateModified" datetime="2020-12-24T10:16:52+08:00">2020-12-24</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/CentOS/" itemprop="url" rel="index"><span itemprop="name">CentOS</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>        不同的Linux之间copy文件常用有3种方法，</p>
+<p>        第一种就是ftp，也就是其中一台Linux安装ftp Server， 这样可以另外一台使用ftp的client程序来进行文件的copy。 （注意文件大小不能超过2G） 第二种方法就是采用samba服务，类似Windows文件copy的方式来操作，比较简洁方便， 第三种就是利用scp命令来进行文件复制。 scp是有Security的文件copy，基于ssh登录。操作起来比较方便，比如要把当前一个文件copy到远程另外一台主机上，可以如下命令。 scp /soft/squid-2.6.STABLE2.tar <a href="mailto:&#114;&#x6f;&#x6f;&#116;&#64;&#49;&#57;&#50;&#46;&#49;&#54;&#x38;&#x2e;&#49;&#x2e;&#x31;">&#114;&#x6f;&#x6f;&#116;&#64;&#49;&#57;&#50;&#46;&#49;&#54;&#x38;&#x2e;&#49;&#x2e;&#x31;</a>:/soft 然后会提示你输入另外那台172.19.2.75主机的root用户的登录密码，接着就开始copy了。 如果想反过来操作，把文件从远程主机copy到当前系统，也很简单。 scp <a href="mailto:&#x72;&#111;&#x6f;&#x74;&#x40;&#x31;&#x37;&#50;&#x2e;&#49;&#x39;&#46;&#x32;&#x2e;&#55;&#x35;">&#x72;&#111;&#x6f;&#x74;&#x40;&#x31;&#x37;&#50;&#x2e;&#49;&#x39;&#46;&#x32;&#x2e;&#55;&#x35;</a>:/home/root /home/daisy/full.tar.gz</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1214,87 +1295,6 @@
     
     <div class="post-body" itemprop="articleBody">
           <p>1.去其官方网站<a target="_blank" rel="noopener" href="http://www.sublimetext.com/">http://www.sublimetext.com/</a> 把linux版下载下来，解开压缩包，放在你希望的路径下。 2.用vim将其打开 。 vim sublime_text 3.将文件转成十六进制形式。vim中输入 :%!xxd 3.在vim中定位至“Thanks”文字附近。 /Thanks 4.接着查找数字串“3342”。 /3342 找到一处3342的地方大致是这个样子 ……4333 3342 3032……. 将这里的3342 改为3242。 5.将文件转换回去。 :%!xxd -r 6.保存文件、退出。 :wq 7.打开程序，去help-enter licence 里贴进去通过程序算出来的Licence，OK 成功了。 <img src="http://www.linuxidc.com/upload/2013_07/130705063620411.png"> 这里贴出来几个算好的供使用。 —–BEGIN LICENSE—– China Unlimited User License EA7E-2861 BE67D2175D3569FDAB9EB5340FAD2822 E7B56B3397A76AA9FBE8AC3D3C65918B DFC28F2EA158140D9E07853D594818EB 3A237B2E8E98ED257C269548F50EDA34 EF0C7F72D8917DB538A0245E46BFD6B1 85F4EDE331F253530ED67A5C19E92399 04C5F4A1AF4AF3DB5EC49C1FEE17CA76 7E369F8AAE4AC6C6E756B5882E1608B9 —–END LICENSE—– —–BEGIN LICENSE—– USA Unlimited User License EA7E-1640 763D05839CA08BDA7B0103B5BABF0150 195EE53CC33B569858AFD553F080A9BC 1F678C88A1342AC92CA596FE775E7014 5A0EE55DC2F8DE3C4ED6B5B02FD4DB3C 493FCE3EE61FC0588CDAFAAD731BB47F FD047777D02A5BE92202B3D3EB59A696 A69DFEF6687D16FCD4443556912A1F62 82DA125263C5BC270CEE7664B5D0CEB9 —–END LICENSE—– —–BEGIN LICENSE—– A Unlimited User License EA7E-20708 A7281D6781626F2A37D6355121079ACA DF60119B9D27D4CBDA75FA63D633A671 9521D96D375D8DD95DF3F89231E38F8D 459374CC62D1C1B410C0BDFD2503670E 603BB1DCA7D20E85B0AF19BAE0A59822 F7B1F83659D4D7787C4F040FE9402FCD B9608A9012BDA8B65524B4DEDE4C00D0 76461448E2AAEC027060C26B038D502B —–END LICENSE—– —–BEGIN LICENSE—– B Unlimited User License EA7E-13207 B5C54DD7413302E87A9ED4155E90D5E0 684F7A34714D278ABE2731F0270034E2 9722AEC71E04043C0E9D4496D1DA161B D76CE81501A247F3E03F57D6EC1E76AE 12BE9CD453D1E651AF4BD187CC10FEB0 EB24FBAB7511F2F37E5F745D13D0641F 7D1BEEE98A9646A02B616BF98EB43F84 B04029D72C610086A666DB318A526A2F —–END LICENSE—– —–BEGIN LICENSE—– Love Unlimited User License EA7E-8441 918381ACA844A0379CCAC729059720A4 BC9D409098618744BB45FF23E67568DB 82B926D92157127DB3B4054834D0477F DD9C2B251A57F2E3259E04AD9B7DB8B8 1778C37C1D3B494671C5F4ECFBD2B519 361CD9624A56C21F54F8DD51F5BDF799 68F9537ED74680494853423904F032BA 3E896607B4D398E8C897A4DD1A8CB449 —–END LICENSE—– —–BEGIN LICENSE—– NightM Unlimited User License EA7E-5177 8125006DCD9E513CD4F1C217CAD3801D E72D3130CA1F04CFEDF3696C0F68553D DC42B172E38962890A87035FCE26049F 15EFA09D4BCC811617915165959A499F 402866AFC08E72615336D863968B60FB C9167F72F4B25ED5E8E593D2E19F43E7 C7EC9F459EA62F1DD1757DC9967C4801 8E48683A4F0F9CAC3CC0621F2D48292F —–END LICENSE—– 使用terminal安装的，安装目录在/usr/lib/sublime-text-2/sublime_text 下， 拷贝出来，修改，在sudo cp -f 回去即可继续后续步骤。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.jiliuke.com/2014/09/18/e5-9c-a8-htaccess-e6-96-87-e4-bb-b6-e4-b8-ad-e5-a2-9e-e5-8a-a0301-e9-87-8d-e5-ae-9a-e5-90-91-e6-8c-87-e4-bb-a4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="michaeldyl520">
-      <meta itemprop="description" content="Bring the crowds together, inspire unlimited">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jiliuke">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2014/09/18/e5-9c-a8-htaccess-e6-96-87-e4-bb-b6-e4-b8-ad-e5-a2-9e-e5-8a-a0301-e9-87-8d-e5-ae-9a-e5-90-91-e6-8c-87-e4-bb-a4/" class="post-title-link" itemprop="url">在.htaccess文件中增加301重定向指令 </a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2014-09-18 09:50:16" itemprop="dateCreated datePublished" datetime="2014-09-18T09:50:16+08:00">2014-09-18</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-24 10:16:52" itemprop="dateModified" datetime="2020-12-24T10:16:52+08:00">2020-12-24</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/apache/" itemprop="url" rel="index"><span itemprop="name">apache</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>在.htaccess文件中增加301重定向指令 采用“mod_rewrite”技术，形如： RewriteEngine on RewriteRule ^(.*)$ <a href="http://www.jiliuke.com/">http://www.jiliuke.com/</a> $1 [R=301,L]</p>
-<p>301重定向代码和测试工具 国外:<a target="_blank" rel="noopener" href="http://www.seoconsultants.com/tools/headers">http://www.seoconsultants.com/tools/headers</a> 国 内:<a target="_blank" rel="noopener" href="http://www.ranknow.cn/tools/redirectcheck">http://www.ranknow.cn/tools/redirectcheck</a></p>
 
       
     </div>

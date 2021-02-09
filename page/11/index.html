@@ -17,7 +17,7 @@
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"www.jiliuke.com","root":"/","images":"/images","scheme":"Gemini","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+    var CONFIG = {"hostname":"www.jiliuke.com","root":"/","images":"/images","scheme":"Gemini","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
   </script>
 <meta name="description" content="Bring the crowds together, inspire unlimited">
 <meta property="og:type" content="website">
@@ -222,7 +222,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">121</span>
+          <span class="site-state-item-count">122</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -272,6 +272,86 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jiliuke.com/2014/04/03/linux-e4-b8-ad-e6-90-ad-e5-bb-bavsftpd-e4-b8-8d-e8-83-bd-e6-ad-a3-e5-b8-b8-e8-ae-bf-e9-97-ae-vsftpd-e9-98-b2-e7-81-ab-e5-a2-99-e8-ae-be-e7-bd-ae/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="michaeldyl520">
+      <meta itemprop="description" content="Bring the crowds together, inspire unlimited">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jiliuke">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2014/04/03/linux-e4-b8-ad-e6-90-ad-e5-bb-bavsftpd-e4-b8-8d-e8-83-bd-e6-ad-a3-e5-b8-b8-e8-ae-bf-e9-97-ae-vsftpd-e9-98-b2-e7-81-ab-e5-a2-99-e8-ae-be-e7-bd-ae/" class="post-title-link" itemprop="url">Linux中搭建vsftpd不能正常访问–vsftpd防火墙设置</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2014-04-03 09:26:14" itemprop="dateCreated datePublished" datetime="2014-04-03T09:26:14+08:00">2014-04-03</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-12-24 10:16:52" itemprop="dateModified" datetime="2020-12-24T10:16:52+08:00">2020-12-24</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/vsftp/" itemprop="url" rel="index"><span itemprop="name">vsftp</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>一.权限导致vsftpd不能正常访问 安装vsftpd软件后，ftp默认的家目录为/var/ftp, 就是这个/var/ftp的权限设置错误导致的，这个目录的权限是不能打开所有权限的；是您运行了chmod 777 /var/ftp所致。 如下FTP用户的家目录是不能针对所有用户、用户组、其它用户组完全开放； [root@localhost ~]# ls -ld /var/ftp drwxrwxrwx 3 root root 4096 2009-03-23 /var/ftp 修正这个错误，应该用下面的办法； [root@localhost ~]# chown root:root /var/ftp [root@localhost ~]# chmod 755 /var/ftp 二.开启LINUX服务器防火墙后，不能正常登录。 常规设置在防火墙配置文件中添加21端口，还是不能正常访问到FTP服务器。 首先要了解概念； FTP支持两种模式，一种方式叫做Standard (也就是 PORT方式，主动方式)，一种是 Passive (也就是PASV，被动方式)。 Standard模式 FTP的客户端发送 PORT 命令到FTP服务器。Passive模式FTP的客户端发送 PASV命令到 FTP Server。 PORT 和 PASV的简单区别如下： Port模式FTP 客户端首先和FTP服务器的TCP 21端口建立连接，通过这个通道发送命令，客户端需要接收数据的时候在这个通道上发送PORT命令。 PORT命令包含了客户端用什么端口接收数据。在传送数据的时候，服务器端通过自己的TCP 20端口连接至客户端的指定端口发送数据。 FTP server必须和客户端建立一个新的连接用来传送数据。 Passive模式在建立控制通道的时候和Standard模式类似，但建立连接后发送的不是Port命令，而是Pasv命令。FTP服务器收到 Pasv命令后，随机打开一个高端端口（端口号大于1024）并且通知客户端在这个端口上传送数据的请求，客户端连接FTP服务器此端口，然后FTP服务器将通过这个端口进行数据的传送，这个时候FTP server不再需要建立一个新的和客户端之间的连接。 因为IE浏览器默认使用的是Passive（被动）模式，所以要连接Linux服务器大于1024端口，而防火墙并没有开发1024以上的端口，导致登录ftp服务器被防火墙阻止。 解决方法：1.客户端设置 去掉 前面的复选框，让IE浏览器使用port（主动）模式，但是要对每个客户端进行设置比较麻烦。 2.服务器端设置(以CentOS为例) 修改vsftpd.conf配置文件让它支持Passive（被动）模式 #vim /etc/vsftpd/vsftpd.conf 在最后一行添加如下内容： pasv_min_port=3000 （设置被动模式的端口范围） pasv_max_port=3010 （设置被动模式的端口范围） 在防火墙配置文件iptables中添加端口 #vim /etc/sysconfig/iptables -A RH-Firewall-1-INPUT -m state –state NEW -m tcp -p tcp –dport 3000:3010 -j ACCEPT 重启服务使其生效 #service vsftpd rstart #service iptables restart</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -975,86 +1055,6 @@
     
     <div class="post-body" itemprop="articleBody">
           <p>前天测试出在64位系统下不能发送激活邮件的bug 打出error_msg:为permission deny 调试搜索了半天，没有结果；网上主要说的是 fsockopen被关闭啊，用pfsockopen，或者stream_socket_client()来代替 都试过不行； 因为在window下这几个函数都没有问题，所以想到是linux的 的问题，这个东东困扰过好几次了，以后碰到问题请首先想到这个； 既然默认开启了肯定有他的好处，不能关selinux，就搜索：selinux+smtp 找到了答案，selinux果然是不允许http来连接网络的，执行如下命令： setsebool -P httpd_can_network_connect=1 即可发送邮件了，看来得好好看看selinux这个鬼东西了。 详情参考： <a target="_blank" rel="noopener" href="https://www.vbulletin.com/forum/showthread.php/217997-smtp-mail-and-SElinux-in-enforcing-mode">https://www.vbulletin.com/forum/showthread.php/217997-smtp-mail-and-SElinux-in-enforcing-mode</a> To allow PHP/Apache to connect to port 25 issue the following commands as root: setsebool -P httpd_can_network_connect=1 To allow PHP mail() to work issue the following command as root: setsebool -P httpd_can_sendmail=1 今天2012-04-19 又碰到服务器不能发送邮件的问题了，服务器部署到电信机房后。 SMTP Error: Could not connect to SMTP host. 找了半天没有发现问题所在，重启了httpd，就好了，实在太诡异了， 按理昨天关闭服务器在机房才开的机，httpd也算是重启了的。 先记住，重启httpd可不是神马好方法</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.jiliuke.com/2014/03/10/chcon-e5-91-bd-e4-bb-a4-e8-af-a6-e8-a7-a3selinux-e5-91-bd-e4-bb-a4-e8-af-a6-e8-a7-a3chcon-e5-91-bd-e4-bb-a4-e8-af-a6-e8-a7-a3selinux-e5-91-bd-e4-bb-a4-e8-af-a6-e8-a7-a3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="michaeldyl520">
-      <meta itemprop="description" content="Bring the crowds together, inspire unlimited">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jiliuke">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2014/03/10/chcon-e5-91-bd-e4-bb-a4-e8-af-a6-e8-a7-a3selinux-e5-91-bd-e4-bb-a4-e8-af-a6-e8-a7-a3chcon-e5-91-bd-e4-bb-a4-e8-af-a6-e8-a7-a3selinux-e5-91-bd-e4-bb-a4-e8-af-a6-e8-a7-a3/" class="post-title-link" itemprop="url">chcon命令详解(SELinux命令详解)chcon命令详解(SELinux命令详解)</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2014-03-10 17:05:25" itemprop="dateCreated datePublished" datetime="2014-03-10T17:05:25+08:00">2014-03-10</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-24 10:16:52" itemprop="dateModified" datetime="2020-12-24T10:16:52+08:00">2020-12-24</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/CentOS/" itemprop="url" rel="index"><span itemprop="name">CentOS</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>chcon命令：修改对象（文件）的安全上下文。比如：用户：角色：类型：安全级别。 命令格式： Chcon [OPTIONS…] CONTEXT FILES….. Chcon [OPTIONS…] –reference=PEF_FILES FILES… 说明： CONTEXT 为要设置的安全上下文 FILES 对象（文件） –reference 参照的对象 PEF_FILES 参照文件上下文 FILES 应用参照文件上下文为我的上下文。 OPTIONS 如下： -f 强迫执行 -R 递归地修改对象的安全上下文 -r ROLE 修改安全上下文角色的配置 -t TYPE 修改安全上下文类型的配置 -u USER 修改安全上下文用户的配置 -v 显示冗长的信息 -l, –range=RANGE 修改安全上下文中的安全级别 范例： 1、ftp //If you want to share files anonymously &lt;如果你想把这个共享给匿名的话，需要开启以下&gt; chcon -R -t public_content_t /var/ftp //If you want to setup a directory where you can upload files ＜如果你想让你设置的FTP目录可以上传文件的话，SELINUX需要设置＞ chcon -t public_content_rw_t /var/ftp/incoming //You must also turn on the boolean allow_ftpd_anon_write &lt;允许匿名用户写入权限＞ setsebool -P allow_ftpd_anon_write=1 //If you are setting up this machine as a ftpd server and wish to allow users to access their home directorories&lt;如果你希望你的FTP用户可以访问自己的家目录的话，需要开启&gt; setsebool -P ftp_home_dir 1 //If you want to run ftpd as a daemon&lt;如果你希望将vsftpd以daemon的方式运行的话，需要开启&gt; setsebool -P ftpd_is_daemon 1 //You can disable SELinux protection for the ftpd daemon&lt;你可以让SElinux停止保护vsftpd的daemon方式动行&gt; setsebool -P ftpd_disable_trans 1 2、httpd //If you want a particular domain to write to the public_content_rw_t domain &lt;如果希望具体个doman具有可写权限的话，需要设置&gt; setsebool -P allow_httpd_anon_write=1 or setsebool -P allow_httpd_sys__anon_write=1 //httpd can be setup to allow cgi s to be executed setsebool -P httpd_enable_cgi 1 //If you want to allow access to users home directories&lt;允许用户HHTP访问其家目录，该设定限仅于用户的家目录主页&gt; setsebool -P httpd_enable_homedirs 1 chcon -R -t httpd_sys_content_t ~user/public_html //httpd is allowed access to the controling terminal&lt;允许httpd访问终端＞ setsebool -P httpd_tty_comm 1 //such that one httpd service can not interfere with another setsebool -P httpd_unified 0 //loadable modules run under the same context as httpd setsebool -P httpd_builtin_ing 0 //httpd s are allowed to connect out to the network setsebool -P httpd_can_network_connect 1 // You can disable suexec transition setsebool -P httpd_suexec_disable_trans 1 //You can disable SELinux protection for the httpd daemon by executing &lt;关闭Selinux的关于httpd进程守护的保护&gt; setsebool -P httpd_disable_trans 1 service httpd restart 3、named //If you want to have named update the master zone files &lt;关于named,master更新selinux设定&gt; setsebool -P named_write_master_zones 1 //You can disable SELinux protection for the named daemon by executing &lt;关闭named的进程守护保护&gt; setsebool -P named_disable_trans 1 service named restart 4、nfs //If you want to setup this machine to share nfs partitions read only setsebool -P nfs_export_all_ro 1 //If you want to share files read/write setsebool -P nfs_export_all_rw 1 //If you want to use a remote NFS server for the home directories on this machine ＜如果你想要将远程NFS的家目录共享到本机，需要开启&gt; setsebool -P use_nfs_home_dirs 1 5、samba //If you want to share files other than home directorie &lt;如果你希望将目录共享给其他用户，你需要设置&gt; chcon -t samba_share_t /directory //If you want to share files with multiple domains 如果samba服务器共享目录给多个域，则需要： setsebool -P allow_smbd_anon_write=1 //If you are setting up this machine as a Samba server and wish to share the home directories samba服务器要共享家目录时： setsebool -P samba_enable_home_dirs 1 //If you want to use a remote Samba server for the home directories on this machine 如果你需在本机上使用远程samba服务器的家目录 setsebool -P use_samba_home_dirs 1 //You can disable SELinux protection for the samba daemon by executing 关闭selinux关于samba的进程守护的保护 setsebool -P smbd_disable_trans 1 service smb restart 6、rsync //If you want to share files using the rsync daemon 共享rsync目录时： chcon -t public_content_t /directories //If you want to share files with multiple domains 允许其他用户写入时 setsebool -P allow_rsync_anon_write=1 //You can disable SELinux protection for the rsync daemon by executing 停止rsync的进程保护 setsebool -P rsync_disable_trans 1 7、kerberos //allow your system to work properly in a Kerberos environment 允许系统使用kerberos setsebool -P allow_kerberos 1 //If you are running Kerberos daemons kadmind or krb5kdc setsebool -P krb5kdc_disable_trans 1 service krb5kdc restart setsebool -P kadmind_disable_trans 1 service kadmind restart 8、nis Allow your system to work properly in a NIS environment 系统工作在nis环境时 setsebool -P allow_ypbind 1</p>
 
       
     </div>

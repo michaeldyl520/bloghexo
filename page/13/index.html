@@ -17,7 +17,7 @@
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"www.jiliuke.com","root":"/","images":"/images","scheme":"Gemini","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+    var CONFIG = {"hostname":"www.jiliuke.com","root":"/","images":"/images","scheme":"Gemini","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
   </script>
 <meta name="description" content="Bring the crowds together, inspire unlimited">
 <meta property="og:type" content="website">
@@ -222,7 +222,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">121</span>
+          <span class="site-state-item-count">122</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -272,6 +272,113 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jiliuke.com/2014/02/20/centos-e5-ae-89-e8-a3-85samba-e6-9c-8d-e5-8a-a1-e5-99-a8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="michaeldyl520">
+      <meta itemprop="description" content="Bring the crowds together, inspire unlimited">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jiliuke">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2014/02/20/centos-e5-ae-89-e8-a3-85samba-e6-9c-8d-e5-8a-a1-e5-99-a8/" class="post-title-link" itemprop="url">centos 安装samba服务器</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2014-02-20 09:43:47" itemprop="dateCreated datePublished" datetime="2014-02-20T09:43:47+08:00">2014-02-20</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-12-24 10:16:52" itemprop="dateModified" datetime="2020-12-24T10:16:52+08:00">2020-12-24</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/CentOS/" itemprop="url" rel="index"><span itemprop="name">CentOS</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>1.yum -y install samba//下载samba包，并自动安装</p>
+<p>2.service smb start//开启samba服务</p>
+<p>3.netstat -anpl|grep smb//查看samba端口号(一般是139和445)</p>
+<p>4.vi /etc/sysconfig/iptables//添加端口到防火墙</p>
+<p>5.samba配置，配置文件在：vi /etc/samba/smb.conf</p>
+<p>主要配置global setting，share definitions</p>
+<blockquote>
+<p>74行：workgroup = WORKGROUP//和windows工作组一致</p>
+<p>75行：服务器版本信息，可不改</p>
+<p>77行：微软中显示的信息，可不改</p>
+<p>79行：监听的物理网卡，前有分号不解析的，用的时候配置</p>
+<p>80行：监听的ip地址，可以写域名段，前有分号不解析的，用的时候配置</p>
+<p>101行：加密方式：user表示用户加密，share表示不加密，设置成share后就能登ip访问了</p>
+</blockquote>
+<p>6.添加samba用户之前需要添加为系统用户，</p>
+<p>      pdbedit –a username：新建Samba账户。 pdbedit –x username：删除Samba账户。 pdbedit –L：列出Samba用户列表，读取passdb.tdb数据库文件。 pdbedit –Lv：列出Samba用户列表的详细信息。 pdbedit –c “[D]” –u username：暂停该Samba用户的账号。 pdbedit –c “[]” –u username：恢复该Samba用户的账号。</p>
+<p>以下是命令:</p>
+<p>useradd daiyunlong</p>
+<p>passwd daiyunlong</p>
+<p>123456</p>
+<p>123456</p>
+<p>pdbedit -a daiyunlong</p>
+<p>123456</p>
+<p>123456</p>
+<p>7.关闭SELinux</p>
+<p>setenforce 1 开启</p>
+<p>setenforce 0 关闭</p>
+<p>到此，已经可以向linux复制东西了</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 

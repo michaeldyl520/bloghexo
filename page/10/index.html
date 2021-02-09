@@ -17,7 +17,7 @@
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"www.jiliuke.com","root":"/","images":"/images","scheme":"Gemini","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+    var CONFIG = {"hostname":"www.jiliuke.com","root":"/","images":"/images","scheme":"Gemini","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}};
   </script>
 <meta name="description" content="Bring the crowds together, inspire unlimited">
 <meta property="og:type" content="website">
@@ -222,7 +222,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">121</span>
+          <span class="site-state-item-count">122</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -272,6 +272,86 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jiliuke.com/2014/05/14/centos-e4-b8-8b-e5-b8-b8-e7-94-a8-e6-9f-a5-e7-9c-8b-e5-91-bd-e4-bb-a4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="michaeldyl520">
+      <meta itemprop="description" content="Bring the crowds together, inspire unlimited">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jiliuke">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2014/05/14/centos-e4-b8-8b-e5-b8-b8-e7-94-a8-e6-9f-a5-e7-9c-8b-e5-91-bd-e4-bb-a4/" class="post-title-link" itemprop="url">centos下常用查看命令</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2014-05-14 14:07:14" itemprop="dateCreated datePublished" datetime="2014-05-14T14:07:14+08:00">2014-05-14</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-12-24 10:16:52" itemprop="dateModified" datetime="2020-12-24T10:16:52+08:00">2020-12-24</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/CentOS/" itemprop="url" rel="index"><span itemprop="name">CentOS</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>#uname -a # 查看内核/操作系统/CPU信息 # head -n 1 /etc/issue # 查看操作系统版本 # cat /proc/cpuinfo # 查看CPU信息 # hostname # 查看计算机名 # lspci -tv # 列出所有PCI设备 # lsusb -tv # 列出所有USB设备 # lsmod # 列出加载的内核模块 # env # 查看环境变量 资源 # free -m # 查看内存使用量和交换区使用量 # df -h # 查看各分区使用情况 # du -sh &lt;目录名&gt; # 查看指定目录的大小 # grep MemTotal /proc/meminfo # 查看内存总量 # grep MemFree /proc/meminfo # 查看空闲内存量 # uptime # 查看系统运行时间、用户数、负载 # cat /proc/loadavg # 查看系统负载 磁盘和分区 # mount | column -t # 查看挂接的分区状态 # fdisk -l # 查看所有分区 # swapon -s # 查看所有交换分区 # hdparm -i /dev/hda # 查看磁盘参数(仅适用于IDE设备) # dmesg | grep IDE # 查看启动时IDE设备检测状况 网络 # ifconfig # 查看所有网络接口的属性 # iptables -L # 查看防火墙设置 # route -n # 查看路由表 # netstat -lntp # 查看所有监听端口 # netstat -antp # 查看所有已经建立的连接 # netstat -s # 查看网络统计信息 进程 # ps -ef # 查看所有进程 # top # 实时显示进程状态 用户 # w # 查看活动用户 # id &lt;用户名&gt; # 查看指定用户信息 # last # 查看用户登录日志 # cut -d: -f1 /etc/passwd # 查看系统所有用户 # cut -d: -f1 /etc/group # 查看系统所有组 # crontab -l # 查看当前用户的计划任务 服务 # chkconfig –list # 列出所有系统服务 # chkconfig –list | grep on # 列出所有启动的系统服务 程序 # rpm -qa # 查看所有安装的软件包</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -981,86 +1061,6 @@
     
     <div class="post-body" itemprop="articleBody">
           <p>接着就是修改etc/vsftpd/vsftpd.conf里面的参数了。 anonymous_enable=YES/NO是否允许匿名访问 1、限制所有的本地用户在自家目录 chroot_local_user=YES 限制部分本地用户在自家目录 chroot_local_user=NO chroot_list_enable=YES chroot_list_file=/etc/vsftpd.chroot_list 在/etc/vsftpd.chroot_list文件中加入要限制的本地用户名。注意一个用户名一行。 有时候要限制某些IP访问服务器,只允许某些IP访问,例如只允许192.168.0.33访问这个FTP,同样修改配置文件: listen_address=192.168.0.33 端口修改：/etc/services,修改，比如改FTP21端口改2121，只要在这里修改，然后在vsftpd.conf配置文件里加一条 listet_port=2121 最主要的是防火墙里的SELinux要允许，不然是不能读取写入的 还有一种就是pasv被动传输模式，可以如下设置 pasv_enable=yes （Default: YES ） 设置是否允许pasv模式 pasv_promiscuous=no （Default: NO ） 是否屏蔽对pasv进行安全检查，（当有安全隧道时可禁用） pasv_min_port=1024（Default: 0 (use any port) ） pasv使用的最大端口 pasv_max_port=10240 （Default: 0 (use any port) ） pasv使用的最小端口 然后在添加防火墙的时候可以加一条 iptables -A INPUT -p tcp –dport 1024:10240 -j ACCEPT(表示1024-10240这些端口通过) iptables -A OUTPUT -p tcp –spotr 1024:10240 -j ACCEPT 最后，如何让vsftpd自动启动 在/etc/rc.local 文件里面添加一句 vsftpd &amp; 这样就可以开机就自动启动了！</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.jiliuke.com/2014/04/03/linux-e4-b8-ad-e6-90-ad-e5-bb-bavsftpd-e4-b8-8d-e8-83-bd-e6-ad-a3-e5-b8-b8-e8-ae-bf-e9-97-ae-vsftpd-e9-98-b2-e7-81-ab-e5-a2-99-e8-ae-be-e7-bd-ae/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="michaeldyl520">
-      <meta itemprop="description" content="Bring the crowds together, inspire unlimited">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jiliuke">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2014/04/03/linux-e4-b8-ad-e6-90-ad-e5-bb-bavsftpd-e4-b8-8d-e8-83-bd-e6-ad-a3-e5-b8-b8-e8-ae-bf-e9-97-ae-vsftpd-e9-98-b2-e7-81-ab-e5-a2-99-e8-ae-be-e7-bd-ae/" class="post-title-link" itemprop="url">Linux中搭建vsftpd不能正常访问–vsftpd防火墙设置</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2014-04-03 09:26:14" itemprop="dateCreated datePublished" datetime="2014-04-03T09:26:14+08:00">2014-04-03</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-24 10:16:52" itemprop="dateModified" datetime="2020-12-24T10:16:52+08:00">2020-12-24</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/vsftp/" itemprop="url" rel="index"><span itemprop="name">vsftp</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>一.权限导致vsftpd不能正常访问 安装vsftpd软件后，ftp默认的家目录为/var/ftp, 就是这个/var/ftp的权限设置错误导致的，这个目录的权限是不能打开所有权限的；是您运行了chmod 777 /var/ftp所致。 如下FTP用户的家目录是不能针对所有用户、用户组、其它用户组完全开放； [root@localhost ~]# ls -ld /var/ftp drwxrwxrwx 3 root root 4096 2009-03-23 /var/ftp 修正这个错误，应该用下面的办法； [root@localhost ~]# chown root:root /var/ftp [root@localhost ~]# chmod 755 /var/ftp 二.开启LINUX服务器防火墙后，不能正常登录。 常规设置在防火墙配置文件中添加21端口，还是不能正常访问到FTP服务器。 首先要了解概念； FTP支持两种模式，一种方式叫做Standard (也就是 PORT方式，主动方式)，一种是 Passive (也就是PASV，被动方式)。 Standard模式 FTP的客户端发送 PORT 命令到FTP服务器。Passive模式FTP的客户端发送 PASV命令到 FTP Server。 PORT 和 PASV的简单区别如下： Port模式FTP 客户端首先和FTP服务器的TCP 21端口建立连接，通过这个通道发送命令，客户端需要接收数据的时候在这个通道上发送PORT命令。 PORT命令包含了客户端用什么端口接收数据。在传送数据的时候，服务器端通过自己的TCP 20端口连接至客户端的指定端口发送数据。 FTP server必须和客户端建立一个新的连接用来传送数据。 Passive模式在建立控制通道的时候和Standard模式类似，但建立连接后发送的不是Port命令，而是Pasv命令。FTP服务器收到 Pasv命令后，随机打开一个高端端口（端口号大于1024）并且通知客户端在这个端口上传送数据的请求，客户端连接FTP服务器此端口，然后FTP服务器将通过这个端口进行数据的传送，这个时候FTP server不再需要建立一个新的和客户端之间的连接。 因为IE浏览器默认使用的是Passive（被动）模式，所以要连接Linux服务器大于1024端口，而防火墙并没有开发1024以上的端口，导致登录ftp服务器被防火墙阻止。 解决方法：1.客户端设置 去掉 前面的复选框，让IE浏览器使用port（主动）模式，但是要对每个客户端进行设置比较麻烦。 2.服务器端设置(以CentOS为例) 修改vsftpd.conf配置文件让它支持Passive（被动）模式 #vim /etc/vsftpd/vsftpd.conf 在最后一行添加如下内容： pasv_min_port=3000 （设置被动模式的端口范围） pasv_max_port=3010 （设置被动模式的端口范围） 在防火墙配置文件iptables中添加端口 #vim /etc/sysconfig/iptables -A RH-Firewall-1-INPUT -m state –state NEW -m tcp -p tcp –dport 3000:3010 -j ACCEPT 重启服务使其生效 #service vsftpd rstart #service iptables restart</p>
 
       
     </div>
