@@ -222,7 +222,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">122</span>
+          <span class="site-state-item-count">124</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -272,6 +272,244 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jiliuke.com/2014/09/23/jquery-e4-b8-adprop-e6-96-b9-e6-b3-95-e5-92-8cattr-e6-96-b9-e6-b3-95-e7-9a-84-e5-8c-ba-e5-88-ab/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="michaeldyl520">
+      <meta itemprop="description" content="Bring the crowds together, inspire unlimited">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jiliuke">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2014/09/23/jquery-e4-b8-adprop-e6-96-b9-e6-b3-95-e5-92-8cattr-e6-96-b9-e6-b3-95-e7-9a-84-e5-8c-ba-e5-88-ab/" class="post-title-link" itemprop="url">jQuery中prop()方法和attr()方法的区别</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2014-09-23 10:22:11" itemprop="dateCreated datePublished" datetime="2014-09-23T10:22:11+08:00">2014-09-23</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-12-24 10:16:52" itemprop="dateModified" datetime="2020-12-24T10:16:52+08:00">2020-12-24</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/jquery/" itemprop="url" rel="index"><span itemprop="name">jquery</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>从jQuery 1.6开始，新加入了一个prop方法。这个方法和attr方法功能非常的相近。</p>
+<p>以下是官网建议的使用情况：</p>
+<p>Attribute/Property</p>
+<p><code>.attr()</code></p>
+<p><code>.prop()</code></p>
+<p>accesskey</p>
+<p>√</p>
+<p>align</p>
+<p>√</p>
+<p>async</p>
+<p>√</p>
+<p>√</p>
+<p>autofocus</p>
+<p>√</p>
+<p>√</p>
+<p>checked</p>
+<p>√</p>
+<p>√</p>
+<p>class</p>
+<p>√</p>
+<p>contenteditable</p>
+<p>√</p>
+<p>draggable</p>
+<p>√</p>
+<p>href</p>
+<p>√</p>
+<p>id</p>
+<p>√</p>
+<p>label</p>
+<p>√</p>
+<p>location ( i.e. window.location )</p>
+<p>√</p>
+<p>√</p>
+<p>multiple</p>
+<p>√</p>
+<p>√</p>
+<p>readOnly</p>
+<p>√</p>
+<p>√</p>
+<p>rel</p>
+<p>√</p>
+<p>selected</p>
+<p>√</p>
+<p>√</p>
+<p>src</p>
+<p>√</p>
+<p>tabindex</p>
+<p>√</p>
+<p>title</p>
+<p>√</p>
+<p>type</p>
+<p>√</p>
+<p>width ( if needed over <code>.width()</code> )</p>
+<p>√</p>
+<p>个人简要总结了一下：</p>
+<p>1、赋值时候，如果是<input type="checkbox" checked>这样的只有属性名就能生效的属性</p>
+<p>推荐prop，即：$(‘input’).prop(‘checked’,true);</p>
+<p>同时，false表示取消，即：$(‘input’).prop(‘checked’,false);</p>
+<p>当然attr也行的：$(‘input’).attr(‘checked’,’这里写什么都行的’);</p>
+<p>取消属性就是移除：$(‘input’).removeAttr(‘checked’);</p>
+<p>2、取值的时候，如果是<input  id="input1" type="checkbox" checked><input  id="input2" type="checkbox"></p>
+<p>推荐使用prop，即：</p>
+<p>$(‘#input1’).prop(‘checked’); //返回true</p>
+<p>$(‘#input2’).prop(‘checked’); //返回false</p>
+<p>而使用attr，则：</p>
+<p>$(‘#input1’).attr(‘checked’); //返回checked</p>
+<p>$(‘#input2’).attr(‘checked’); //返回undefined</p>
+<p>3、特殊属性赋值取值</p>
+<p>这个特殊说明下，获取很多人都用不到呢。</p>
+<p>比如需要在input中追加一个data-tips属性。变成这样子 <input type="text" value="" data-tips="aa"></p>
+<p>这时候只能写：$(‘input’).attr(‘data-tips’,’aa’);</p>
+<p>使用prop是不管用的。</p>
+<p>但是读值时候，两个都可以的：</p>
+<p>$(‘input’).attr(‘data-tips’);//返回aa</p>
+<p>$(‘input’).prop(‘data-tips’);//返回aa</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jiliuke.com/2014/09/22/centos-e5-ae-89-e8-a3-85-e7-a0-b4-e8-a7-a3sublime-text-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="michaeldyl520">
+      <meta itemprop="description" content="Bring the crowds together, inspire unlimited">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jiliuke">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2014/09/22/centos-e5-ae-89-e8-a3-85-e7-a0-b4-e8-a7-a3sublime-text-2/" class="post-title-link" itemprop="url">centos安装破解Sublime Text 2</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2014-09-22 17:18:14" itemprop="dateCreated datePublished" datetime="2014-09-22T17:18:14+08:00">2014-09-22</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-12-24 10:16:52" itemprop="dateModified" datetime="2020-12-24T10:16:52+08:00">2020-12-24</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/CentOS/" itemprop="url" rel="index"><span itemprop="name">CentOS</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/CentOS/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>1.去其官方网站<a target="_blank" rel="noopener" href="http://www.sublimetext.com/">http://www.sublimetext.com/</a> 把linux版下载下来，解开压缩包，放在你希望的路径下。 2.用vim将其打开 。 vim sublime_text 3.将文件转成十六进制形式。vim中输入 :%!xxd 3.在vim中定位至“Thanks”文字附近。 /Thanks 4.接着查找数字串“3342”。 /3342 找到一处3342的地方大致是这个样子 ……4333 3342 3032……. 将这里的3342 改为3242。 5.将文件转换回去。 :%!xxd -r 6.保存文件、退出。 :wq 7.打开程序，去help-enter licence 里贴进去通过程序算出来的Licence，OK 成功了。 <img src="http://www.linuxidc.com/upload/2013_07/130705063620411.png"> 这里贴出来几个算好的供使用。 —–BEGIN LICENSE—– China Unlimited User License EA7E-2861 BE67D2175D3569FDAB9EB5340FAD2822 E7B56B3397A76AA9FBE8AC3D3C65918B DFC28F2EA158140D9E07853D594818EB 3A237B2E8E98ED257C269548F50EDA34 EF0C7F72D8917DB538A0245E46BFD6B1 85F4EDE331F253530ED67A5C19E92399 04C5F4A1AF4AF3DB5EC49C1FEE17CA76 7E369F8AAE4AC6C6E756B5882E1608B9 —–END LICENSE—– —–BEGIN LICENSE—– USA Unlimited User License EA7E-1640 763D05839CA08BDA7B0103B5BABF0150 195EE53CC33B569858AFD553F080A9BC 1F678C88A1342AC92CA596FE775E7014 5A0EE55DC2F8DE3C4ED6B5B02FD4DB3C 493FCE3EE61FC0588CDAFAAD731BB47F FD047777D02A5BE92202B3D3EB59A696 A69DFEF6687D16FCD4443556912A1F62 82DA125263C5BC270CEE7664B5D0CEB9 —–END LICENSE—– —–BEGIN LICENSE—– A Unlimited User License EA7E-20708 A7281D6781626F2A37D6355121079ACA DF60119B9D27D4CBDA75FA63D633A671 9521D96D375D8DD95DF3F89231E38F8D 459374CC62D1C1B410C0BDFD2503670E 603BB1DCA7D20E85B0AF19BAE0A59822 F7B1F83659D4D7787C4F040FE9402FCD B9608A9012BDA8B65524B4DEDE4C00D0 76461448E2AAEC027060C26B038D502B —–END LICENSE—– —–BEGIN LICENSE—– B Unlimited User License EA7E-13207 B5C54DD7413302E87A9ED4155E90D5E0 684F7A34714D278ABE2731F0270034E2 9722AEC71E04043C0E9D4496D1DA161B D76CE81501A247F3E03F57D6EC1E76AE 12BE9CD453D1E651AF4BD187CC10FEB0 EB24FBAB7511F2F37E5F745D13D0641F 7D1BEEE98A9646A02B616BF98EB43F84 B04029D72C610086A666DB318A526A2F —–END LICENSE—– —–BEGIN LICENSE—– Love Unlimited User License EA7E-8441 918381ACA844A0379CCAC729059720A4 BC9D409098618744BB45FF23E67568DB 82B926D92157127DB3B4054834D0477F DD9C2B251A57F2E3259E04AD9B7DB8B8 1778C37C1D3B494671C5F4ECFBD2B519 361CD9624A56C21F54F8DD51F5BDF799 68F9537ED74680494853423904F032BA 3E896607B4D398E8C897A4DD1A8CB449 —–END LICENSE—– —–BEGIN LICENSE—– NightM Unlimited User License EA7E-5177 8125006DCD9E513CD4F1C217CAD3801D E72D3130CA1F04CFEDF3696C0F68553D DC42B172E38962890A87035FCE26049F 15EFA09D4BCC811617915165959A499F 402866AFC08E72615336D863968B60FB C9167F72F4B25ED5E8E593D2E19F43E7 C7EC9F459EA62F1DD1757DC9967C4801 8E48683A4F0F9CAC3CC0621F2D48292F —–END LICENSE—– 使用terminal安装的，安装目录在/usr/lib/sublime-text-2/sublime_text 下， 拷贝出来，修改，在sudo cp -f 回去即可继续后续步骤。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -874,17 +1112,17 @@
 <h3 id="什么是scp"><a href="#什么是scp" class="headerlink" title="什么是scp"></a>什么是scp</h3><p>　scp就是secure copy，是用来进行远程文件拷贝的。数据传输使用 ssh，并且和ssh 使用相同的认证方式，提供相同的安全保证 。 与rcp 不同的是，scp 在需要进行验证时会要求你输入密码或口令。</p>
 <h3 id="scp的用法"><a href="#scp的用法" class="headerlink" title="scp的用法"></a>scp的用法</h3><p><strong>从 本地 复制到 远程</strong> 命令基本格式： scp [可选参数] 本地文件名 远程用户名@远程地址:远程文件或目录 复制文件例子：</p>
 <ol>
-<li> scp /home/backup.zip <a href="mailto:&#x72;&#111;&#111;&#x74;&#x40;&#x77;&#119;&#119;&#46;&#101;&#120;&#97;&#109;&#112;&#x6c;&#101;&#x2e;&#99;&#x6f;&#109;">&#x72;&#111;&#111;&#x74;&#x40;&#x77;&#119;&#119;&#46;&#101;&#120;&#97;&#109;&#112;&#x6c;&#101;&#x2e;&#99;&#x6f;&#109;</a>:/home/others/backup</li>
-<li> scp /home/backup.zip <a href="mailto:&#114;&#x6f;&#111;&#x74;&#64;&#119;&#119;&#119;&#x2e;&#x65;&#120;&#97;&#x6d;&#112;&#x6c;&#101;&#x2e;&#99;&#111;&#109;">&#114;&#x6f;&#111;&#x74;&#64;&#119;&#119;&#119;&#x2e;&#x65;&#120;&#97;&#x6d;&#112;&#x6c;&#101;&#x2e;&#99;&#111;&#109;</a>:/home/others/otherbackup.zip</li>
+<li> scp /home/backup.zip <a href="mailto:&#x72;&#111;&#x6f;&#116;&#x40;&#119;&#x77;&#119;&#x2e;&#101;&#x78;&#97;&#x6d;&#112;&#x6c;&#x65;&#x2e;&#x63;&#x6f;&#x6d;">&#x72;&#111;&#x6f;&#116;&#x40;&#119;&#x77;&#119;&#x2e;&#101;&#x78;&#97;&#x6d;&#112;&#x6c;&#x65;&#x2e;&#x63;&#x6f;&#x6d;</a>:/home/others/backup</li>
+<li> scp /home/backup.zip <a href="mailto:&#114;&#111;&#x6f;&#116;&#x40;&#x77;&#119;&#x77;&#46;&#x65;&#x78;&#x61;&#109;&#112;&#108;&#101;&#x2e;&#99;&#x6f;&#109;">&#114;&#111;&#x6f;&#116;&#x40;&#x77;&#119;&#x77;&#46;&#x65;&#x78;&#x61;&#109;&#112;&#108;&#101;&#x2e;&#99;&#x6f;&#109;</a>:/home/others/otherbackup.zip</li>
 </ol>
 <p>第一个是本地文件backup.zip发送到远程backup目录下。 第二个是本地文件backup.zip发送到远程otherbackup.zip文件。 复制目录例子：</p>
 <ol>
-<li> scp -r /home/backup <a href="mailto:&#114;&#x6f;&#x6f;&#116;&#x40;&#x77;&#x77;&#x77;&#46;&#101;&#120;&#x61;&#109;&#x70;&#x6c;&#101;&#x2e;&#99;&#111;&#109;">&#114;&#x6f;&#x6f;&#116;&#x40;&#x77;&#x77;&#x77;&#46;&#101;&#120;&#x61;&#109;&#x70;&#x6c;&#101;&#x2e;&#99;&#111;&#109;</a>:/home/others/</li>
+<li> scp -r /home/backup <a href="mailto:&#x72;&#x6f;&#x6f;&#116;&#64;&#119;&#x77;&#x77;&#46;&#x65;&#x78;&#x61;&#x6d;&#112;&#108;&#x65;&#x2e;&#x63;&#111;&#x6d;">&#x72;&#x6f;&#x6f;&#116;&#64;&#119;&#x77;&#x77;&#46;&#x65;&#x78;&#x61;&#x6d;&#112;&#108;&#x65;&#x2e;&#x63;&#111;&#x6d;</a>:/home/others/</li>
 </ol>
 <p>复制本地目录backup到远程目录others <strong>从 远程 复制到 本地</strong> 命令基本格式： scp [可选参数] 远程用户名@远程地址:远程文件或目录 本地文件名 例子：</p>
 <ol>
-<li> scp <a href="mailto:&#x72;&#111;&#111;&#116;&#64;&#x77;&#x77;&#119;&#x2e;&#x65;&#x78;&#97;&#109;&#112;&#108;&#x65;&#x2e;&#99;&#x6f;&#109;">&#x72;&#111;&#111;&#116;&#64;&#x77;&#x77;&#119;&#x2e;&#x65;&#x78;&#97;&#109;&#112;&#108;&#x65;&#x2e;&#99;&#x6f;&#109;</a>:/home/others/bakcup.zip /home/newbackup.zip</li>
-<li> scp -r <a href="mailto:&#114;&#x6f;&#x6f;&#x74;&#x40;&#119;&#x77;&#119;&#x2e;&#101;&#x78;&#97;&#109;&#x70;&#108;&#x65;&#46;&#x63;&#111;&#109;">&#114;&#x6f;&#x6f;&#x74;&#x40;&#119;&#x77;&#119;&#x2e;&#101;&#x78;&#97;&#109;&#x70;&#108;&#x65;&#46;&#x63;&#111;&#109;</a>:/home/backup /home/other/</li>
+<li> scp <a href="mailto:&#x72;&#x6f;&#111;&#116;&#x40;&#119;&#119;&#119;&#46;&#101;&#x78;&#97;&#x6d;&#x70;&#108;&#x65;&#x2e;&#99;&#111;&#x6d;">&#x72;&#x6f;&#111;&#116;&#x40;&#119;&#119;&#119;&#46;&#101;&#x78;&#97;&#x6d;&#x70;&#108;&#x65;&#x2e;&#99;&#111;&#x6d;</a>:/home/others/bakcup.zip /home/newbackup.zip</li>
+<li> scp -r <a href="mailto:&#114;&#x6f;&#111;&#x74;&#x40;&#119;&#x77;&#x77;&#46;&#101;&#120;&#x61;&#109;&#112;&#x6c;&#101;&#46;&#x63;&#x6f;&#x6d;">&#114;&#x6f;&#111;&#x74;&#x40;&#119;&#x77;&#x77;&#46;&#101;&#120;&#x61;&#109;&#112;&#x6c;&#101;&#46;&#x63;&#x6f;&#x6d;</a>:/home/backup /home/other/</li>
 </ol>
 <p>第一个是下载远程文件backup.zip到本地文件newbackup.zip。 第二个是下载远程目录bakcup到本地目录other。 <strong>scp可选参数：</strong></p>
 <p>参数</p>
@@ -1513,166 +1751,6 @@
 <li><p>              }</p>
 </li>
 </ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.jiliuke.com/2014/08/04/jquery-e7-89-b9-e6-95-88-e6-8f-92-e4-bb-b6flexslider/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="michaeldyl520">
-      <meta itemprop="description" content="Bring the crowds together, inspire unlimited">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jiliuke">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2014/08/04/jquery-e7-89-b9-e6-95-88-e6-8f-92-e4-bb-b6flexslider/" class="post-title-link" itemprop="url">jquery特效插件flexslider</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2014-08-04 09:37:10" itemprop="dateCreated datePublished" datetime="2014-08-04T09:37:10+08:00">2014-08-04</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-24 10:16:52" itemprop="dateModified" datetime="2020-12-24T10:16:52+08:00">2020-12-24</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/jquery/" itemprop="url" rel="index"><span itemprop="name">jquery</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>1.flexslider 预览地址：FlexSlider2 下载插件 网盘地址：FlexSlider2简版demo HTML关键代码说明 //使用flexslider插件 $(window).load(function() { $(‘.flexslider’).flexslider({ //参数设置在这里 animation: “slide”,//使用滑动效果 slideshowSpeed: 2300//切换速度 }); }); FlexSlisder参数说明 $(window).load(function() { $(‘.flexslider’).flexslider({ animation: “fade”, //String: Select your animation type, “fade” or “slide”图片变换方式：淡入淡出或者滑动 direction: “horizontal”, //String: Select the sliding direction, “horizontal” or “vertical”图片设置为滑动式时的滑动方向：左右或者上下 slideshow: true, //Boolean: Animate slider automatically 载入页面时，是否自动播放 slideshowSpeed: 7000, //Integer: Set the speed of the slideshow cycling, in milliseconds 自动播放速度毫秒 animationDuration: 600, //Integer: Set the speed of animations, in milliseconds动画淡入淡出效果延时 directionNav: true, //Boolean: Create navigation for previous/next navigation? (true/false)是否显示左右控制按钮 controlNav: true, //Boolean: Create navigation for paging control of each clide? Note: Leave true for manualControls usage是否显示控制菜单 keyboardNav: true, //Boolean: Allow slider navigating via keyboard left/right keys键盘左右方向键控制图片滑动 mousewheel: false, //Boolean: Allow slider navigating via mousewheel鼠标滚轮控制制图片滑动 prevText: “Previous”, //String: Set the text for the “previous” directionNav item nextText: “Next”, //String: Set the text for the “next” directionNav item pausePlay: false, //Boolean: Create pause/play dynamic element pauseText: ‘Pause’, //String: Set the text for the “pause” pausePlay item playText: ‘Play’, //String: Set the text for the “play” pausePlay item randomize: false, //Boolean: Randomize slide order 是否随即幻灯片 slideToStart: 0, //Integer: The slide that the slider should start on. Array notation (0 = first slide)初始化第一次显示图片位置 animationLoop: true, //Boolean: Should the animation loop? If false, directionNav will received “disable” classes at either end 是否循环滚动 pauseOnAction: true, //Boolean: Pause the slideshow when interacting with control elements, highly recommended. pauseOnHover: false, //Boolean: Pause the slideshow when hovering over slider, then resume when no longer hovering controlsContainer: “”, //Selector: Declare which container the navigation elements should be appended too. Default container is the flexSlider element. Example use would be “.flexslider-container”, “#container”, etc. If the given element is not found, the default action will be taken. manualControls: “”, //Selector: Declare custom control navigation. Example would be “.flex-control-nav li” or “#tabs-nav li img”, etc. The number of elements in your controlNav should match the number of slides/tabs.自定义控制导航 manualControlEvent:””, //String:自定义导航控制触发事件:默认是click,可以设定hover start: function(){}, //Callback: function(slider) - Fires when the slider loads the first slide before: function(){}, //Callback: function(slider) - Fires asynchronously with each slider animation after: function(){}, //Callback: function(slider) - Fires after each slider animation completes end: function(){} //Callback: function(slider) - Fires when the slider reaches the last slide (asynchronous) }); });</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.jiliuke.com/2014/06/20/e5-bc-80-e6-ba-90-e9-95-9c-e5-83-8f-e7-ab-99-e7-82-b9-e5-9c-b0-e5-9d-80-e6-b1-87-e6-80-bb/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="michaeldyl520">
-      <meta itemprop="description" content="Bring the crowds together, inspire unlimited">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jiliuke">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2014/06/20/e5-bc-80-e6-ba-90-e9-95-9c-e5-83-8f-e7-ab-99-e7-82-b9-e5-9c-b0-e5-9d-80-e6-b1-87-e6-80-bb/" class="post-title-link" itemprop="url">开源镜像站点地址汇总</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2014-06-20 09:15:19" itemprop="dateCreated datePublished" datetime="2014-06-20T09:15:19+08:00">2014-06-20</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-24 10:16:52" itemprop="dateModified" datetime="2020-12-24T10:16:52+08:00">2020-12-24</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/CentOS/" itemprop="url" rel="index"><span itemprop="name">CentOS</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>开源镜像站：即一个放置开源系统镜像文件的站点.免费提供镜像文件下载下来可以刻盘也可以直接用虚拟光驱安装操作系统，开源的软件,LINUX源码网站 公司类 搜狐开源镜像站：<a target="_blank" rel="noopener" href="http://mirrors.sohu.com/">http://mirrors.sohu.com/</a> 网易开源镜像站：<a target="_blank" rel="noopener" href="http://mirrors.163.com/">http://mirrors.163.com/</a> 开源中国：<a target="_blank" rel="noopener" href="http://mirrors.oschina.net/">http://mirrors.oschina.net/</a> 首都在线科技股份有限公司：<a target="_blank" rel="noopener" href="http://mirrors.yun-idc.com/">http://mirrors.yun-idc.com/</a> 阿里云开源镜像：<a target="_blank" rel="noopener" href="http://mirrors.aliyun.com/">http://mirrors.aliyun.com/</a> LUPA：<a target="_blank" rel="noopener" href="http://mirror.lupaworld.com/">http://mirror.lupaworld.com/</a> 常州贝特康姆软件技术有限公司(原cn99）：<a target="_blank" rel="noopener" href="http://centos.bitcomm.cn/">http://centos.bitcomm.cn/</a> 特别类 centos镜像站：<a target="_blank" rel="noopener" href="http://www.centos.org/download/mirrors/">http://www.centos.org/download/mirrors/</a> 大学类 中山大学镜像：<a target="_blank" rel="noopener" href="http://mirror.sysu.edu.cn/">http://mirror.sysu.edu.cn/</a> 山东理工大学：<a target="_blank" rel="noopener" href="http://mirrors.sdutlinux.org/">http://mirrors.sdutlinux.org/</a> 哈尔滨工业大学：<a target="_blank" rel="noopener" href="http://run.hit.edu.cn/">http://run.hit.edu.cn/</a> 中国地质大学：<a target="_blank" rel="noopener" href="http://cugbteam.org/">http://cugbteam.org/</a> 大连理工大学：<a target="_blank" rel="noopener" href="http://mirror.dlut.edu.cn/">http://mirror.dlut.edu.cn/</a> 西南林业大学： <a target="_blank" rel="noopener" href="http://cs3.swfu.edu.cn/cs3guide.html">http://cs3.swfu.edu.cn/cs3guide.html</a> 北京化工大学（仅教育网可以访问），包含 CentOS 镜像：<a target="_blank" rel="noopener" href="http://ubuntu.buct.edu.cn/">http://ubuntu.buct.edu.cn/</a> 天津大学：<a target="_blank" rel="noopener" href="http://mirror.tju.edu.cn/">http://mirror.tju.edu.cn/</a> 西南大学：<a target="_blank" rel="noopener" href="http://linux.swu.edu.cn/swudownload/Distributions/">http://linux.swu.edu.cn/swudownload/Distributions/</a> 青岛大学：<a target="_blank" rel="noopener" href="http://mirror.qdu.edu.cn/">http://mirror.qdu.edu.cn/</a> 南京师范大学：<a target="_blank" rel="noopener" href="http://mirrors.njnu.edu.cn/">http://mirrors.njnu.edu.cn/</a> 大连东软信息学院： <a target="_blank" rel="noopener" href="http://mirrors.neusoft.edu.cn/">http://mirrors.neusoft.edu.cn/</a> 浙江大学：<a target="_blank" rel="noopener" href="http://mirrors.zju.edu.cn/">http://mirrors.zju.edu.cn/</a> 兰州大学：<a target="_blank" rel="noopener" href="http://mirror.lzu.edu.cn/">http://mirror.lzu.edu.cn/</a> 厦门大学：<a target="_blank" rel="noopener" href="http://mirrors.xmu.edu.cn/">http://mirrors.xmu.edu.cn/</a> 北京理工大学： <a target="_blank" rel="noopener" href="http://mirror.bit.edu.cn/">http://mirror.bit.edu.cn</a> (IPv4 only) <a target="_blank" rel="noopener" href="http://mirror.bit6.edu.cn/">http://mirror.bit6.edu.cn</a> (IPv6 only) 北京交通大学： <a target="_blank" rel="noopener" href="http://mirror.bjtu.edu.cn/">http://mirror.bjtu.edu.cn</a> (IPv4 only) <a target="_blank" rel="noopener" href="http://mirror6.bjtu.edu.cn/">http://mirror6.bjtu.edu.cn</a> (IPv6 only) <a target="_blank" rel="noopener" href="http://debian.bjtu.edu.cn/">http://debian.bjtu.edu.cn</a> (IPv4+IPv6) 上海交通大学： <a target="_blank" rel="noopener" href="http://ftp.sjtu.edu.cn/">http://ftp.sjtu.edu.cn/</a> (IPv4 only) <a target="_blank" rel="noopener" href="http://ftp6.sjtu.edu.cn/">http://ftp6.sjtu.edu.cn</a> (IPv6 only) 清华大学： <a target="_blank" rel="noopener" href="http://mirrors.tuna.tsinghua.edu.cn/">http://mirrors.tuna.tsinghua.edu.cn/</a> (IPv4+IPv6) <a target="_blank" rel="noopener" href="http://mirrors.6.tuna.tsinghua.edu.cn/">http://mirrors.6.tuna.tsinghua.edu.cn/</a> (IPv6 only) <a target="_blank" rel="noopener" href="http://mirrors.4.tuna.tsinghua.edu.cn/">http://mirrors.4.tuna.tsinghua.edu.cn/</a> (IPv4 only) 中国科学技术大学： <a target="_blank" rel="noopener" href="http://mirrors.ustc.edu.cn/">http://mirrors.ustc.edu.cn/</a> (IPv4+IPv6) <a target="_blank" rel="noopener" href="http://mirrors4.ustc.edu.cn/">http://mirrors4.ustc.edu.cn/</a> <a target="_blank" rel="noopener" href="http://mirrors6.ustc.edu.cn/">http://mirrors6.ustc.edu.cn/</a> 东北大学： <a target="_blank" rel="noopener" href="http://mirror.neu.edu.cn/">http://mirror.neu.edu.cn/</a> (IPv4 only) <a target="_blank" rel="noopener" href="http://mirror.neu6.edu.cn/">http://mirror.neu6.edu.cn/</a> (IPv6 only) 华中科技大学： <a target="_blank" rel="noopener" href="http://mirrors.hust.edu.cn/">http://mirrors.hust.edu.cn/</a> <a target="_blank" rel="noopener" href="http://mirrors.hustunique.com/">http://mirrors.hustunique.com/</a> 电子科技大学：<a target="_blank" rel="noopener" href="http://ubuntu.uestc.edu.cn/">http://ubuntu.uestc.edu.cn/</a> 电子科大凝聚工作室(Raspbian单一系统镜像) <a target="_blank" rel="noopener" href="http://raspbian.cnssuestc.org/">http://raspbian.cnssuestc.org/</a> 电子科大星辰工作室(少数小众发布版镜像) <a target="_blank" rel="noopener" href="http://mirrors.stuhome.net/">http://mirrors.stuhome.net/</a> PyPi 镜像 豆瓣：<a target="_blank" rel="noopener" href="http://pypi.douban.com/">http://pypi.douban.com/</a> 山东理工大学：<a target="_blank" rel="noopener" href="http://pypi.sdutlinux.org/">http://pypi.sdutlinux.org/</a> 中山大学：<a target="_blank" rel="noopener" href="http://mirror.sysu.edu.cn/pypi/">http://mirror.sysu.edu.cn/pypi/</a> V2EX：<a target="_blank" rel="noopener" href="http://pypi.v2ex.com/simple/">http://pypi.v2ex.com/simple/</a> RubyGems 镜像 中山大学：<a target="_blank" rel="noopener" href="http://mirror.sysu.edu.cn/rubygems/">http://mirror.sysu.edu.cn/rubygems/</a> 山东理工大学：<a target="_blank" rel="noopener" href="http://ruby.sdutlinux.org/">http://ruby.sdutlinux.org/</a> 淘宝网：<a target="_blank" rel="noopener" href="http://ruby.taobao.org/">http://ruby.taobao.org/</a> npm 镜像 cnpmjs：<a target="_blank" rel="noopener" href="http://cnpmjs.org/">http://cnpmjs.org/</a></p>
 
       
     </div>

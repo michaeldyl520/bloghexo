@@ -222,7 +222,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">122</span>
+          <span class="site-state-item-count">124</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -272,6 +272,288 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jiliuke.com/2015/01/07/php-16-e4-bd-8d-md5-e5-8a-a0-e5-af-86-e4-b9-b1-e7-a0-81-e7-9a-84-e8-a7-a3-e5-86-b3-e6-96-b9-e6-b3-95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="michaeldyl520">
+      <meta itemprop="description" content="Bring the crowds together, inspire unlimited">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jiliuke">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2015/01/07/php-16-e4-bd-8d-md5-e5-8a-a0-e5-af-86-e4-b9-b1-e7-a0-81-e7-9a-84-e8-a7-a3-e5-86-b3-e6-96-b9-e6-b3-95/" class="post-title-link" itemprop="url">php 16位 md5加密乱码的解决方法</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2015-01-07 17:07:37" itemprop="dateCreated datePublished" datetime="2015-01-07T17:07:37+08:00">2015-01-07</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-12-24 10:16:52" itemprop="dateModified" datetime="2020-12-24T10:16:52+08:00">2020-12-24</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>    PHP默认的md5加密是32位的, 虽然php从5.0开始说是可以16位加密的, 但是16位加密会出现乱码问题.</p>
+<p>md5($str, true)后跟true参数时为16位，但很多时候会出现乱码（因为生成的二进制有不可显示字符！）</p>
+<p>其实32位的加密字符串的第8到24位，和16位MD5的字符串是一样的。</p>
+<p> 我们可以先32位加密，再用substr()来截取；</p>
+<p>    function md5_16($str){</p>
+<p>         return substr(md5($str),8,16);</p>
+<p>    }</p>
+<p>    $str = “<a target="_blank" rel="noopener" href="http://tools.jiliuke.com&quot;/">http://tools.jiliuke.com&quot;</a>;</p>
+<p>    echo md5($str);</p>
+<p>    echo md5_16($str);</p>
+<p>输出结果：</p>
+<p>    0b8e0d6246125a11a1223bd9c6977770</p>
+<p>    46125a11a1223bd9</p>
+<p>php 16位加密也可以这样来写:</p>
+<p>    substr(md5(“admin”),8,-8);</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jiliuke.com/2015/01/07/jquery-ui-datepicker-e4-bd-bf-e7-94-a8-e6-96-b9-e6-b3-95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="michaeldyl520">
+      <meta itemprop="description" content="Bring the crowds together, inspire unlimited">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jiliuke">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2015/01/07/jquery-ui-datepicker-e4-bd-bf-e7-94-a8-e6-96-b9-e6-b3-95/" class="post-title-link" itemprop="url">JQuery UI datepicker 使用方法</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2015-01-07 17:06:19" itemprop="dateCreated datePublished" datetime="2015-01-07T17:06:19+08:00">2015-01-07</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-12-24 10:16:52" itemprop="dateModified" datetime="2020-12-24T10:16:52+08:00">2020-12-24</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/jquery/" itemprop="url" rel="index"><span itemprop="name">jquery</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>官方地址：<a target="_blank" rel="noopener" href="http://docs.jquery.com/UI/Datepicker">http://docs.jquery.com/UI/Datepicker</a>，官方示例： <a target="_blank" rel="noopener" href="http://jqueryui.com/demos/datepicker/">http://jqueryui.com/demos/datepicker/</a>。 一个不错的地址，用来DIY jQuery UI界面效果的站点<a target="_blank" rel="noopener" href="http://jqueryui.com/themeroller/">http://jqueryui.com/themeroller/</a> DatePicker基本使用方法： 代码如下:</p>
+<!DOCTYPE html><p> </p>
+<html> 
+<head> 
+<link href="http://ajax.useso.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/> 
+<script src="http://ajax.useso.com/ajax/libs/jquery/1.4/jquery.min.js"></script> 
+<script src="http://ajax.useso.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script> 
+
+<script> 
+$(document).ready(function() { 
+$("#datepicker").datepicker(); 
+}); 
+</script> 
+</head> 
+<body style="font-size:62.5%;"> 
+
+<div type="text" id="datepicker"></div> 
+
+</body> 
+</html>
+
+<p>DatePicker支持鼠标点选日期，同时还可以通过键盘控制选择：</p>
+<p>page up/down - 上一月、下一月<br>ctrl+page up/down - 上一年、下一年<br>ctrl+home - 当前月或最后一次打开的日期<br>ctrl+left/right - 上一天、下一天<br>ctrl+up/down - 上一周、下一周<br>enter - 确定选择日期<br>ctrl+end - 关闭并清除已选择的日期<br>escape - 关闭并取消选择</p>
+<p>实用功能：</p>
+<p>$.datepicker.setDefaults( settings ) - 全局设置日期选择插件的参数.<br>$.datepicker.formatDate( format, date, settings ) - 格式化显示的日期字符串<br>$.datepicker.iso8601Week( date ) - 给出一个日期，确实他是一年中的第几周<br>$.datepicker.parseDate( format, value, settings ) - 按照指定格式获取日期字符串</p>
+<p>日期格式：</p>
+<p>d - 每月的第几天 (没有前导零)<br>dd - 每月的第几天 (两位数字)<br>o - 一年中的第几天 (没有前导零)<br>oo - 一年中的第几天 (三位数字)<br>D - day name short<br>DD - day name long<br>m - 月份 (没有前导零)<br>mm - 月份 (两位数字)<br>M - month name short<br>MM - month name long<br>y - 年份 (两位数字)<br>yy - 年份 (四位数字)<br>@ - Unix 时间戳 (从 01/01/1970 开始)<br>‘…’ - 文本<br>‘’ - 单引号<br>（其它） - 文本</p>
+<p>其它标准日期格式:</p>
+<p>ATOM - ‘yy-mm-dd’ (Same as RFC 3339/ISO 8601)<br>COOKIE - ‘D, dd M yy’<br>ISO_8601 - ‘yy-mm-dd’<br>RFC_822 - ‘D, d M y’<br>RFC_850 - ‘DD, dd-M-y’<br>RFC_1036 - ‘D, d M y<br>RFC_1123 - ‘D, d M yy’<br>RFC_2822 - ‘D, d M yy’<br>RSS - ‘D, d M y’<br>TIMESTAMP - ‘@’<br>W3C - ‘yy-mm-dd’</p>
+<p>参数（参数名 : 参数类型 : 默认值）</p>
+<p>altField : String : ‘’<br>将选择的日期同步到另一个域中，配合altFormat可以显示不同格式的日期字符串。<br>初始：$(‘.selector’).datepicker({ altField: ‘#actualDate’ });<br>获取：var altField = $(‘.selector’).datepicker(‘option’, ‘altField’);<br>设置：$(‘.selector’).datepicker(‘option’, ‘altField’, ‘#actualDate’); </p>
+<p>altFormat : String : ‘’<br>当设置了altField的情况下，显示在另一个域中的日期格式。<br>初始：$(‘.selector’).datepicker({ altFormat: ‘yy-mm-dd’ });<br>获取：var altFormat = $(‘.selector’).datepicker(‘option’, ‘altFormat’);<br>设置：$(‘.selector’).datepicker(‘option’, ‘altFormat’, ‘yy-mm-dd’); </p>
+<p>appendText : String : ‘’<br>在日期插件的所属域后面添加指定的字符串。<br>初始：$(‘.selector’).datepicker({ appendText: ‘(yyyy-mm-dd)’ });<br>获取：var appendText = $(‘.selector’).datepicker(‘option’, ‘appendText’);<br>设置：$(‘.selector’).datepicker(‘option’, ‘appendText’, ‘(yyyy-mm-dd)’); </p>
+<p>buttonImage : String : ‘’<br>设置弹出按钮的图片，如果非空，则按钮的文本将成为alt属性，不直接显示。<br>初始：$(‘.selector’).datepicker({ buttonImage: ‘/images/datepicker.gif’ });<br>获取：var buttonImage = $(‘.selector’).datepicker(‘option’, ‘buttonImage’);<br>设置：$(‘.selector’).datepicker(‘option’, ‘buttonImage’, ‘/images/datepicker.gif’); </p>
+<p>buttonImageOnly : Boolean : false<br>Set to true to place an image after the field to use as the trigger without it appearing on a button.<br>初始：$(‘.selector’).datepicker({ buttonImageOnly: true });<br>获取：var buttonImageOnly = $(‘.selector’).datepicker(‘option’, ‘buttonImageOnly’);<br>设置：$(‘.selector’).datepicker(‘option’, ‘buttonImageOnly’, true); </p>
+<p>buttonText : String : ‘…’<br>设置触发按钮的文本内容。<br>初始：$(‘.selector’).datepicker({ buttonText: ‘Choose’ });<br>获取：var buttonText = $(‘.selector’).datepicker(‘option’, ‘buttonText’);<br>设置：$(‘.selector’).datepicker(‘option’, ‘buttonText’, ‘Choose’); </p>
+<p>changeMonth : Boolean : false<br>设置允许通过下拉框列表选取月份。<br>初始：$(‘.selector’).datepicker({ changeMonth: true });<br>获取：var changeMonth = $(‘.selector’).datepicker(‘option’, ‘changeMonth’);<br>设置：$(‘.selector’).datepicker(‘option’, ‘changeMonth’, true); </p>
+<p>changeYear : Boolean : false<br>设置允许通过下拉框列表选取年份。<br>初始：$(‘.selector’).datepicker({ changeYear: true });<br>获取：var changeYear = $(‘.selector’).datepicker(‘option’, ‘changeYear’);<br>设置：$(‘.selector’).datepicker(‘option’, ‘changeYear’, true); </p>
+<p>closeTextType: StringDefault: ‘Done’<br>设置关闭按钮的文本内容，此按钮需要通过showButtonPanel参数的设置才显示。<br>初始：$(‘.selector’).datepicker({ closeText: ‘X’ });<br>获取：var closeText = $(‘.selector’).datepicker(‘option’, ‘closeText’);<br>设置：$(‘.selector’).datepicker(‘option’, ‘closeText’, ‘X’); </p>
+<p>constrainInput : Boolean : true<br>如果设置为true，则约束当前输入的日期格式。<br>初始：$(‘.selector’).datepicker({ constrainInput: false });<br>获取：var constrainInput = $(‘.selector’).datepicker(‘option’, ‘constrainInput’);<br>设置：$(‘.selector’).datepicker(‘option’, ‘constrainInput’, false); </p>
+<p>currentText : String : ‘Today’<br>设置当天按钮的文本内容，此按钮需要通过showButtonPanel参数的设置才显示。<br>初始：$(‘.selector’).datepicker({ currentText: ‘Now’ });<br>获取：var currentText = $(‘.selector’).datepicker(‘option’, ‘currentText’);<br>设置：$(‘.selector’).datepicker(‘option’, ‘currentText’, ‘Now’); </p>
+<p>dateFormat : String : ‘mm/dd/yy’<br>设置日期字符串的显示格式。<br>初始：$(‘.selector’).datepicker({ dateFormat: ‘yy-mm-dd’ });<br>获取：var dateFormat = $(‘.selector’).datepicker(‘option’, ‘dateFormat’);<br>设置：$(‘.selector’).datepicker(‘option’, ‘dateFormat’, ‘yy-mm-dd’); </p>
+<p>dayNames : Array : [‘Sunday’, ‘Monday’, ‘Tuesday’, ‘Wednesday’, ‘Thursday’, ‘Friday’, ‘Saturday’]<br>设置一星期中每天的名称，从星期天开始。此内容用于dateFormat时显示，以及日历中当鼠标移至行头时显示。<br>初始：$(‘.selector’).datepicker({ dayNames: [‘Dimanche’, ‘Lundi’, ‘Mardi’, ‘Mercredi’, ‘Jeudi’, ‘Vendredi’, ‘Samedi’] });<br>获取：var dayNames = $(‘.selector’).datepicker(‘option’, ‘dayNames’);<br>设置：$(‘.selector’).datepicker(‘option’, ‘dayNames’, [‘Dimanche’, ‘Lundi’, ‘Mardi’, ‘Mercredi’, ‘Jeudi’, ‘Vendredi’, ‘Samedi’]); </p>
+<p>dayNamesMin : Array : [‘Su’, ‘Mo’, ‘Tu’, ‘We’, ‘Th’, ‘Fr’, ‘Sa’]<br>设置一星期中每天的缩语，从星期天开始，此内容用于dateFormat时显示，以前日历中的行头显示。<br>初始：$(‘.selector’).datepicker({ dayNamesMin: [‘Di’, ‘Lu’, ‘Ma’, ‘Me’, ‘Je’, ‘Ve’, ‘Sa’] });<br>获取：var dayNamesMin = $(‘.selector’).datepicker(‘option’, ‘dayNamesMin’);<br>设置：$(‘.selector’).datepicker(‘option’, ‘dayNamesMin’, [‘Di’, ‘Lu’, ‘Ma’, ‘Me’, ‘Je’, ‘Ve’, ‘Sa’]); </p>
+<p>dayNamesShort : Array : [‘Sun’, ‘Mon’, ‘Tue’, ‘Wed’, ‘Thu’, ‘Fri’, ‘Sat’]<br>设置一星期中每天的缩语，从星期天开始，此内容用于dateFormat时显示，以前日历中的行头显示。<br>初始：$(‘.selector’).datepicker({ dayNamesShort: [‘Dim’, ‘Lun’, ‘Mar’, ‘Mer’, ‘Jeu’, ‘Ven’, ‘Sam’] });<br>获取：var dayNamesShort = $(‘.selector’).datepicker(‘option’, ‘dayNamesShort’);<br>设置：$(‘.selector’).datepicker(‘option’, ‘dayNamesShort’, [‘Dim’, ‘Lun’, ‘Mar’, ‘Mer’, ‘Jeu’, ‘Ven’, ‘Sam’]); </p>
+<p>defaultDate : Date, Number, String : null<br>设置默认加载完后第一次显示时选中的日期。可以是Date对象，或者是数字（从今天算起，例如+7），或者有效的字符串(‘y’代表年, ‘m’代表月, ‘w’代表周, ‘d’代表日, 例如：’+1m +7d’)。<br>初始：$(‘.selector’).datepicker({ defaultDate: +7 });<br>获取：var defaultDate = $(‘.selector’).datepicker(‘option’, ‘defaultDate’);<br>设置：$(‘.selector’).datepicker(‘option’, ‘defaultDate’, +7); </p>
+<p>duration : String, Number : ‘normal’<br>设置日期控件展开动画的显示时间，可选是”slow”, “normal”, “fast”，’’代表立刻，数字代表毫秒数。<br>初始：$(‘.selector’).datepicker({ duration: ‘slow’ });<br>获取：var duration = $(‘.selector’).datepicker(‘option’, ‘duration’);<br>设置：$(‘.selector’).datepicker(‘option’, ‘duration’, ‘slow’); </p>
+<p>firstDay : Number : 0<br>设置一周中的第一天。星期天为0，星期一为1，以此类推。<br>初始：$(‘.selector’).datepicker({ firstDay: 1 });<br>获取：var firstDay = $(‘.selector’).datepicker(‘option’, ‘firstDay’);<br>设置：$(‘.selector’).datepicker(‘option’, ‘firstDay’, 1); </p>
+<p>gotoCurrent : Boolean : false<br>如果设置为true，则点击当天按钮时，将移至当前已选中的日期，而不是今天。<br>初始：$(‘.selector’).datepicker({ gotoCurrent: true });<br>获取：var gotoCurrent = $(‘.selector’).datepicker(‘option’, ‘gotoCurrent’);<br>设置：$(‘.selector’).datepicker(‘option’, ‘gotoCurrent’, true); </p>
+<p>hideIfNoPrevNext : Boolean : false<br>设置当没有上一个/下一个可选择的情况下，隐藏掉相应的按钮。（默认为不可用）<br>初始：$(‘.selector’).datepicker({ hideIfNoPrevNext: true });<br>获取：var hideIfNoPrevNext = $(‘.selector’).datepicker(‘option’, ‘hideIfNoPrevNext’);<br>设置：$(‘.selector’).datepicker(‘option’, ‘hideIfNoPrevNext’, true); </p>
+<p>isRTL : Boolean : false<br>如果设置为true，则所有文字是从右自左。<br>初始：$(‘.selector’).datepicker({ isRTL: true });<br>获取：var isRTL = $(‘.selector’).datepicker(‘option’, ‘isRTL’);<br>设置：$(‘.selector’).datepicker(‘option’, ‘isRTL’, true); </p>
+<p>maxDate : Date, Number, String : null<br>设置一个最大的可选日期。可以是Date对象，或者是数字（从今天算起，例如+7），或者有效的字符串(‘y’代表年, ‘m’代表月, ‘w’代表周, ‘d’代表日, 例如：’+1m +7d’)。<br>初始：$(‘.selector’).datepicker({ maxDate: ‘+1m +1w’ });<br>获取：var maxDate = $(‘.selector’).datepicker(‘option’, ‘maxDate’);<br>设置：$(‘.selector’).datepicker(‘option’, ‘maxDate’, ‘+1m +1w’);<br>$(‘.selector’).datepicker(‘option’, ‘maxDate’, ‘12/25/2012’); </p>
+<p>minDate : Date, Number, String : null<br>设置一个最小的可选日期。可以是Date对象，或者是数字（从今天算起，例如+7），或者有效的字符串(‘y’代表年, ‘m’代表月, ‘w’代表周, ‘d’代表日, 例如：’+1m +7d’)。<br>初始：$(‘.selector’).datepicker({ minDate: new Date(2007, 1 - 1, 1) });<br>获取：var minDate = $(‘.selector’).datepicker(‘option’, ‘minDate’);<br>设置：$(‘.selector’).datepicker(‘option’, ‘minDate’, new Date(2007, 1 - 1, 1));<br>$(‘.selector’).datepicker(‘option’, ‘minDate’, ‘12/25/2012’); </p>
+<p>monthNames : Array : [‘January’, ‘February’, ‘March’, ‘April’, ‘May’, ‘June’, ‘July’, ‘August’, ‘September’, ‘October’, ‘November’, ‘December’]<br>设置所有月份的名称。<br>初始：$(‘.selector’).datepicker(｛monthNames:[‘Januar’,’Februar’,’Marts’,’April’,’Maj’,’Juni’,’Juli’,’August’,’September’,’Oktober’,’November’,’December’]});<br>获取：var monthNames = $(‘.selector’).datepicker(‘option’, ‘monthNames’);<br>设置：$(‘.selector’).datepicker(‘option’, ‘monthNames’, [‘Januar’,’Februar’,’Marts’,’April’,’Maj’,’Juni’,’Juli’,’August’,’September’,’Oktober’,’November’,’December’]); </p>
+<p>monthNamesShort : Array : [‘Jan’, ‘Feb’, ‘Mar’, ‘Apr’, ‘May’, ‘Jun’, ‘Jul’, ‘Aug’, ‘Sep’, ‘Oct’, ‘Nov’, ‘Dec’]<br>设置所有月份的缩写。<br>初始：$(‘.selector’).datepicker(｛monthNamesShort:[‘Jan’,’Feb’,’Mar’,’Apr’,’Maj’,’Jun’,’Jul’,’Aug’,’Sep’,’Okt’,’Nov’,’Dec’]});<br>获取：var monthNamesShort = $(‘.selector’).datepicker(‘option’, ‘monthNamesShort’);<br>设置：$(‘.selector’).datepicker(‘option’, ‘monthNamesShort’, [‘Jan’,’Feb’,’Mar’,’Apr’,’Maj’,’Jun’,’Jul’,’Aug’,’Sep’,’Okt’,’Nov’,’Dec’]); </p>
+<p>navigationAsDateFormat : Boolean : false<br>如果设置为true，则formatDate函数将应用到 prevText,nextText和currentText的值中显示，例如显示为月份名称。<br>初始：$(‘.selector’).datepicker({ navigationAsDateFormat: true });<br>获取：var navigationAsDateFormat = $(‘.selector’).datepicker(‘option’, ‘navigationAsDateFormat’);<br>设置：$(‘.selector’).datepicker(‘option’, ‘navigationAsDateFormat’, true); </p>
+<p>nextText : String : ‘Next’<br>设置“下个月”链接的显示文字。<br>初始：$(‘.selector’).datepicker({ nextText: ‘Later’ });<br>获取：var nextText = $(‘.selector’).datepicker(‘option’, ‘nextText’);<br>设置：$(‘.selector’).datepicker(‘option’, ‘nextText’, ‘Later’); </p>
+<p>numberOfMonths : Number, Array : 1<br>设置一次要显示多少个月份。如果为整数则是显示月份的数量，如果是数组，则是显示的行与列的数量。<br>初始：$(‘.selector’).datepicker({ numberOfMonths: [2, 3] });<br>获取：var numberOfMonths = $(‘.selector’).datepicker(‘option’, ‘numberOfMonths’);<br>设置：$(‘.selector’).datepicker(‘option’, ‘numberOfMonths’, [2, 3]); </p>
+<p>prevText : String : ‘Prev’<br>设置“上个月”链接的显示文字。<br>初始：$(‘.selector’).datepicker({ prevText: ‘Earlier’ });<br>获取：var prevText = $(‘.selector’).datepicker(‘option’, ‘prevText’);<br>设置：$(‘.selector’).datepicker(‘option’, ‘prevText’, ‘Earlier’); </p>
+<p>shortYearCutoff : String, Number : ‘+10’<br>设置截止年份的值。如果是（0-99）的数字则以当前年份开始算起，如果为字符串，则相应的转为数字后再与当前年份相加。当超过截止年份时，则被认为是上个世纪。<br>初始：$(‘.selector’).datepicker({ shortYearCutoff: 50 });<br>获取：var shortYearCutoff = $(‘.selector’).datepicker(‘option’, ‘shortYearCutoff’);<br>设置：$(‘.selector’).datepicker(‘option’, ‘shortYearCutoff’, 50); </p>
+<p>showAnim : String : ‘show’<br>设置显示、隐藏日期插件的动画的名称。<br>初始：$(‘.selector’).datepicker({ showAnim: ‘fold’ });<br>获取：var showAnim = $(‘.selector’).datepicker(‘option’, ‘showAnim’);<br>设置：$(‘.selector’).datepicker(‘option’, ‘showAnim’, ‘fold’); </p>
+<p>showButtonPanel : Boolean : false<br>设置是否在面板上显示相关的按钮。<br>初始：$(‘.selector’).datepicker({ showButtonPanel: true });<br>获取：var showButtonPanel = $(‘.selector’).datepicker(‘option’, ‘showButtonPanel’);<br>设置：$(‘.selector’).datepicker(‘option’, ‘showButtonPanel’, true); </p>
+<p>showCurrentAtPos : Number : 0<br>设置当多月份显示的情况下，当前月份显示的位置。自顶部/左边开始第x位。<br>初始：$(‘.selector’).datepicker({ showCurrentAtPos: 3 });<br>获取：var showCurrentAtPos = $(‘.selector’).datepicker(‘option’, ‘showCurrentAtPos’);<br>设置：$(‘.selector’).datepicker(‘option’, ‘showCurrentAtPos’, 3); </p>
+<p>showMonthAfterYear : Boolean : false<br>是否在面板的头部年份后面显示月份。<br>初始：$(‘.selector’).datepicker({ showMonthAfterYear: true });<br>获取：var showMonthAfterYear = $(‘.selector’).datepicker(‘option’, ‘showMonthAfterYear’);<br>设置：$(‘.selector’).datepicker(‘option’, ‘showMonthAfterYear’, true); </p>
+<p>showOn : String : ‘focus’<br>设置什么事件触发显示日期插件的面板，可选值：focus, button, both<br>初始：$(‘.selector’).datepicker({ showOn: ‘both’ });<br>获取：var showOn = $(‘.selector’).datepicker(‘option’, ‘showOn’);<br>设置：$(‘.selector’).datepicker(‘option’, ‘showOn’, ‘both’); </p>
+<p>showOptions : Options : {}<br>如果使用showAnim来显示动画效果的话，可以通过此参数来增加一些附加的参数设置。<br>初始：$(‘.selector’).datepicker({ showOptions: {direction: ‘up’ });<br>获取：var showOptions = $(‘.selector’).datepicker(‘option’, ‘showOptions’);<br>设置：$(‘.selector’).datepicker(‘option’, ‘showOptions’, {direction: ‘up’); </p>
+<p>showOtherMonths : Boolean : false<br>是否在当前面板显示上、下两个月的一些日期数（不可选）。<br>初始：$(‘.selector’).datepicker({ showOtherMonths: true });<br>获取：var showOtherMonths = $(‘.selector’).datepicker(‘option’, ‘showOtherMonths’);<br>设置：$(‘.selector’).datepicker(‘option’, ‘showOtherMonths’, true); </p>
+<p>stepMonths : Number : 1<br>当点击上/下一月时，一次翻几个月。<br>初始：$(‘.selector’).datepicker({ stepMonths: 3 });<br>获取：var stepMonths = $(‘.selector’).datepicker(‘option’, ‘stepMonths’);<br>设置：$(‘.selector’).datepicker(‘option’, ‘stepMonths’, 3); </p>
+<p>yearRange : String : ‘-10:+10’<br>控制年份的下拉列表中显示的年份数量，可以是相对当前年(-nn:+nn)，也可以是绝对值 (-nnnn:+nnnn)<br>初始：$(‘.selector’).datepicker({ yearRange: ‘2000:2010’ });<br>获取：var yearRange = $(‘.selector’).datepicker(‘option’, ‘yearRange’);<br>设置：$(‘.selector’).datepicker(‘option’, ‘yearRange’, ‘2000:2010’);</p>
+<p>事件</p>
+<p>beforeShow : function(input)<br>在日期控件显示面板之前，触发此事件，并返回当前触发事件的控件的实例对象。<br>初始：$(‘.selector’).datepicker({ beforeShow: function(input) { … } }); </p>
+<p>beforeShowDay : function(date)<br>在日期控件显示面板之前，每个面板上的日期绑定时都触发此事件，参数为触发事件的日期。调用函数后，必须返回一个数组：[0]此日期是否可选(true/false)，[1]此日期的CSS样式名称(“”表示默认)，[2]当鼠标移至上面出现一段提示的内容。<br>初始：$(‘.selector’).datepicker({ beforeShowDay: function(date) { … } }); </p>
+<p>onChangeMonthYear : function(year, month, inst)<br>当年份或月份改变时触发此事件，参数为改变后的年份月份和当前日期插件的实例。<br>初始：$(‘.selector’).datepicker({ onChangeMonthYear: function(year, month, inst) { … } }); </p>
+<p>onClose : function(dateText, inst)<br>当日期面板关闭后触发此事件（无论是否有选择日期），参数为选择的日期和当前日期插件的实例。<br>初始：$(‘.selector’).datepicker({ onClose: function(dateText, inst) { … } }); </p>
+<p>onSelect : function(dateText, inst)<br>当在日期面板选中一个日期后触发此事件，参数为选择的日期和当前日期插件的实例。<br>$(‘.selector’).datepicker({ onSelect: function(dateText, inst) { … } });</p>
+<p>方法：</p>
+<p>destory<br>从元素中移除拖拽功能。<br>用法：.datepicker( ‘destroy’ ) </p>
+<p>disable<br>禁用元素的拖拽功能。<br>用法：.datepicker( ‘disable’ ) </p>
+<p>enable<br>启用元素的拖拽功能。<br>用法：.datepicker( ‘enable’ ) </p>
+<p>option<br>获取或设置元素的参数。<br>用法：.datepicker( ‘option’ , optionName , [value] ) </p>
+<p>dialog<br>在dialog插件中打开一个日期插件。<br>用法：.datepicker( ‘dialog’ , dateText , [onSelect] , [settings] , [pos] ) </p>
+<p>isDisabled<br>确实日期插件是否已被禁用。<br>用法：.datepicker( ‘isDisabled’ ) </p>
+<p>hide<br>隐藏（关闭）之前已经打开的日期面板。<br>用法：.datepicker( ‘hide’ , [speed] ) </p>
+<p>show<br>.datepicker( ‘show’ )<br>显示日期插件。<br>用法：.datepicker( ‘show’ ) </p>
+<p>getDate<br>返回当前日期插件选择的日期。<br>用法：.datepicker( ‘getDate’ ) </p>
+<p>setDate<br>设置日期插件当前的日期。date参数可以是数字（从今天算起，例如+7），或者有效的字符串(‘y’代表年, ‘m’代表月, ‘w’代表周, ‘d’代表日, 例如：’+1m +7d’)，null表示当天。<br>用法：.datepicker( ‘setDate’ , date )</p>
+<p><strong>jquery-ui-datepicker的用法讲解</strong> 1:先在页面引入相关的js,注意引入顺序不能错 jquery-1.4.2.min.js jquery-ui.min.js jquery.ui.datepicker.min.js jquery.ui.datepicker-zh-CN.min.js jquery.ui.datepicker-fr.min.js ….等等语言包(用到哪些加入哪些) 注意:在语言包的最后一句话设置了该datepicker的缺省Localization 类似这句：setDefaults(….regional[…]) 所以页面的datepicker如果不再自己设置的话，缺省会以最后一个引入的语言包的Localization为准. 2:页面示例 其中的注释已经很清楚了,datepicker的官方文档对于option的设置是先init datepicker,再setter or getter</p>
+<html> 
+<head> 
+<script type="text/javascript"> 
+$(function() { 
+//$("#datepicker").datepicker(...);//代表带着...属性直接执行创建datepicker() 
+//必须先init datepicker才能再设置datepicker的option 
+//$("#datepicker").datepicker('option',...,...);//代表设置datepicker的...的属性值为...,但不执行创建datepicker(); 
+//$.datepicker.setDefaults($.datepicker.regional\['zh-CN'\]); 
+$.datepicker.setDefaults($.datepicker.regional\[''\]);//先清理一下语言包的regional 
+$("#datepicker").datepicker(); 
+$("#datepicker").datepicker('option', $.datepicker.regional\['zh-CN'\]); 
+//$("#datepicker").datepicker($.datepicker.regional\['zh-CN'\]);//该句执行失效，因为之前有$("#datepicker").datepicker();了 
+$("#datepicker").datepicker('option', 'dateFormat','yy-mm-dd');//set dateFormat 
+//var dateFormat = $( "#datepicker" ).datepicker( "option", "dateFormat" );//get dateFormat 
+//$("#datepicker").datepicker('option', {dateFormat: 'yy-mm-dd'});//set dateFormat 
+}); 
+</script> 
+</head> 
+<body> 
+<!--div id="datepicker"></div--> 
+<input id="datepicker" type="text"/> 
+</body> 
+</html>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -335,7 +617,7 @@
     
     <div class="post-body" itemprop="articleBody">
           <p>        不同的Linux之间copy文件常用有3种方法，</p>
-<p>        第一种就是ftp，也就是其中一台Linux安装ftp Server， 这样可以另外一台使用ftp的client程序来进行文件的copy。 （注意文件大小不能超过2G） 第二种方法就是采用samba服务，类似Windows文件copy的方式来操作，比较简洁方便， 第三种就是利用scp命令来进行文件复制。 scp是有Security的文件copy，基于ssh登录。操作起来比较方便，比如要把当前一个文件copy到远程另外一台主机上，可以如下命令。 scp /soft/squid-2.6.STABLE2.tar <a href="mailto:&#114;&#x6f;&#x6f;&#116;&#64;&#49;&#57;&#50;&#46;&#49;&#54;&#x38;&#x2e;&#49;&#x2e;&#x31;">&#114;&#x6f;&#x6f;&#116;&#64;&#49;&#57;&#50;&#46;&#49;&#54;&#x38;&#x2e;&#49;&#x2e;&#x31;</a>:/soft 然后会提示你输入另外那台172.19.2.75主机的root用户的登录密码，接着就开始copy了。 如果想反过来操作，把文件从远程主机copy到当前系统，也很简单。 scp <a href="mailto:&#x72;&#111;&#x6f;&#x74;&#x40;&#x31;&#x37;&#50;&#x2e;&#49;&#x39;&#46;&#x32;&#x2e;&#55;&#x35;">&#x72;&#111;&#x6f;&#x74;&#x40;&#x31;&#x37;&#50;&#x2e;&#49;&#x39;&#46;&#x32;&#x2e;&#55;&#x35;</a>:/home/root /home/daisy/full.tar.gz</p>
+<p>        第一种就是ftp，也就是其中一台Linux安装ftp Server， 这样可以另外一台使用ftp的client程序来进行文件的copy。 （注意文件大小不能超过2G） 第二种方法就是采用samba服务，类似Windows文件copy的方式来操作，比较简洁方便， 第三种就是利用scp命令来进行文件复制。 scp是有Security的文件copy，基于ssh登录。操作起来比较方便，比如要把当前一个文件copy到远程另外一台主机上，可以如下命令。 scp /soft/squid-2.6.STABLE2.tar <a href="mailto:&#x72;&#x6f;&#111;&#116;&#64;&#49;&#x39;&#50;&#x2e;&#49;&#x36;&#56;&#46;&#x31;&#x2e;&#x31;">&#x72;&#x6f;&#111;&#116;&#64;&#49;&#x39;&#50;&#x2e;&#49;&#x36;&#56;&#46;&#x31;&#x2e;&#x31;</a>:/soft 然后会提示你输入另外那台172.19.2.75主机的root用户的登录密码，接着就开始copy了。 如果想反过来操作，把文件从远程主机copy到当前系统，也很简单。 scp <a href="mailto:&#x72;&#111;&#111;&#116;&#x40;&#49;&#55;&#50;&#46;&#49;&#x39;&#46;&#50;&#x2e;&#x37;&#53;">&#x72;&#111;&#111;&#116;&#x40;&#49;&#55;&#50;&#46;&#49;&#x39;&#46;&#50;&#x2e;&#x37;&#53;</a>:/home/root /home/daisy/full.tar.gz</p>
 
       
     </div>
@@ -1057,244 +1339,6 @@
     <div class="post-body" itemprop="articleBody">
           <p>在andriod项目中引用另一个library project时，报</p>
 <p>The container ‘Android Dependencies’ references non existing library ‘xxxxxxx’ 错误，解决办法是右击library project，选择Build Path-&gt;Configure Build Path-&gt;Order and Export-&gt;Select All将所有包都选上</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.jiliuke.com/2014/09/23/jquery-e4-b8-adprop-e6-96-b9-e6-b3-95-e5-92-8cattr-e6-96-b9-e6-b3-95-e7-9a-84-e5-8c-ba-e5-88-ab/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="michaeldyl520">
-      <meta itemprop="description" content="Bring the crowds together, inspire unlimited">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jiliuke">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2014/09/23/jquery-e4-b8-adprop-e6-96-b9-e6-b3-95-e5-92-8cattr-e6-96-b9-e6-b3-95-e7-9a-84-e5-8c-ba-e5-88-ab/" class="post-title-link" itemprop="url">jQuery中prop()方法和attr()方法的区别</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2014-09-23 10:22:11" itemprop="dateCreated datePublished" datetime="2014-09-23T10:22:11+08:00">2014-09-23</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-24 10:16:52" itemprop="dateModified" datetime="2020-12-24T10:16:52+08:00">2020-12-24</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/jquery/" itemprop="url" rel="index"><span itemprop="name">jquery</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>从jQuery 1.6开始，新加入了一个prop方法。这个方法和attr方法功能非常的相近。</p>
-<p>以下是官网建议的使用情况：</p>
-<p>Attribute/Property</p>
-<p><code>.attr()</code></p>
-<p><code>.prop()</code></p>
-<p>accesskey</p>
-<p>√</p>
-<p>align</p>
-<p>√</p>
-<p>async</p>
-<p>√</p>
-<p>√</p>
-<p>autofocus</p>
-<p>√</p>
-<p>√</p>
-<p>checked</p>
-<p>√</p>
-<p>√</p>
-<p>class</p>
-<p>√</p>
-<p>contenteditable</p>
-<p>√</p>
-<p>draggable</p>
-<p>√</p>
-<p>href</p>
-<p>√</p>
-<p>id</p>
-<p>√</p>
-<p>label</p>
-<p>√</p>
-<p>location ( i.e. window.location )</p>
-<p>√</p>
-<p>√</p>
-<p>multiple</p>
-<p>√</p>
-<p>√</p>
-<p>readOnly</p>
-<p>√</p>
-<p>√</p>
-<p>rel</p>
-<p>√</p>
-<p>selected</p>
-<p>√</p>
-<p>√</p>
-<p>src</p>
-<p>√</p>
-<p>tabindex</p>
-<p>√</p>
-<p>title</p>
-<p>√</p>
-<p>type</p>
-<p>√</p>
-<p>width ( if needed over <code>.width()</code> )</p>
-<p>√</p>
-<p>个人简要总结了一下：</p>
-<p>1、赋值时候，如果是<input type="checkbox" checked>这样的只有属性名就能生效的属性</p>
-<p>推荐prop，即：$(‘input’).prop(‘checked’,true);</p>
-<p>同时，false表示取消，即：$(‘input’).prop(‘checked’,false);</p>
-<p>当然attr也行的：$(‘input’).attr(‘checked’,’这里写什么都行的’);</p>
-<p>取消属性就是移除：$(‘input’).removeAttr(‘checked’);</p>
-<p>2、取值的时候，如果是<input  id="input1" type="checkbox" checked><input  id="input2" type="checkbox"></p>
-<p>推荐使用prop，即：</p>
-<p>$(‘#input1’).prop(‘checked’); //返回true</p>
-<p>$(‘#input2’).prop(‘checked’); //返回false</p>
-<p>而使用attr，则：</p>
-<p>$(‘#input1’).attr(‘checked’); //返回checked</p>
-<p>$(‘#input2’).attr(‘checked’); //返回undefined</p>
-<p>3、特殊属性赋值取值</p>
-<p>这个特殊说明下，获取很多人都用不到呢。</p>
-<p>比如需要在input中追加一个data-tips属性。变成这样子 <input type="text" value="" data-tips="aa"></p>
-<p>这时候只能写：$(‘input’).attr(‘data-tips’,’aa’);</p>
-<p>使用prop是不管用的。</p>
-<p>但是读值时候，两个都可以的：</p>
-<p>$(‘input’).attr(‘data-tips’);//返回aa</p>
-<p>$(‘input’).prop(‘data-tips’);//返回aa</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.jiliuke.com/2014/09/22/centos-e5-ae-89-e8-a3-85-e7-a0-b4-e8-a7-a3sublime-text-2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="michaeldyl520">
-      <meta itemprop="description" content="Bring the crowds together, inspire unlimited">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jiliuke">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2014/09/22/centos-e5-ae-89-e8-a3-85-e7-a0-b4-e8-a7-a3sublime-text-2/" class="post-title-link" itemprop="url">centos安装破解Sublime Text 2</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2014-09-22 17:18:14" itemprop="dateCreated datePublished" datetime="2014-09-22T17:18:14+08:00">2014-09-22</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-24 10:16:52" itemprop="dateModified" datetime="2020-12-24T10:16:52+08:00">2020-12-24</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/CentOS/" itemprop="url" rel="index"><span itemprop="name">CentOS</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/CentOS/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>1.去其官方网站<a target="_blank" rel="noopener" href="http://www.sublimetext.com/">http://www.sublimetext.com/</a> 把linux版下载下来，解开压缩包，放在你希望的路径下。 2.用vim将其打开 。 vim sublime_text 3.将文件转成十六进制形式。vim中输入 :%!xxd 3.在vim中定位至“Thanks”文字附近。 /Thanks 4.接着查找数字串“3342”。 /3342 找到一处3342的地方大致是这个样子 ……4333 3342 3032……. 将这里的3342 改为3242。 5.将文件转换回去。 :%!xxd -r 6.保存文件、退出。 :wq 7.打开程序，去help-enter licence 里贴进去通过程序算出来的Licence，OK 成功了。 <img src="http://www.linuxidc.com/upload/2013_07/130705063620411.png"> 这里贴出来几个算好的供使用。 —–BEGIN LICENSE—– China Unlimited User License EA7E-2861 BE67D2175D3569FDAB9EB5340FAD2822 E7B56B3397A76AA9FBE8AC3D3C65918B DFC28F2EA158140D9E07853D594818EB 3A237B2E8E98ED257C269548F50EDA34 EF0C7F72D8917DB538A0245E46BFD6B1 85F4EDE331F253530ED67A5C19E92399 04C5F4A1AF4AF3DB5EC49C1FEE17CA76 7E369F8AAE4AC6C6E756B5882E1608B9 —–END LICENSE—– —–BEGIN LICENSE—– USA Unlimited User License EA7E-1640 763D05839CA08BDA7B0103B5BABF0150 195EE53CC33B569858AFD553F080A9BC 1F678C88A1342AC92CA596FE775E7014 5A0EE55DC2F8DE3C4ED6B5B02FD4DB3C 493FCE3EE61FC0588CDAFAAD731BB47F FD047777D02A5BE92202B3D3EB59A696 A69DFEF6687D16FCD4443556912A1F62 82DA125263C5BC270CEE7664B5D0CEB9 —–END LICENSE—– —–BEGIN LICENSE—– A Unlimited User License EA7E-20708 A7281D6781626F2A37D6355121079ACA DF60119B9D27D4CBDA75FA63D633A671 9521D96D375D8DD95DF3F89231E38F8D 459374CC62D1C1B410C0BDFD2503670E 603BB1DCA7D20E85B0AF19BAE0A59822 F7B1F83659D4D7787C4F040FE9402FCD B9608A9012BDA8B65524B4DEDE4C00D0 76461448E2AAEC027060C26B038D502B —–END LICENSE—– —–BEGIN LICENSE—– B Unlimited User License EA7E-13207 B5C54DD7413302E87A9ED4155E90D5E0 684F7A34714D278ABE2731F0270034E2 9722AEC71E04043C0E9D4496D1DA161B D76CE81501A247F3E03F57D6EC1E76AE 12BE9CD453D1E651AF4BD187CC10FEB0 EB24FBAB7511F2F37E5F745D13D0641F 7D1BEEE98A9646A02B616BF98EB43F84 B04029D72C610086A666DB318A526A2F —–END LICENSE—– —–BEGIN LICENSE—– Love Unlimited User License EA7E-8441 918381ACA844A0379CCAC729059720A4 BC9D409098618744BB45FF23E67568DB 82B926D92157127DB3B4054834D0477F DD9C2B251A57F2E3259E04AD9B7DB8B8 1778C37C1D3B494671C5F4ECFBD2B519 361CD9624A56C21F54F8DD51F5BDF799 68F9537ED74680494853423904F032BA 3E896607B4D398E8C897A4DD1A8CB449 —–END LICENSE—– —–BEGIN LICENSE—– NightM Unlimited User License EA7E-5177 8125006DCD9E513CD4F1C217CAD3801D E72D3130CA1F04CFEDF3696C0F68553D DC42B172E38962890A87035FCE26049F 15EFA09D4BCC811617915165959A499F 402866AFC08E72615336D863968B60FB C9167F72F4B25ED5E8E593D2E19F43E7 C7EC9F459EA62F1DD1757DC9967C4801 8E48683A4F0F9CAC3CC0621F2D48292F —–END LICENSE—– 使用terminal安装的，安装目录在/usr/lib/sublime-text-2/sublime_text 下， 拷贝出来，修改，在sudo cp -f 回去即可继续后续步骤。</p>
 
       
     </div>

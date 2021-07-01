@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://www.jiliuke.com/2021/07/01/package-deb-tips/</loc>
+    <lastmod>2021-07-01</lastmod>
+  </url>
+  <url>
+    <loc>http://www.jiliuke.com/2021/03/17/wine/</loc>
+    <lastmod>2021-07-01</lastmod>
+  </url>
+  <url>
     <loc>http://www.jiliuke.com/2021/02/09/multiple-pecl-php-xdebug/</loc>
     <lastmod>2021-02-09</lastmod>
   </url>

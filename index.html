@@ -222,7 +222,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">122</span>
+          <span class="site-state-item-count">124</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -272,6 +272,144 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jiliuke.com/2021/07/01/package-deb-tips/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="michaeldyl520">
+      <meta itemprop="description" content="Bring the crowds together, inspire unlimited">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jiliuke">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/07/01/package-deb-tips/" class="post-title-link" itemprop="url">deepin中打包出现的问题汇总</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-07-01 11:11:05 / 修改时间：11:19:32" itemprop="dateCreated datePublished" datetime="2021-07-01T11:11:05+08:00">2021-07-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>打包后安装出现双图标</p>
+<h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><p>desktop中添加StartupWMClass=xxx<br>xxx通过终端中执行xprop WM_CLASS点击应用程序获取。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jiliuke.com/2021/03/17/wine/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="michaeldyl520">
+      <meta itemprop="description" content="Bring the crowds together, inspire unlimited">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jiliuke">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/03/17/wine/" class="post-title-link" itemprop="url">一些 deepin-wine 事例</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-03-17 18:42:58" itemprop="dateCreated datePublished" datetime="2021-03-17T18:42:58+08:00">2021-03-17</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-07-01 11:18:48" itemprop="dateModified" datetime="2021-07-01T11:18:48+08:00">2021-07-01</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="连连看5"><a href="#连连看5" class="headerlink" title="连连看5"></a>连连看5</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">WINEPREFIX=~/.deepinwine/apps/连连看_1 WINEDEBUG=+seh deepin-wine5-stable ~/.deepinwine/apps/连连看_1/drive_c/Program\ Files/步天软件/连连看5/LinLink5.exe</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">调试字体</span></span><br><span class="line">WINEPREFIX=/data/home/dyl/.deepinwine/apps/连连看_1 WINEDEBUG=+font,+tid deepin-wine5-stable /data/home/dyl/.deepinwine/apps/连连看_1/drive_c/Program\ Files/步天软件/连连看5/LinLink5.exe &amp;&gt; /data/home/dyl/fonts.log</span><br><span class="line"></span><br><span class="line">WINEPREFIX=/data/home/dyl/.deepinwine/apps/连连看_1 WINEDEBUG=+seh deepin-wine5-stable /data/home/dyl/.deepinwine/apps/连连看_1/drive_c/Program\ Files/步天软件/连连看5/LinLink5.exe</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">解决midi声音问题</span></span><br><span class="line">sudo apt-get install timidity</span><br><span class="line"></span><br><span class="line">timidity -iAD -B2,8 -Os1l -s 44100</span><br><span class="line"></span><br><span class="line">WINE=/usr/bin/deepin-wine5-stable WINEPREFIX=/home/dyl/.deepinwine/apps/连连看_1 winetricks -q directmusic gmdls</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="贪玩原始传奇"><a href="#贪玩原始传奇" class="headerlink" title="贪玩原始传奇"></a>贪玩原始传奇</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">LC_ALL=en_US.UTF-8 WINEPREFIX=/home/dyl/.deepinwine/apps/贪玩原始传奇_1 WINEDEBUG=+seh deepin-wine5-stable /home/dyl/.deepinwine/apps/贪玩原始传奇_1/drive_c/yscq_tanwan/Update.exe</span><br><span class="line"></span><br><span class="line">WINE=/usr/bin/deepin-wine5-stable WINEPREFIX=/home/dyl/.deepinwine/apps/贪玩原始传奇_1 winetricks -q dotnet40 gdiplus</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -875,170 +1013,6 @@
 </blockquote>
 </li>
 </ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.jiliuke.com/2019/03/25/elasticsearch-tips/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="michaeldyl520">
-      <meta itemprop="description" content="Bring the crowds together, inspire unlimited">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jiliuke">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2019/03/25/elasticsearch-tips/" class="post-title-link" itemprop="url">elasticsearch-tips</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-03-25 10:14:24" itemprop="dateCreated datePublished" datetime="2019-03-25T10:14:24+08:00">2019-03-25</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-24 10:16:52" itemprop="dateModified" datetime="2020-12-24T10:16:52+08:00">2020-12-24</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/magento2/" itemprop="url" rel="index"><span itemprop="name">magento2</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/magento2/elasticsearch/" itemprop="url" rel="index"><span itemprop="name">elasticsearch</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">show elasticsearch database</span></span><br><span class="line">curl &#x27;localhost:9200/_cat/indices?v&#x27;</span><br><span class="line"><span class="meta">#</span><span class="bash">delete elasticsearch database</span></span><br><span class="line">curl -XDELETE &#x27;localhost:9200/xxxxxxx?pretty&#x27;</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="built_in">set</span> <span class="built_in">limit</span> variable</span></span><br><span class="line">curl -XPUT localhost:9200/_template/template_name -d &#x27;&#123;&quot;template&quot;: &quot;*&quot;, &quot;order&quot;: 0, &quot;settings&quot;: &#123;&quot;index&quot;: &#123;&quot;mapping&quot;: &#123;&quot;total_fields&quot;: &#123;&quot;limit&quot;: 10000&#125;&#125;&#125;&#125;, &quot;version&quot;: 1&#125;&#x27;</span><br><span class="line"><span class="meta">#</span><span class="bash">show use percent of elasticsearch</span></span><br><span class="line">curl &#x27;http://localhost:9200/_nodes/stats?pretty&amp;human&#x27; -s |grep heap_used</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.jiliuke.com/2018/06/20/ssh-must-be-logged-in-with-an-account-password/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="michaeldyl520">
-      <meta itemprop="description" content="Bring the crowds together, inspire unlimited">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jiliuke">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2018/06/20/ssh-must-be-logged-in-with-an-account-password/" class="post-title-link" itemprop="url">ssh 必须使用账号密码登录方法</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2018-06-20 14:14:16" itemprop="dateCreated datePublished" datetime="2018-06-20T14:14:16+08:00">2018-06-20</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-24 10:16:52" itemprop="dateModified" datetime="2020-12-24T10:16:52+08:00">2020-12-24</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/ssh/" itemprop="url" rel="index"><span itemprop="name">ssh</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>当我们本地有很多私钥的时候，直接使用<code>ssh xxx@xx.xx.xx.xx</code>方式登录的时候会出现<code> Too many authentication failures for xxx Authentication failed.</code>的错误，所以当我们存在大量的私钥时，为了方便，可以使用免密登录（不在此文讨论范围），还可以必须使用账号密码登录。</p>
-<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>配置ssh配置文件，如debian配置文件在<code>/etc/ssh/ssh_config</code>中，加入<code>PubkeyAuthentication no</code>到文件中即可。</p>
 
       
     </div>
